@@ -1,0 +1,207 @@
+﻿<Page
+    x:Class="FigDating.PivotPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:FigDating"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:data="using:FigDating.Data"
+    xmlns:customcontrols="using:FigDating.Controls"
+    xmlns:controlsp="using:FigDating.Controls.sp"
+    mc:Ignorable="d"
+    DataContext="{Binding DefaultViewModel, RelativeSource={RelativeSource Self}}"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Page.Transitions>
+        <TransitionCollection>
+            <NavigationThemeTransition>
+                <NavigationThemeTransition.DefaultNavigationTransitionInfo>
+                    <CommonNavigationTransitionInfo IsStaggeringEnabled="True"/>
+                </NavigationThemeTransition.DefaultNavigationTransitionInfo>
+            </NavigationThemeTransition>
+        </TransitionCollection>
+    </Page.Transitions>
+
+    <Page.Resources>
+        <Style x:Key="ListBoxItemStyle" TargetType="ListBoxItem">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="Padding" Value="0"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Top"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ListBoxItem">
+                        <Border x:Name="LayoutRoot" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" HorizontalAlignment="{TemplateBinding HorizontalAlignment}" VerticalAlignment="{TemplateBinding VerticalAlignment}">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal"/>
+                                    <VisualState x:Name="MouseOver"/>
+                                </VisualStateGroup>
+                                <VisualStateGroup x:Name="SelectionStates">
+                                    <VisualState x:Name="Unselected">
+                                        <Storyboard>
+                                            <ColorAnimation Duration="0" To="#FF666666" Storyboard.TargetProperty="(Control.Background).(SolidColorBrush.Color)" Storyboard.TargetName="ContentContainer" d:IsOptimized="True"/>
+                                            <ColorAnimation Duration="0" To="#FF666666" Storyboard.TargetProperty="(Control.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="ContentContainer" d:IsOptimized="True"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Selected">
+                                        <Storyboard>
+                                            <ColorAnimation Duration="0" To="#FFDC3023" Storyboard.TargetProperty="(Control.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="ContentContainer" d:IsOptimized="True"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="SelectedUnfocused">
+                                        <Storyboard>
+                                            <ColorAnimation Duration="0" To="#FFDC3023" Storyboard.TargetProperty="(Control.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="ContentContainer" d:IsOptimized="True"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <ContentControl x:Name="ContentContainer" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" Foreground="#FFDC3023" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Background="Black" BorderBrush="Black"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
+
+    <Grid x:Name="background" RequestedTheme="Light" Margin="0,0.333,0,-60.333">
+        <FlyoutBase.AttachedFlyout>
+            <MenuFlyout/>
+        </FlyoutBase.AttachedFlyout>
+        <Grid.Background>
+            <SolidColorBrush Color="{ThemeResource PhoneBaseWhiteColor}"/>
+        </Grid.Background>
+        <Rectangle HorizontalAlignment="Left" Height="100" Stroke="#FF666666" VerticalAlignment="Top" Width="400"/>
+
+        <Rectangle Fill="#FFDC3023" HorizontalAlignment="Left" Height="60" VerticalAlignment="Top" Width="400" IsDoubleTapEnabled="False" IsHoldingEnabled="False" IsRightTapEnabled="False" IsTapEnabled="False"/>
+
+        <TextBox x:Name="title" HorizontalAlignment="Left" Margin="21,6,0,0" TextWrapping="Wrap" Text="新的约会" VerticalAlignment="Top" Width="214" Background="{x:Null}" Foreground="White" FontSize="36" BorderBrush="{x:Null}" IsHitTestVisible="False" IsTabStop="False" IsTextPredictionEnabled="False" SelectionHighlightColor="{x:Null}" IsRightTapEnabled="False" IsDoubleTapEnabled="False" IsHoldingEnabled="False" IsTapEnabled="False" IsReadOnly="True" Height="49" Padding="7,4,8,0"/>
+        <Image HorizontalAlignment="Left" Height="23" Margin="246,20,0,0" VerticalAlignment="Top" Width="29" Source="Assets/chance.png"/>
+        <Image HorizontalAlignment="Left" Height="24" Margin="321,20,0,0" VerticalAlignment="Top" Width="22" Source="Assets/message.png"/>
+
+
+        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <ListBox x:Name="ImageBar"
+                     Grid.Row="1"
+                     ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                     ItemContainerStyle="{StaticResource ListBoxItemStyle}"                     
+                     SelectedIndex="{Binding SelectedIndex, ElementName=ContentPivot, Mode=TwoWay}" Margin="0,61,0,537">
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <controlsp:SplitPanel />
+                    </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
+                <ListBoxItem>
+                    <customcontrols:PathControl Content="M 37.0266,4.10004L 4.13733,4.10004L 4.13733,29.488L 37.0266,29.488M 41.1586,5.69202C 42.216,5.69202 43.1973,5.68402 44.1773,5.6947C 45.016,5.70404 45.744,5.98401 46.1307,6.76672C 46.3133,7.14001 46.4093,7.59595 46.4107,8.01465C 46.4267,15.7626 46.4267,23.5134 46.4173,31.2614C 46.416,32.7734 45.5627,33.5827 44.036,33.5827L 2.36399,33.5827C 0.850667,33.5827 0.0186564,32.76 0.0026652,31.2387C -0.00667318,30.3066 0,29.3747 0,28.4413C 0,19.792 0.00132243,11.1427 0,2.49335C -0.00134277,1.5813 0.174662,0.744019 1.06799,0.294678C 1.41199,0.121338 1.828,0.00927734 2.21065,0.00927734C 14.4453,-0.00537109 26.68,-0.00537109 38.9146,0C 40.272,0 41.1373,0.885376 41.156,2.276C 41.1693,3.39868 41.1586,4.52002 41.1586,5.69202 Z M 20.6067,7.21729C 24.7227,7.21729 28.84,7.21869 32.9573,7.21472C 33.8373,7.21332 34.5466,7.49731 35.0093,8.29199C 35.6507,9.39063 34.9413,10.9733 33.6907,11.192C 33.3453,11.252 32.992,11.2866 32.6413,11.288C 24.5053,11.2933 16.368,11.292 8.23065,11.2907C 6.95333,11.2907 6.11599,10.6586 5.93465,9.56268C 5.73867,8.38397 6.54132,7.36536 7.77466,7.23462C 7.96533,7.21472 8.16134,7.21729 8.35333,7.21729C 12.4373,7.216 16.5227,7.21729 20.6067,7.21729 Z M 12.94,13.8958C 14.4987,13.8958 16.0587,13.8917 17.6173,13.8971C 18.5227,13.8998 19.04,14.2784 19.2147,15.041C 19.3707,15.7184 18.8813,16.4717 18.1907,16.5944C 17.9707,16.6344 17.7453,16.6557 17.5227,16.6557C 14.468,16.6598 11.4133,16.6598 8.35999,16.6584C 7.836,16.6584 7.33067,16.6024 6.96665,16.1571C 6.60799,15.7197 6.53733,15.2264 6.76133,14.7224C 7.03599,14.1051 7.58266,13.9011 8.21466,13.8971C 9.78933,13.8904 11.3653,13.8958 12.94,13.8958 Z M 28.2297,16.6586C 26.6697,16.6586 25.1111,16.6627 23.5511,16.6573C 22.6937,16.6533 22.1191,16.296 21.9577,15.6867C 21.6897,14.6694 22.3604,13.8987 23.5351,13.8973C 26.3311,13.892 29.1284,13.896 31.9244,13.896C 32.2951,13.896 32.6657,13.8787 33.0337,13.9C 34.1084,13.9587 34.7297,14.776 34.4164,15.7147C 34.2511,16.2094 33.911,16.524 33.3831,16.6C 33.1457,16.6333 32.9044,16.656 32.6657,16.656C 31.1857,16.6613 29.7071,16.6586 28.2297,16.6586 Z M 28.1808,21.1724C 26.6061,21.1724 25.0315,21.1777 23.4568,21.1697C 22.6541,21.1644 22.1128,20.8044 21.9581,20.2124C 21.7008,19.2271 22.3435,18.4404 23.4395,18.4338C 25.1755,18.4218 26.9101,18.4297 28.6461,18.4297C 30.0928,18.4297 31.5395,18.4204 32.9848,18.4338C 34.0968,18.4445 34.7555,19.3177 34.4088,20.287C 34.2088,20.8511 33.7181,21.1617 32.9541,21.1684C 31.7155,21.1804 30.4795,21.1724 29.2421,21.1724L 28.1808,21.1724 Z M 12.9484,21.1724C 11.3737,21.1724 9.79905,21.1777 8.22573,21.1697C 7.41907,21.1657 6.87773,20.8204 6.70972,20.2338C 6.44706,19.3137 7.01772,18.5231 8.0164,18.4338C 8.1604,18.4218 8.30573,18.4297 8.44973,18.4297C 11.5191,18.4297 14.5871,18.4284 17.6564,18.4311C 18.5124,18.4324 19.0164,18.7924 19.1951,19.5138C 19.3831,20.2684 18.8764,21.0258 18.1044,21.1324C 17.8831,21.1631 17.6551,21.1711 17.4311,21.1711C 15.9377,21.1738 14.4431,21.1724 12.9484,21.1724 Z M 28.1645,25.6918C 26.5752,25.6918 24.9845,25.6985 23.3939,25.6892C 22.6392,25.6852 22.1019,25.3105 21.9565,24.7252C 21.7139,23.7465 22.3405,22.9719 23.4072,22.9666C 25.0939,22.9558 26.7805,22.9639 28.4672,22.9639C 29.9765,22.9639 31.4872,22.9532 32.9979,22.9666C 34.1032,22.9758 34.7632,23.8639 34.4059,24.8292C 34.2032,25.3759 33.7125,25.6865 32.9845,25.6892C 31.3779,25.6972 29.7712,25.6918 28.1645,25.6918 Z M 12.9601,25.6926C 11.3535,25.6926 9.74679,25.6992 8.14012,25.6885C 7.38013,25.6845 6.86013,25.3206 6.70679,24.7258C 6.45479,23.7499 7.08012,22.9739 8.1508,22.9672C 9.62813,22.9552 11.1055,22.9633 12.5841,22.9633C 14.2868,22.9633 15.9895,22.9606 17.6935,22.9645C 18.4441,22.9672 18.9841,23.3125 19.1641,23.8885C 19.4588,24.8339 18.8601,25.6659 17.8268,25.6845C 16.4135,25.7099 15.0001,25.6926 13.5868,25.6926L 12.9601,25.6926 Z" />
+                </ListBoxItem>
+                <ListBoxItem>
+                    <customcontrols:PathControl Content="M 13.648,23.7497C 13.648,20.8151 13.648,17.8817 13.648,14.947C 13.648,13.999 13.1493,13.4817 12.1987,13.479C 9.184,13.4724 6.16933,13.4724 3.15468,13.479C 2.204,13.4817 1.70935,13.9963 1.70801,14.9537C 1.70667,20.8098 1.70667,26.6657 1.70801,32.5204C 1.70935,33.4817 2.20268,33.9684 3.16268,33.9684C 6.176,33.9697 9.19067,33.9697 12.2053,33.9684C 13.164,33.9684 13.648,33.4777 13.648,32.5124C 13.648,29.5924 13.648,26.6711 13.648,23.7497 Z M 25.816,32.2751C 28.3373,32.2751 30.8587,32.2657 33.3787,32.2831C 33.868,32.2858 34.236,32.1124 34.5227,31.7497C 35.2187,30.8644 35.64,29.875 35.58,28.7257C 35.5587,28.3271 35.6907,28.0151 36.032,27.8137C 36.6853,27.4257 37.0587,26.8284 37.1773,26.111C 37.2973,25.3804 37.3427,24.6324 37.352,23.8911C 37.3573,23.4351 37.4573,23.0857 37.78,22.7444C 38.044,22.4644 38.2613,22.0978 38.376,21.7297C 38.6187,20.9537 38.5373,20.1764 38.1707,19.4404C 37.94,18.9777 37.9813,18.5084 38.36,18.3031C 38.676,18.131 38.74,17.8857 38.7693,17.5978C 38.816,17.1204 38.8773,16.6404 38.8627,16.1644C 38.8533,15.8871 38.7747,15.5631 38.6107,15.347C 37.7653,14.2284 36.6293,13.559 35.2253,13.4897C 33.9333,13.4257 32.6373,13.4764 31.344,13.4764C 29.9707,13.4764 28.596,13.4817 27.2227,13.4738C 26.4533,13.4711 26.1053,13.0164 26.2867,12.2764C 26.3053,12.1991 26.328,12.1217 26.3467,12.0458C 26.8293,10.131 27.0974,8.20038 26.7747,6.22839C 26.5413,4.80566 26.0453,3.49634 24.976,2.47772C 24.3827,1.91235 23.7027,1.50043 22.8307,1.61243C 22.3667,1.67236 22.2133,1.86176 22.2133,2.32043C 22.2133,3.58704 22.2173,4.8551 22.2094,6.1217C 22.2067,6.34442 22.192,6.58301 22.1133,6.78705C 21.6027,8.11639 21.1173,9.45911 20.5373,10.7578C 19.4213,13.2657 17.9267,15.4938 15.5747,17.0364C 15.472,17.103 15.404,17.2991 15.4027,17.4351C 15.3947,21.7551 15.396,26.0764 15.4,30.3977C 15.4,30.5244 15.4134,30.6924 15.4907,30.7697C 16.2733,31.5483 17.1027,32.267 18.2947,32.2724C 20.8027,32.2804 23.3093,32.2751 25.816,32.2751 Z M 15.416,15.0857C 15.9013,14.5937 16.352,14.1857 16.7453,13.7271C 18.1133,12.139 18.9347,10.2457 19.7373,8.33636C 20.2893,7.02435 20.6133,5.70038 20.5027,4.26575C 20.44,3.45642 20.472,2.63904 20.504,1.82568C 20.5133,1.56311 20.6027,1.26843 20.7493,1.05237C 21.4507,0.0150757 22.8067,-0.382324 24.1427,0.0497437C 25.7067,0.556396 26.7547,1.65771 27.5,3.07373C 28.468,4.91107 28.732,6.88977 28.5747,8.93237C 28.5027,9.87244 28.34,10.8057 28.212,11.7817L 28.624,11.7817C 30.852,11.7817 33.0827,11.7124 35.3067,11.8031C 37.2893,11.8844 38.8987,12.8098 40.0627,14.4391C 40.6893,15.3177 40.66,16.3337 40.5054,17.3311C 40.416,17.9124 40.1693,18.4697 40.004,19.0417C 39.9707,19.1577 39.9573,19.2991 39.988,19.4138C 40.4093,20.999 40.2653,22.4738 39.1853,23.7858C 39.1053,23.8817 39.0947,24.0551 39.0933,24.191C 39.0893,25.2231 39.0507,26.2631 38.6093,27.207C 38.3387,27.7858 37.896,28.2831 37.5453,28.8271C 37.4293,29.0031 37.3013,29.2017 37.276,29.403C 37.088,30.863 36.5413,32.1523 35.4867,33.1951C 34.9653,33.7111 34.3387,33.9764 33.5813,33.975C 28.5653,33.9644 23.548,33.9524 18.532,33.9817C 17.4973,33.9884 16.596,33.7031 15.7413,33.1697C 15.6307,33.1017 15.516,33.0364 15.368,32.9484C 15.2533,33.7363 14.9467,34.3964 14.372,34.915C 13.7587,35.4711 13.02,35.7004 12.2067,35.7017C 9.19202,35.7057 6.176,35.7177 3.16134,35.6977C 1.236,35.687 0,34.4071 0,32.4884C -0.00132243,26.6444 -0.00132243,20.8017 0,14.9577C 0,13.0417 1.26267,11.7817 3.184,11.7817C 6.18534,11.7817 9.18801,11.8124 12.1893,11.771C 13.9413,11.7471 15.328,13.0804 15.3533,14.6511C 15.3547,14.7551 15.3827,14.8591 15.416,15.0857 Z" />
+                </ListBoxItem>
+                <ListBoxItem>
+                    <customcontrols:PathControl Content="M 7.612,30.2281C 8.276,29.6761 8.90133,29.1588 9.52533,28.6387C 11.844,26.7054 14.164,24.7747 16.4787,22.8387C 16.62,22.7201 16.7573,22.6761 16.9373,22.6761C 21.3187,22.6815 25.7013,22.6801 30.084,22.6788C 30.2693,22.6788 30.4627,22.6827 30.64,22.6387C 31.3707,22.4574 31.7773,21.8907 31.7787,21.0654C 31.78,18.8454 31.7787,16.6241 31.7787,14.4027C 31.7787,11.1614 31.7667,7.91876 31.7867,4.67609C 31.7933,3.64679 30.9973,3.05072 30.2133,3.05206C 21.6867,3.06409 13.1613,3.06409 4.63467,3.05341C 3.74267,3.05206 3.05733,3.76007 3.06,4.65204C 3.072,10.132 3.072,15.6121 3.06,21.0921C 3.05733,22.0067 3.776,22.7161 4.63867,22.6867C 5.53066,22.6561 6.42533,22.6801 7.31866,22.6801L 7.612,22.6801M 0,22.9814L 0,4.19073C 0.0146688,4.14142 0.0360006,4.09338 0.0426687,4.04407C 0.326665,1.69739 2.22666,6.10352e-005 4.58666,6.10352e-005C 13.148,-0.00256348 21.7093,-0.00128174 30.2707,0.00140381C 30.5493,0.00140381 30.8347,0.0133667 31.1067,0.0653687C 33.3947,0.501404 34.8453,2.50006 34.84,4.55872C 34.824,10.0974 34.8347,15.6387 34.8307,21.1774C 34.8307,21.4814 34.8067,21.7907 34.7493,22.0894C 34.336,24.2054 32.4173,25.7667 30.1973,25.7507C 26.276,25.7227 22.352,25.7414 18.428,25.7481C 18.2867,25.7481 18.1253,25.7961 18.008,25.8734C 13.6307,28.7853 9.25867,31.7028 4.88667,34.6201C 4.81866,34.6654 4.76,34.7254 4.69733,34.7787L 4.54533,34.7787L 4.54533,25.8014C 3.93333,25.7094 3.352,25.6454 2.78267,25.5307C 2.13867,25.3987 1.54,25.1441 1.00933,24.7427C 0.419998,24.2987 0.117335,23.6947 0,22.9814 Z M 6.08,8.08624L 28.7787,8.08624L 28.7787,9.58752L 6.08,9.58752L 6.08,8.08624 Z M 28.788,12.6102L 6.08533,12.6102L 6.08533,11.1009L 28.788,11.1009L 28.788,12.6102 Z M 6.07866,14.1329L 18.176,14.1329L 18.176,15.6502L 6.07866,15.6502L 6.07866,14.1329 Z" />
+                </ListBoxItem>
+                <ListBoxItem>
+                    <customcontrols:PathControl Content="M 35.024,4.37732C 34.8973,4.37067 35.024,4.37067 34.8973,4.37067C 23.4733,4.37067 11.8,4.36133 0.374674,4.36261C 0.249349,4.36261 0.124023,4.37067 0,4.37732L 0,0L 35.024,0L 35.024,4.37732 Z M 0.000569662,17.6476C 0.14856,17.6409 0.295207,17.6329 0.443237,17.6329C 11.8232,17.6316 23.2006,17.6316 34.5819,17.6329C 34.7272,17.6329 34.8752,17.6409 35.0245,17.6476L 35.0245,21.9556C 30.2059,21.9542 25.3872,21.9529 20.5699,21.9529C 13.7126,21.9529 6.85657,21.9542 0.000569662,21.9556L 0.000569662,17.6476 Z M 0.0129395,8.77252C 0.16097,8.77917 0.307617,8.78717 0.45695,8.78717C 7.4423,8.78986 14.4263,8.78986 21.4116,8.78986L 21.8676,8.78986L 21.8676,13.1351L 21.4463,13.1351C 14.4503,13.1351 7.45296,13.1339 0.45695,13.1365C 0.307617,13.1365 0.16097,13.1445 0.0129395,13.1512L 0.0129395,8.77252 Z M 10.6711,35.0225C 10.5871,34.9945 10.5044,34.9598 10.4178,34.9385C 9.36442,34.6705 8.62443,33.6025 8.78442,32.5692C 8.96708,31.4012 9.94442,30.5892 11.0751,30.6665C 12.2044,30.7425 13.0977,31.6772 13.1164,32.8025C 13.1337,33.7838 12.4338,34.6892 11.4724,34.9371C 11.3857,34.9598 11.3031,34.9945 11.2191,35.0225L 10.6711,35.0225 Z M 0.000569662,32.5602C 0.0272217,32.4856 0.0605469,32.4163 0.0792236,32.3402C 0.336548,31.2869 1.30721,30.5736 2.35388,30.6682C 3.44189,30.7656 4.26855,31.6042 4.35787,32.6989C 4.43921,33.7189 3.71122,34.6909 2.68188,34.9429C 2.60722,34.9629 2.53524,34.9962 2.46322,35.0229L 1.9152,35.0229C 1.83122,34.9936 1.74854,34.9629 1.66321,34.9363C 0.860555,34.7042 0.337891,34.1909 0.09257,33.3909C 0.0632324,33.2976 0.0312093,33.2015 0.000569662,33.1069L 0.000569662,32.5602 Z M 19.4263,35.0225C 19.3423,34.9945 19.2596,34.9598 19.1743,34.9371C 18.121,34.6705 17.3809,33.5905 17.5476,32.5679C 17.741,31.3892 18.7076,30.5865 19.837,30.6665C 20.9676,30.7465 21.8556,31.6785 21.873,32.8038C 21.889,33.7878 21.1903,34.6905 20.229,34.9371C 20.141,34.9598 20.0596,34.9945 19.9743,35.0225L 19.4263,35.0225 Z M 0.000569662,33.1072C 0.0312093,33.2018 0.0632324,33.2979 0.09257,33.3912C 0.337891,34.1898 0.860555,34.7045 1.66321,34.9365C 1.74854,34.9631 1.83122,34.9938 1.9152,35.0232" />
+                </ListBoxItem>
+            </ListBox>
+
+            <Pivot x:Uid="Pivot" x:Name="pivot" Grid.Row="1" CommonNavigationTransitionInfo.IsStaggerElement="True" Margin="0,91,0,0">
+                <Pivot.HeaderTemplate>
+                    <DataTemplate>
+
+                    </DataTemplate>
+                </Pivot.HeaderTemplate>
+                <Pivot.ItemTemplate>
+                    <DataTemplate>
+                    </DataTemplate>
+                </Pivot.ItemTemplate>
+                <!--枢轴项一-->
+                <PivotItem
+                x:Uid="new_feeds"
+                Margin="19,14.5,0,0"
+                
+                DataContext="{Binding FirstGroup}"
+                d:DataContext="{Binding Groups[0], Source={d:DesignData Source=/DataModel/SampleData.json, Type=data:SampleDataSource}}"
+                CommonNavigationTransitionInfo.IsStaggerElement="True">
+                    <!--带有文字环绕的双行列表-->
+                    <ListView x:ConnectionId='2'
+                    ItemsSource="{Binding Items}"
+                    IsItemClickEnabled="True"
+                                                  
+                    ContinuumNavigationTransitionInfo.ExitElementContainer="True">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Margin="0,0,0,9.5">
+                                    <TextBlock
+                                    Text="{Binding Title}"
+                                    TextWrapping="Wrap"
+                                    Pivot.SlideInAnimationGroup="1"
+                                    CommonNavigationTransitionInfo.IsStaggerElement="True"
+                                    Style="{ThemeResource ListViewItemTextBlockStyle}"
+                                    Margin="0,0,19,0"/>
+                                    <TextBlock
+                                    Text="{Binding Description}"
+                                    TextWrapping="WrapWholeWords"
+                                    Pivot.SlideInAnimationGroup="2" 
+                                    CommonNavigationTransitionInfo.IsStaggerElement="True" 
+                                    Style="{ThemeResource ListViewItemContentTextBlockStyle}"
+                                    Margin="0,0,19,0"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </PivotItem>
+
+                <!--枢轴项二-->
+                <PivotItem
+                x:Uid="PivotItem2"
+                Margin="19,14.5,0,0"
+               
+                DataContext="{Binding SecondGroup}"
+                d:DataContext="{Binding Groups[1], Source={d:DesignData Source=/DataModel/SampleData.json, Type=data:SampleDataSource}}">
+                    <!--不带文字环绕的双行列表-->
+                    <ListView x:ConnectionId='1'
+                    ItemsSource="{Binding Items}"
+                    IsItemClickEnabled="True"
+                                                  
+                                               
+                    ContinuumNavigationTransitionInfo.ExitElementContainer="True" Margin="0,0,17.833,0.333">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Margin="0,0,0,9.5">
+                                    <TextBlock
+                                    Text="{Binding Title}"
+                                    Pivot.SlideInAnimationGroup="1"
+                                    CommonNavigationTransitionInfo.IsStaggerElement="True"
+                                    Style="{StaticResource ListViewItemTextBlockStyle}"/>
+                                    <TextBlock
+                                    Text="{Binding Description}"
+                                    Pivot.SlideInAnimationGroup="2"
+                                    CommonNavigationTransitionInfo.IsStaggerElement="True"
+                                    Style="{StaticResource ListViewItemContentTextBlockStyle}"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </PivotItem>
+                <PivotItem >
+                </PivotItem>
+                <PivotItem >
+                </PivotItem>
+            </Pivot>
+        </Grid>
+    </Grid>
+
+    <Page.BottomAppBar>
+        <CommandBar Background="#C8FFFFFF" Foreground="#FFDC3023" BorderBrush="{x:Null}">
+            <AppBarButton x:ConnectionId='3' Icon="Add" Label="新建约会" Foreground="#FFDC3023"                />
+        </CommandBar>
+    </Page.BottomAppBar>
+</Page>
+
