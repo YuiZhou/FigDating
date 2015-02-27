@@ -9,6 +9,7 @@
     xmlns:customcontrols="using:FigDating.Controls"
     xmlns:controlsp="using:FigDating.Controls.sp"
     mc:Ignorable="d"
+    RequestedTheme="Light"
     DataContext="{Binding DefaultViewModel, RelativeSource={RelativeSource Self}}"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
     <Page.Transitions>

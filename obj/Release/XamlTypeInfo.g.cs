@@ -124,7 +124,7 @@ namespace FigDating.FigDating_XamlTypeInfo
 
         private void InitTypeTables()
         {
-            _typeNameTable = new string[14];
+            _typeNameTable = new string[15];
             _typeNameTable[0] = "FigDating.AddNew";
             _typeNameTable[1] = "Windows.UI.Xaml.Controls.Page";
             _typeNameTable[2] = "Windows.UI.Xaml.Controls.UserControl";
@@ -134,13 +134,14 @@ namespace FigDating.FigDating_XamlTypeInfo
             _typeNameTable[6] = "Object";
             _typeNameTable[7] = "String";
             _typeNameTable[8] = "FigDating.ItemPage";
-            _typeNameTable[9] = "FigDating.Controls.sp.SplitPanel";
-            _typeNameTable[10] = "Windows.UI.Xaml.Controls.Panel";
-            _typeNameTable[11] = "FigDating.Controls.PathControl";
-            _typeNameTable[12] = "Windows.UI.Xaml.Controls.ContentControl";
-            _typeNameTable[13] = "FigDating.PivotPage";
+            _typeNameTable[9] = "FigDating.Login";
+            _typeNameTable[10] = "FigDating.Controls.sp.SplitPanel";
+            _typeNameTable[11] = "Windows.UI.Xaml.Controls.Panel";
+            _typeNameTable[12] = "FigDating.Controls.PathControl";
+            _typeNameTable[13] = "Windows.UI.Xaml.Controls.ContentControl";
+            _typeNameTable[14] = "FigDating.PivotPage";
 
-            _typeTable = new global::System.Type[14];
+            _typeTable = new global::System.Type[15];
             _typeTable[0] = typeof(global::FigDating.AddNew);
             _typeTable[1] = typeof(global::Windows.UI.Xaml.Controls.Page);
             _typeTable[2] = typeof(global::Windows.UI.Xaml.Controls.UserControl);
@@ -150,11 +151,12 @@ namespace FigDating.FigDating_XamlTypeInfo
             _typeTable[6] = typeof(global::System.Object);
             _typeTable[7] = typeof(global::System.String);
             _typeTable[8] = typeof(global::FigDating.ItemPage);
-            _typeTable[9] = typeof(global::FigDating.Controls.sp.SplitPanel);
-            _typeTable[10] = typeof(global::Windows.UI.Xaml.Controls.Panel);
-            _typeTable[11] = typeof(global::FigDating.Controls.PathControl);
-            _typeTable[12] = typeof(global::Windows.UI.Xaml.Controls.ContentControl);
-            _typeTable[13] = typeof(global::FigDating.PivotPage);
+            _typeTable[9] = typeof(global::FigDating.Login);
+            _typeTable[10] = typeof(global::FigDating.Controls.sp.SplitPanel);
+            _typeTable[11] = typeof(global::Windows.UI.Xaml.Controls.Panel);
+            _typeTable[12] = typeof(global::FigDating.Controls.PathControl);
+            _typeTable[13] = typeof(global::Windows.UI.Xaml.Controls.ContentControl);
+            _typeTable[14] = typeof(global::FigDating.PivotPage);
         }
 
         private int LookupTypeIndexByName(string typeName)
@@ -192,9 +194,10 @@ namespace FigDating.FigDating_XamlTypeInfo
         private object Activate_0_AddNew() { return new global::FigDating.AddNew(); }
         private object Activate_5_ObservableDictionary() { return new global::FigDating.Common.ObservableDictionary(); }
         private object Activate_8_ItemPage() { return new global::FigDating.ItemPage(); }
-        private object Activate_9_SplitPanel() { return new global::FigDating.Controls.sp.SplitPanel(); }
-        private object Activate_11_PathControl() { return new global::FigDating.Controls.PathControl(); }
-        private object Activate_13_PivotPage() { return new global::FigDating.PivotPage(); }
+        private object Activate_9_Login() { return new global::FigDating.Login(); }
+        private object Activate_10_SplitPanel() { return new global::FigDating.Controls.sp.SplitPanel(); }
+        private object Activate_12_PathControl() { return new global::FigDating.Controls.PathControl(); }
+        private object Activate_14_PivotPage() { return new global::FigDating.PivotPage(); }
         private void MapAdd_5_ObservableDictionary(object instance, object key, object item)
         {
             var collection = (global::System.Collections.Generic.IDictionary<global::System.String, global::System.Object>)instance;
@@ -266,31 +269,38 @@ namespace FigDating.FigDating_XamlTypeInfo
                 xamlType = userType;
                 break;
 
-            case 9:   //  FigDating.Controls.sp.SplitPanel
-                userType = new global::FigDating.FigDating_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Panel"));
-                userType.Activator = Activate_9_SplitPanel;
-                userType.SetIsLocalType();
-                xamlType = userType;
-                break;
-
-            case 10:   //  Windows.UI.Xaml.Controls.Panel
-                xamlType = new global::FigDating.FigDating_XamlTypeInfo.XamlSystemBaseType(typeName, type);
-                break;
-
-            case 11:   //  FigDating.Controls.PathControl
-                userType = new global::FigDating.FigDating_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.ContentControl"));
-                userType.Activator = Activate_11_PathControl;
-                userType.SetIsLocalType();
-                xamlType = userType;
-                break;
-
-            case 12:   //  Windows.UI.Xaml.Controls.ContentControl
-                xamlType = new global::FigDating.FigDating_XamlTypeInfo.XamlSystemBaseType(typeName, type);
-                break;
-
-            case 13:   //  FigDating.PivotPage
+            case 9:   //  FigDating.Login
                 userType = new global::FigDating.FigDating_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
-                userType.Activator = Activate_13_PivotPage;
+                userType.Activator = Activate_9_Login;
+                userType.SetIsLocalType();
+                xamlType = userType;
+                break;
+
+            case 10:   //  FigDating.Controls.sp.SplitPanel
+                userType = new global::FigDating.FigDating_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Panel"));
+                userType.Activator = Activate_10_SplitPanel;
+                userType.SetIsLocalType();
+                xamlType = userType;
+                break;
+
+            case 11:   //  Windows.UI.Xaml.Controls.Panel
+                xamlType = new global::FigDating.FigDating_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 12:   //  FigDating.Controls.PathControl
+                userType = new global::FigDating.FigDating_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.ContentControl"));
+                userType.Activator = Activate_12_PathControl;
+                userType.SetIsLocalType();
+                xamlType = userType;
+                break;
+
+            case 13:   //  Windows.UI.Xaml.Controls.ContentControl
+                xamlType = new global::FigDating.FigDating_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 14:   //  FigDating.PivotPage
+                userType = new global::FigDating.FigDating_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
+                userType.Activator = Activate_14_PivotPage;
                 userType.AddMemberName("NavigationHelper");
                 userType.AddMemberName("DefaultViewModel");
                 userType.SetIsLocalType();
@@ -700,5 +710,8 @@ namespace FigDating.FigDating_XamlTypeInfo
         }
     }
 }
+
+
+
 
 

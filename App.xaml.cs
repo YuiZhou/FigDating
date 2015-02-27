@@ -92,7 +92,7 @@ namespace FigDating
                 // 并通过将所需信息作为导航参数传入来配置
                 // 新页面
                 if (!login()) {
-                    rootFrame.Navigate(typeof(AddNew));
+                    rootFrame.Navigate(typeof(Login));
                 }else if (!rootFrame.Navigate(typeof(PivotPage), e.Arguments))
                 {
                     throw new Exception("Failed to create initial page");
@@ -138,12 +138,12 @@ namespace FigDating
 
             Windows.Storage.ApplicationDataCompositeValue UsrPwd =
    (Windows.Storage.ApplicationDataCompositeValue)localSettings.Values["loginUsrPwd"];
-
-            if (UsrPwd == null)
+            Sign sign = Sign.getSign();
+            if (UsrPwd == null || !sign.signin((string)UsrPwd["username"], (string)UsrPwd["password"]))
             {
                 return false;
             }
-            return false;
+            return true;
         }
         #endregion
     }
