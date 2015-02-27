@@ -38,17 +38,17 @@ namespace FigDating
         private readonly ObservableDictionary defaultViewModel = new ObservableDictionary();
         private readonly ResourceLoader resourceLoader = ResourceLoader.GetForCurrentView("Resources");
 
-        
+
 
         public PivotPage()
         {
             this.InitializeComponent();
-
             this.NavigationCacheMode = NavigationCacheMode.Required;
 
             this.navigationHelper = new NavigationHelper(this);
             this.navigationHelper.LoadState += this.NavigationHelper_LoadState;
             this.navigationHelper.SaveState += this.NavigationHelper_SaveState;
+            this.ContentPivot.SelectionChanged += pivot_SelectionChanged;
         }
 
         /// <summary>
@@ -66,6 +66,19 @@ namespace FigDating
         public ObservableDictionary DefaultViewModel
         {
             get { return this.defaultViewModel; }
+        }
+
+        protected void quitApp(object sender, BackPressedEventArgs e)
+        {
+            Application.Current.Exit();
+        }
+
+        protected void new_app(object sender, RoutedEventArgs e)
+        {
+            if (!Frame.Navigate(typeof(AddNew)))
+            {
+                throw new Exception(this.resourceLoader.GetString("NavigationFailedExceptionMessage"));
+            }
         }
 
         /// <summary>
@@ -152,18 +165,6 @@ namespace FigDating
 
         #endregion
 
-        protected void quitApp(object sender, BackPressedEventArgs e)
-        {
-            Application.Current.Exit();
-        }
-
-        protected void new_app(object sender, RoutedEventArgs e) {
-            if (!Frame.Navigate(typeof(AddNew)))
-            {
-                throw new Exception(this.resourceLoader.GetString("NavigationFailedExceptionMessage"));
-            }
-        }
-
         private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
@@ -173,5 +174,29 @@ namespace FigDating
         {
 
         }
+
+
+        #region 软件逻辑
+        private void pivot_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            this.applicationBar.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
+            switch (this.ContentPivot.SelectedIndex)
+            {
+                case 0:
+                    this.applicationBar.Visibility = Windows.UI.Xaml.Visibility.Visible;
+                    this.title.Text = "新的约会";
+                    break;
+                case 1:
+                    this.title.Text = "猜你喜欢";
+                    break;
+                case 2:
+                    this.title.Text = "通知";
+                    break;
+                case 3:
+                    this.title.Text = "更多";
+                    break;
+            }
+        }
+        #endregion
     }
 }
