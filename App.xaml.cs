@@ -91,7 +91,9 @@ namespace FigDating
                 // 当导航堆栈尚未还原时，导航到第一页，
                 // 并通过将所需信息作为导航参数传入来配置
                 // 新页面
-                if (!rootFrame.Navigate(typeof(PivotPage), e.Arguments))
+                if (!login()) {
+                    rootFrame.Navigate(typeof(AddNew));
+                }else if (!rootFrame.Navigate(typeof(PivotPage), e.Arguments))
                 {
                     throw new Exception("Failed to create initial page");
                 }
@@ -127,5 +129,24 @@ namespace FigDating
             // TODO: 保存应用程序状态并停止任何后台活动
             deferral.Complete();
         }
+
+#region 用户逻辑
+        private bool login()
+        {
+            Windows.Storage.ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
+            //Windows.Storage.StorageFolder localFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
+
+            Windows.Storage.ApplicationDataCompositeValue UsrPwd =
+   (Windows.Storage.ApplicationDataCompositeValue)localSettings.Values["loginUsrPwd"];
+
+            if (UsrPwd == null)
+            {
+                return false;
+            }
+            return false;
+        }
+        #endregion
     }
+
+    
 }
