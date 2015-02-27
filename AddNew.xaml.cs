@@ -107,5 +107,11 @@ namespace FigDating
         }
 
         #endregion
+
+        private void AppBarButton_Click(object sender, RoutedEventArgs e)
+        {
+            // 新添加事件，如果添加成功就返回原来的界面
+            DateTimeOffset startDateStr = this.startDate.Date;
+        }
     }
 }

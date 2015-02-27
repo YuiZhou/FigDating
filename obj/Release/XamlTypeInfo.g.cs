@@ -712,6 +712,3 @@ namespace FigDating.FigDating_XamlTypeInfo
 }
 
 
-
-
-

@@ -9,7 +9,7 @@
      RequestedTheme="Light">
     <Page.BottomAppBar>
         <CommandBar  Background="#C8FFFFFF" Foreground="#FFDC3023" BorderBrush="{x:Null}">
-            <AppBarButton Icon="Accept" Label="确定"/>
+            <AppBarButton Icon="Accept" Label="确定" Click="AppBarButton_Click"/>
         </CommandBar>
     </Page.BottomAppBar>
     <Page.Background>
@@ -40,18 +40,12 @@
                 <ColumnDefinition Width="0*"/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <TextBox HorizontalAlignment="Left" TextWrapping="Wrap" Text="开始日期" VerticalAlignment="Top" Margin="0,-6,0,0" IsReadOnly="True" Grid.ColumnSpan="2" Height="39" Width="102"/>
-            <DatePicker HorizontalAlignment="Left" Margin="0.333,17,0,0" VerticalAlignment="Top" Width="322" Height="60" BorderBrush="Black" Foreground="Black" BorderThickness="3" Grid.Column="1"/>
-            <TextBox HorizontalAlignment="Left" TextWrapping="Wrap" Text="结束日期" VerticalAlignment="Top" Margin="0,140,0,0" IsReadOnly="True" Grid.ColumnSpan="2" Height="39" Width="102"/>
-            <DatePicker HorizontalAlignment="Left" Margin="0.333,164,0,0" VerticalAlignment="Top" Width="322" Height="60" BorderBrush="Black" Foreground="Black" Grid.Column="1"/>
-            <TextBox HorizontalAlignment="Left" TextWrapping="Wrap" Text="开始时间" VerticalAlignment="Top" Margin="0,66,0,0" IsReadOnly="True" Grid.ColumnSpan="2" Height="39" Width="102"/>
-            <TimePicker HorizontalAlignment="Left" Margin="0.333,91,0,0" VerticalAlignment="Top" Width="322" Height="59" BorderBrush="Black" Foreground="Black" Grid.Column="1"/>
-            <TextBox HorizontalAlignment="Left" TextWrapping="Wrap" Text="结束时间" VerticalAlignment="Top" Margin="0,213,0,0" IsReadOnly="True" Grid.ColumnSpan="2" Height="39" Width="102"/>
-            <TimePicker HorizontalAlignment="Left" Margin="0.333,238,0,0" VerticalAlignment="Top" Width="322" Height="59" BorderBrush="Black" Foreground="Black" Grid.Column="1"/>
-            <TextBox HorizontalAlignment="Left" TextWrapping="Wrap" Text="内容" VerticalAlignment="Top" Margin="0,288,0,0" IsReadOnly="True" Grid.ColumnSpan="2" Height="39" Width="61"/>
-            <TextBox HorizontalAlignment="Left" Margin="0.333,321,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="322" Height="63" BorderBrush="Black" ToolTipService.ToolTip="你想要做什么" Grid.Column="1"/>
-            <TextBox HorizontalAlignment="Left" TextWrapping="Wrap" Text="备注" VerticalAlignment="Top" Margin="0,386,0,0" IsReadOnly="True" Grid.ColumnSpan="2" Height="39" Width="61"/>
-            <TextBox HorizontalAlignment="Left" Margin="0.333,419,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="322" Height="63" BorderBrush="Black" Grid.Column="1"/>
+            <DatePicker x:Name="startDate" Header="开始日期" HorizontalAlignment="Left" Margin="0.333,0,0,0" VerticalAlignment="Top" Width="322" Height="75" BorderBrush="Black" Foreground="Black" BorderThickness="1" Grid.Column="1"/>
+            <DatePicker x:Name="endDate" Header="结束日期" HorizontalAlignment="Left" Margin="0.333,160,0,0" VerticalAlignment="Top" Width="322" Height="75" BorderBrush="Black" Foreground="Black" Grid.Column="1" BorderThickness="1"/>
+            <TimePicker x:Name="startTime" Header="开始时间" HorizontalAlignment="Left" Margin="0.333,80,0,0" VerticalAlignment="Top" Width="322" Height="75" BorderBrush="Black" Foreground="Black" Grid.Column="1" BorderThickness="1"/>
+            <TimePicker x:Name="endTime" Header="结束时间" HorizontalAlignment="Left" Margin="0.333,240,0,0" VerticalAlignment="Top" Width="322" Height="75" BorderBrush="Black" Foreground="Black" Grid.Column="1" BorderThickness="1"/>
+            <TextBox x:Name="content" Header="内容" HorizontalAlignment="Left" Margin="0.333,320,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="322" Height="75" BorderBrush="Black" ToolTipService.ToolTip="你想要做什么" Grid.Column="1" BorderThickness="2.5" Background="{x:Null}"/>
+            <TextBox x:Name="slides" Header="备注" HorizontalAlignment="Left" Margin="0.333,400,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="322" Height="75" BorderBrush="Black" Grid.Column="1" BorderThickness="2.5" Background="{x:Null}"/>
 
         </Grid>
     </Grid>

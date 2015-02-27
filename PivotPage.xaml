@@ -10,6 +10,7 @@
     xmlns:controlsp="using:FigDating.Controls.sp"
     mc:Ignorable="d"
     RequestedTheme="Light"
+    
     DataContext="{Binding DefaultViewModel, RelativeSource={RelativeSource Self}}"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
     <Page.Transitions>
@@ -74,7 +75,7 @@
             <SolidColorBrush Color="{ThemeResource PhoneBaseWhiteColor}"/>
         </Grid.Background>
         <Rectangle HorizontalAlignment="Left" Height="100" Stroke="#FF666666" VerticalAlignment="Top" Width="400"/>
-        <Rectangle Fill="#FFDC3023" HorizontalAlignment="Left" Height="60" VerticalAlignment="Top" Width="400" IsDoubleTapEnabled="False" IsHoldingEnabled="False" IsRightTapEnabled="False" IsTapEnabled="False"/>
+        <Rectangle Fill="#FFDC3023" HorizontalAlignment="Left" Height="87" VerticalAlignment="Top" Width="400" IsDoubleTapEnabled="False" IsHoldingEnabled="False" IsRightTapEnabled="False" IsTapEnabled="False" Margin="0,-27,0,0"/>
 
         <TextBox x:Name="title" HorizontalAlignment="Left" Margin="21,3,0,0" TextWrapping="Wrap" Text="新的约会" VerticalAlignment="Top" Width="214" Background="{x:Null}" Foreground="White" FontSize="36" BorderBrush="{x:Null}" IsHitTestVisible="False" IsTabStop="False" IsTextPredictionEnabled="False" SelectionHighlightColor="{x:Null}" IsRightTapEnabled="False" IsDoubleTapEnabled="False" IsHoldingEnabled="False" IsTapEnabled="False" IsReadOnly="True" Height="49" Padding="7,0,8,0"/>
         <Image HorizontalAlignment="Left" Height="23" Margin="246,20,0,0" VerticalAlignment="Top" Width="29" Source="Assets/chance.png"/>
@@ -207,7 +208,7 @@
                     IsItemClickEnabled="True"
                     ItemClick="ItemView_ItemClick"
                     Loaded="SecondPivot_Loaded"
-                    ContinuumNavigationTransitionInfo.ExitElementContainer="True" Margin="0,0,17.833,0.333">
+                    ContinuumNavigationTransitionInfo.ExitElementContainer="True" Margin="17,0,0.5,0.667">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Margin="0,0,0,9.5">
