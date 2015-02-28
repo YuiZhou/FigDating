@@ -6,10 +6,9 @@
     <RootPropertyPathName Name="Title" />
     <RootPropertyPathName Name="SecondGroup" />
     <RootPropertyPathName Name="Items" />
-    <RootPropertyPathName Name="Description" />
-    <RootPropertyPathName Name="FirstGroup" />
     <RootPropertyPathName Name="Subtitle" />
     <RootPropertyPathName Name="ImagePath" />
+    <RootPropertyPathName Name="FirstGroup" />
     <RootPropertyPathName Name="SelectedIndex" />
   </Roots.PropertyPathNames>
   <Roots.RootTypes>
@@ -155,8 +154,6 @@
       <RootProperty Name="Foreground" />
       <RootProperty Name="HeaderTemplate" />
       <RootProperty Name="ItemTemplate" />
-      <RootMethod Name="GetSlideInAnimationGroup" />
-      <RootMethod Name="SetSlideInAnimationGroup" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.PivotItem">
       <RootProperty Name="Header" />

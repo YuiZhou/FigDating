@@ -116,6 +116,7 @@
     <Compile Include="Common\ObservableDictionary.cs" />
     <Compile Include="Common\RelayCommand.cs" />
     <Compile Include="Common\SuspensionManager.cs" />
+    <Compile Include="Connections\Appointment.cs" />
     <Compile Include="Connections\Sign.cs" />
     <Compile Include="Controls\PathControl.cs" />
     <Compile Include="Controls\SplitPanel.cs" />

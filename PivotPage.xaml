@@ -115,7 +115,6 @@
             <Pivot x:Uid="Pivot" x:Name="ContentPivot" Grid.Row="1" CommonNavigationTransitionInfo.IsStaggerElement="True" Margin="-12,77,0,0" Foreground="#FF666666">
                 <Pivot.HeaderTemplate>
                     <DataTemplate>
-
                     </DataTemplate>
                 </Pivot.HeaderTemplate>
                 <Pivot.ItemTemplate>
@@ -182,18 +181,29 @@
                     ContinuumNavigationTransitionInfo.ExitElementContainer="True" Margin="0,0,17.833,0.333">
                         <ListView.ItemTemplate>
                             <DataTemplate>
-                                <StackPanel Margin="0,0,0,9.5">
-                                    <TextBlock
-                                    Text="{Binding Title}"
-                                    Pivot.SlideInAnimationGroup="1"
-                                    CommonNavigationTransitionInfo.IsStaggerElement="True"
-                                    Style="{StaticResource ListViewItemTextBlockStyle}"/>
-                                    <TextBlock
-                                    Text="{Binding Description}"
-                                    Pivot.SlideInAnimationGroup="2"
-                                    CommonNavigationTransitionInfo.IsStaggerElement="True"
-                                    Style="{StaticResource ListViewItemContentTextBlockStyle}"/>
-                                </StackPanel>
+                                <Border BorderThickness="0,0,0,1" BorderBrush="DarkGray" x:Name="bordername">
+                                    <Grid Margin="0,5,0,0" Height="120" Width="352">
+                                        <Image Source="{Binding ImagePath}" HorizontalAlignment="Left" Height="78" Margin="5,5,0,0" VerticalAlignment="Top" Width="78"/>
+                                        <TextBox Text="{Binding Title}" Width="130" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="90,0,0,0" Background="{x:Null}" BorderBrush="{x:Null}" IsReadOnly="True" IsTabStop="False" FontSize="24" Padding="7,0,0,0" />
+                                        <TextBox Text="{Binding Subtitle}" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="220,8,0,0" Background="{x:Null}" BorderBrush="{x:Null}" IsReadOnly="True" IsTabStop="False" FontSize="18" HorizontalContentAlignment="Left" Padding="0,0.800000011920929,8,0"/>
+                                        <TextBox Text="发布了一个约会" Margin="90,35,14,0" Height="29" FontSize="16" Background="{x:Null}" BorderBrush="{x:Null}" IsReadOnly="True" IsTabStop="False"/>
+                                        <TextBox Text="{Binding Subtitle}" Margin="90,57,89,0" Height="29" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF666666" IsReadOnly="True" IsTabStop="False" FontSize="16" VerticalContentAlignment="Top" Padding="7,0,8,0"/>
+                                        <Grid Margin="0,90,0,0" Width="65" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                            <Image HorizontalAlignment="Left" Height="24" VerticalAlignment="Center" Width="28" Margin="4,0,0,0" Source="Assets/has_see.png"/>
+                                            <TextBox Margin="30,9,0,0" Width="20" Height="20" HorizontalAlignment="Left" VerticalAlignment="Center" Background="{x:Null}" BorderBrush="{x:Null}" x:Name="hasSee" Text="{Binding}" FontSize="12" Padding="0,0.800000011920929,8,0"/>
+                                        </Grid>
+                                        <Grid Margin="90,90,0,0" Width="65" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                            <Image HorizontalAlignment="Left" Height="20" VerticalAlignment="Center" Width="24" Margin="4,0,0,0" Source="Assets/favorite.png"/>
+                                            <TextBox Margin="30,9,0,0" Width="20" Height="20" HorizontalAlignment="Left" VerticalAlignment="Center" Background="{x:Null}" BorderBrush="{x:Null}" x:Name="hasLike" Text="{Binding}" FontSize="12" Padding="0,0.800000011920929,8,0"/>
+                                        </Grid>
+                                        <Grid Margin="180,90,0,0" Width="65" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                            <Image HorizontalAlignment="Left" Height="20" VerticalAlignment="Center" Width="24" Margin="24,0,0,0" Source="Assets/unlock.png"/>
+                                        </Grid>
+                                        <Grid Margin="270,90,0,0" Width="65" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                            <TextBox Margin="4,9,0,0" Width="44" Height="20" HorizontalAlignment="Left" VerticalAlignment="Center" Background="{x:Null}" BorderBrush="{x:Null}" x:Name="states" Text="{Binding}" FontSize="12" Padding="0,0.800000011920929,8,0"/>
+                                        </Grid>
+                                    </Grid>
+                                </Border>
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>
@@ -211,18 +221,15 @@
                     ContinuumNavigationTransitionInfo.ExitElementContainer="True" Margin="17,0,0.5,0.667">
                         <ListView.ItemTemplate>
                             <DataTemplate>
-                                <StackPanel Margin="0,0,0,9.5">
-                                    <TextBlock
-                                    Text="{Binding Title}"
-                                    Pivot.SlideInAnimationGroup="1"
-                                    CommonNavigationTransitionInfo.IsStaggerElement="True"
-                                    Style="{StaticResource ListViewItemTextBlockStyle}"/>
-                                    <TextBlock
-                                    Text="{Binding Description}"
-                                    Pivot.SlideInAnimationGroup="2"
-                                    CommonNavigationTransitionInfo.IsStaggerElement="True"
-                                    Style="{StaticResource ListViewItemContentTextBlockStyle}"/>
-                                </StackPanel>
+                                <Border BorderThickness="0,0,0,1" BorderBrush="DarkGray" x:Name="bordername">
+                                    <Grid Margin="0,5,0,0" Height="90" Width="352">
+                                        <Image Source="{Binding ImagePath}" HorizontalAlignment="Left" Height="78" Margin="5,5,0,0" VerticalAlignment="Top" Width="78"/>
+                                        <TextBox Text="{Binding Title}" Width="130" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="90,0,0,0" Background="{x:Null}" BorderBrush="{x:Null}" IsReadOnly="True" IsTabStop="False" FontSize="24" Padding="7,0,0,0" />
+                                        <TextBox Text="{Binding Subtitle}" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="220,8,0,0" Background="{x:Null}" BorderBrush="{x:Null}" IsReadOnly="True" IsTabStop="False" FontSize="18" HorizontalContentAlignment="Left" Padding="0,0.800000011920929,8,0"/>
+                                        <TextBox Text="{Binding}" Margin="90,35,14,0" Height="29" FontSize="16" Background="{x:Null}" BorderBrush="{x:Null}" IsReadOnly="True" IsTabStop="False"/>
+                                        <TextBox Text="{Binding Subtitle}" Margin="90,57,89,0" Height="29" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF666666" IsReadOnly="True" IsTabStop="False" FontSize="16" VerticalContentAlignment="Top" Padding="7,0,8,0"/>
+                                    </Grid>
+                                </Border>
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>

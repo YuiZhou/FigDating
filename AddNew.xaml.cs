@@ -15,6 +15,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Windows.UI.Popups;
 
 // “基本页”项模板在 http://go.microsoft.com/fwlink/?LinkID=390556 上有介绍
 
@@ -108,10 +109,45 @@ namespace FigDating
 
         #endregion
 
-        private void AppBarButton_Click(object sender, RoutedEventArgs e)
+        private async void AppBarButton_Click(object sender, RoutedEventArgs e)
         {
+            String contentStr = this.content.Text.Trim();
+            if (contentStr.Equals("")) {
+                return;
+            }
+
             // 新添加事件，如果添加成功就返回原来的界面
             DateTimeOffset startDateStr = this.startDate.Date;
+            TimeSpan startTimeStr = this.startTime.Time;
+            DateTimeOffset start = startDateStr + startTimeStr;
+
+            DateTimeOffset endDateStr = this.endDate.Date;
+            TimeSpan endTimeStr = this.endTime.Time;
+            DateTimeOffset end = endDateStr + endTimeStr;
+
+            if (start > end) {  // 开始时间不能晚于结束时间
+                MessageDialog messageDialog = new MessageDialog("结束时间不能早于开始时间");
+                await messageDialog.ShowAsync();
+            }
+
+
+            // 连接服务器
+            Windows.Storage.ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
+            //Windows.Storage.StorageFolder localFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
+
+            Windows.Storage.ApplicationDataCompositeValue UsrPwd =
+   (Windows.Storage.ApplicationDataCompositeValue)localSettings.Values["loginUsrPwd"];
+            string id = (string)UsrPwd["username"];
+            Appointment appointment = Appointment.getAppointment();
+            if (appointment.addNew(id, start.ToString(), end.ToString(), contentStr, this.hint.Text.Trim()))
+            {
+                this.Frame.GoBack();
+            }
+            else {
+                MessageDialog messageDialog = new MessageDialog("添加失败");
+                await messageDialog.ShowAsync();
+            }
+
         }
     }
 }

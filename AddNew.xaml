@@ -45,7 +45,7 @@
             <TimePicker x:Name="startTime" Header="开始时间" HorizontalAlignment="Left" Margin="0.333,80,0,0" VerticalAlignment="Top" Width="322" Height="75" BorderBrush="Black" Foreground="Black" Grid.Column="1" BorderThickness="1"/>
             <TimePicker x:Name="endTime" Header="结束时间" HorizontalAlignment="Left" Margin="0.333,240,0,0" VerticalAlignment="Top" Width="322" Height="75" BorderBrush="Black" Foreground="Black" Grid.Column="1" BorderThickness="1"/>
             <TextBox x:Name="content" Header="内容" HorizontalAlignment="Left" Margin="0.333,320,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="322" Height="75" BorderBrush="Black" ToolTipService.ToolTip="你想要做什么" Grid.Column="1" BorderThickness="2.5" Background="{x:Null}"/>
-            <TextBox x:Name="slides" Header="备注" HorizontalAlignment="Left" Margin="0.333,400,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="322" Height="75" BorderBrush="Black" Grid.Column="1" BorderThickness="2.5" Background="{x:Null}"/>
+            <TextBox x:Name="hint" Header="备注" HorizontalAlignment="Left" Margin="0.333,400,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="322" Height="75" BorderBrush="Black" Grid.Column="1" BorderThickness="2.5" Background="{x:Null}"/>
 
         </Grid>
     </Grid>
