@@ -23,22 +23,26 @@ namespace FigDating.Data
     /// </summary>
     public class SampleDataItem
     {
-        public SampleDataItem(String uniqueId, String title, String subtitle, String imagePath, String description, String content)
+        public SampleDataItem(String uniqueId, String title, String group, String imagePath, String date, String hasSee, String hasLoved, String status)
         {
             this.UniqueId = uniqueId;
             this.Title = title;
-            this.Subtitle = subtitle;
-            this.Description = description;
+            this.Group = group;
+            this.hasSee = hasSee;
             this.ImagePath = imagePath;
-            this.Content = content;
+            this.hasLoved = hasLoved;
+            this.status = status;
+            this.Date = date;
         }
 
         public string UniqueId { get; private set; }
         public string Title { get; private set; }
-        public string Subtitle { get; private set; }
-        public string Description { get; private set; }
+        public string Group { get; private set; }
+        public string hasSee { get; private set; }
         public string ImagePath { get; private set; }
-        public string Content { get; private set; }
+        public string hasLoved { get; private set; }
+        public string status { get; private set; }
+        public string Date { get; private set; }
 
         public override string ToString()
         {
@@ -141,10 +145,12 @@ namespace FigDating.Data
                     JsonObject itemObject = itemValue.GetObject();
                     group.Items.Add(new SampleDataItem(itemObject["UniqueId"].GetString(),
                                                        itemObject["Title"].GetString(),
-                                                       itemObject["Subtitle"].GetString(),
+                                                       itemObject["Group"].GetString(),
                                                        itemObject["ImagePath"].GetString(),
-                                                       itemObject["Description"].GetString(),
-                                                       itemObject["Content"].GetString()));
+                                                       itemObject["Date"].GetString(),
+                                                       itemObject["hasSee"].GetString(),
+                                                       itemObject["hasLoved"].GetString(),
+                                                       itemObject["status"].GetString()));
                 }
                 this.Groups.Add(group);
             }

@@ -9,6 +9,10 @@
     <RootPropertyPathName Name="Subtitle" />
     <RootPropertyPathName Name="ImagePath" />
     <RootPropertyPathName Name="FirstGroup" />
+    <RootPropertyPathName Name="status" />
+    <RootPropertyPathName Name="hasLoved" />
+    <RootPropertyPathName Name="hasSee" />
+    <RootPropertyPathName Name="date" />
     <RootPropertyPathName Name="SelectedIndex" />
   </Roots.PropertyPathNames>
   <Roots.RootTypes>
@@ -44,7 +48,7 @@
       <RootProperty Name="Children" />
       <RootProperty Name="Margin" />
       <RootProperty Name="ColumnDefinitions" />
-      <RootProperty Name="RequestedTheme" />
+      <RootProperty Name="Opacity" />
       <RootProperty Name="Background" />
       <RootProperty Name="HorizontalAlignment" />
       <RootProperty Name="Height" />

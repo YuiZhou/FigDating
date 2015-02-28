@@ -97,6 +97,9 @@
     <AppxPackagedFile Include="C:\Users\yuizhou\documents\visual studio 2013\Projects\FigDating\FigDating\bin\Debug\ItemPage.xbf">
       <PackagePath>ItemPage.xbf</PackagePath>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\yuizhou\documents\visual studio 2013\Projects\FigDating\FigDating\bin\Debug\Login.xbf">
+      <PackagePath>Login.xbf</PackagePath>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\yuizhou\documents\visual studio 2013\Projects\FigDating\FigDating\bin\Debug\PivotPage.xbf">
       <PackagePath>PivotPage.xbf</PackagePath>
     </AppxPackagedFile>
