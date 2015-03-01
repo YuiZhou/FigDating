@@ -124,7 +124,7 @@ namespace FigDating.FigDating_XamlTypeInfo
 
         private void InitTypeTables()
         {
-            _typeNameTable = new string[15];
+            _typeNameTable = new string[16];
             _typeNameTable[0] = "FigDating.AddNew";
             _typeNameTable[1] = "Windows.UI.Xaml.Controls.Page";
             _typeNameTable[2] = "Windows.UI.Xaml.Controls.UserControl";
@@ -140,8 +140,9 @@ namespace FigDating.FigDating_XamlTypeInfo
             _typeNameTable[12] = "FigDating.Controls.PathControl";
             _typeNameTable[13] = "Windows.UI.Xaml.Controls.ContentControl";
             _typeNameTable[14] = "FigDating.PivotPage";
+            _typeNameTable[15] = "FigDating.Profile";
 
-            _typeTable = new global::System.Type[15];
+            _typeTable = new global::System.Type[16];
             _typeTable[0] = typeof(global::FigDating.AddNew);
             _typeTable[1] = typeof(global::Windows.UI.Xaml.Controls.Page);
             _typeTable[2] = typeof(global::Windows.UI.Xaml.Controls.UserControl);
@@ -157,6 +158,7 @@ namespace FigDating.FigDating_XamlTypeInfo
             _typeTable[12] = typeof(global::FigDating.Controls.PathControl);
             _typeTable[13] = typeof(global::Windows.UI.Xaml.Controls.ContentControl);
             _typeTable[14] = typeof(global::FigDating.PivotPage);
+            _typeTable[15] = typeof(global::FigDating.Profile);
         }
 
         private int LookupTypeIndexByName(string typeName)
@@ -198,6 +200,7 @@ namespace FigDating.FigDating_XamlTypeInfo
         private object Activate_10_SplitPanel() { return new global::FigDating.Controls.sp.SplitPanel(); }
         private object Activate_12_PathControl() { return new global::FigDating.Controls.PathControl(); }
         private object Activate_14_PivotPage() { return new global::FigDating.PivotPage(); }
+        private object Activate_15_Profile() { return new global::FigDating.Profile(); }
         private void MapAdd_5_ObservableDictionary(object instance, object key, object item)
         {
             var collection = (global::System.Collections.Generic.IDictionary<global::System.String, global::System.Object>)instance;
@@ -303,6 +306,13 @@ namespace FigDating.FigDating_XamlTypeInfo
                 userType.Activator = Activate_14_PivotPage;
                 userType.AddMemberName("NavigationHelper");
                 userType.AddMemberName("DefaultViewModel");
+                userType.SetIsLocalType();
+                xamlType = userType;
+                break;
+
+            case 15:   //  FigDating.Profile
+                userType = new global::FigDating.FigDating_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
+                userType.Activator = Activate_15_Profile;
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;

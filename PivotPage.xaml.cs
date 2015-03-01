@@ -170,11 +170,6 @@ namespace FigDating
 
         }
 
-        private void change_profile(object sender, RoutedEventArgs e)
-        {
-
-        }
-
 
         #region 软件逻辑
         private void pivot_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -196,6 +191,12 @@ namespace FigDating
                     this.title.Text = "更多";
                     break;
             }
+        }
+
+        private void change_profile(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(Profile));
+
         }
         #endregion
     }

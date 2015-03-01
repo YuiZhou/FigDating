@@ -130,11 +130,11 @@
                 d:DataContext="{Binding Groups[0], Source={d:DesignData Source=/DataModel/SampleData.json, Type=data:SampleDataSource}}"
                 CommonNavigationTransitionInfo.IsStaggerElement="True">
                     <!--带有文字环绕的双行列表-->
-                    <ListView
+                    <ListView x:ConnectionId='4'
                     ItemsSource="{Binding Items}"
                     IsItemClickEnabled="True"
-                    ItemClick="ItemView_ItemClick"
-                    ContinuumNavigationTransitionInfo.ExitElementContainer="True" SelectionChanged="ListView_SelectionChanged" Margin="0,0,-0.667,0" HorizontalAlignment="Right" Width="369">
+                                                  
+                    ContinuumNavigationTransitionInfo.ExitElementContainer="True"                                              Margin="0,0,-0.667,0" HorizontalAlignment="Right" Width="369">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <Border BorderThickness="0,0,0,1" BorderBrush="DarkGray" x:Name="bordername">
@@ -173,11 +173,11 @@
                 DataContext="{Binding SecondGroup}"
                 d:DataContext="{Binding Groups[1], Source={d:DesignData Source=/DataModel/SampleData.json, Type=data:SampleDataSource}}">
                     <!--不带文字环绕的双行列表-->
-                    <ListView
+                    <ListView x:ConnectionId='3'
                     ItemsSource="{Binding Items}"
                     IsItemClickEnabled="True"
-                    ItemClick="ItemView_ItemClick"
-                    Loaded="SecondPivot_Loaded"
+                                                  
+                                               
                     ContinuumNavigationTransitionInfo.ExitElementContainer="True" Margin="0,0,17.833,0.333">
                         <ListView.ItemTemplate>
                             <DataTemplate>
@@ -213,11 +213,11 @@
                      Margin="0,15,0, 0"
                      DataContext="{Binding SecondGroup}"
                 d:DataContext="{Binding Groups[1], Source={d:DesignData Source=/DataModel/SampleData.json, Type=data:SampleDataSource}}">
-                    <ListView
+                    <ListView x:ConnectionId='2'
                     ItemsSource="{Binding Items}"
                     IsItemClickEnabled="True"
-                    ItemClick="ItemView_ItemClick"
-                    Loaded="SecondPivot_Loaded"
+                                                  
+                                               
                     ContinuumNavigationTransitionInfo.ExitElementContainer="True" Margin="17,0,0.5,0.667">
                         <ListView.ItemTemplate>
                             <DataTemplate>
@@ -241,7 +241,7 @@
                         <Image Source="{Binding}" HorizontalAlignment="Left" Height="130" Margin="24,23,0,0" VerticalAlignment="Top" Width="130"/>
                         <TextBox HorizontalAlignment="Right" Margin="0,19,28,0" TextWrapping="Wrap" Text="姓名" VerticalAlignment="Top" FontSize="28" Background="{x:Null}" BorderBrush="{x:Null}" IsReadOnly="True" Width="162" Height="50" IsTabStop="False"/>
                         <TextBox HorizontalAlignment="Left" Margin="166,63,0,0" TextWrapping="Wrap" Text="什么学院 大几" VerticalAlignment="Top" FontSize="18" Background="{x:Null}" BorderBrush="{x:Null}" IsReadOnly="True" IsTabStop="False" RenderTransformOrigin="0.269,0.524"/>
-                        <Button Content="编辑资料" HorizontalAlignment="Left" Margin="175,91,0,0" VerticalAlignment="Top" FontSize="22" Foreground="Black" BorderBrush="{x:Null}" Background="#FFBBBBBB" Height="71" Width="142" Click="change_profile" FontWeight="Normal"/>
+                        <Button x:ConnectionId='1' Content="编辑资料" HorizontalAlignment="Left" Margin="175,91,0,0" VerticalAlignment="Top" FontSize="22" Foreground="Black" BorderBrush="{x:Null}" Background="#FFBBBBBB" Height="71" Width="142"                        FontWeight="Normal"/>
                         <TextBox HorizontalAlignment="Left" Margin="24,199,0,0" TextWrapping="Wrap" Text="兴趣爱好" VerticalAlignment="Top" IsReadOnly="True" IsTabStop="False" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="24"/>
                         <TextBox HorizontalAlignment="Left" Margin="24,254,0,0" TextWrapping="Wrap" Text="我的收藏" VerticalAlignment="Top" IsReadOnly="True" IsTabStop="False" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="24"/>
                         <TextBox HorizontalAlignment="Left" Margin="24,313,0,0" TextWrapping="Wrap" Text="服务与条款" VerticalAlignment="Top" IsReadOnly="True" IsTabStop="False" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="24"/>
@@ -253,7 +253,8 @@
 
     <Page.BottomAppBar>
         <CommandBar x:Name="applicationBar" Background="#C8FFFFFF" Foreground="#FFDC3023" BorderBrush="{x:Null}">
-            <AppBarButton Icon="Add" Label="新建约会" Foreground="#FFDC3023" Click="new_app"/>
+            <AppBarButton x:ConnectionId='5' Icon="Add" Label="新建约会" Foreground="#FFDC3023"                />
         </CommandBar>
     </Page.BottomAppBar>
 </Page>
+
