@@ -103,6 +103,9 @@
     <AppxPackagedFile Include="C:\Users\yuizhou\documents\visual studio 2013\Projects\FigDating\FigDating\bin\Debug\PivotPage.xbf">
       <PackagePath>PivotPage.xbf</PackagePath>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\yuizhou\documents\visual studio 2013\Projects\FigDating\FigDating\bin\Debug\Profile.xbf">
+      <PackagePath>Profile.xbf</PackagePath>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\yuizhou\documents\visual studio 2013\Projects\FigDating\FigDating\bin\Debug\Themes\Generic.xbf">
       <PackagePath>Themes\Generic.xbf</PackagePath>
     </AppxPackagedFile>

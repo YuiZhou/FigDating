@@ -3,6 +3,7 @@ C:\Users\yuizhou\documents\visual studio 2013\Projects\FigDating\FigDating\bin\D
 C:\Users\yuizhou\documents\visual studio 2013\Projects\FigDating\FigDating\bin\Debug\ItemPage.xbf
 C:\Users\yuizhou\documents\visual studio 2013\Projects\FigDating\FigDating\bin\Debug\Login.xbf
 C:\Users\yuizhou\documents\visual studio 2013\Projects\FigDating\FigDating\bin\Debug\PivotPage.xbf
+C:\Users\yuizhou\documents\visual studio 2013\Projects\FigDating\FigDating\bin\Debug\Profile.xbf
 C:\Users\yuizhou\documents\visual studio 2013\Projects\FigDating\FigDating\bin\Debug\Themes\Generic.xbf
 C:\Users\yuizhou\documents\visual studio 2013\Projects\FigDating\FigDating\bin\Debug\FigDating.xr.xml
 C:\Users\yuizhou\documents\visual studio 2013\Projects\FigDating\FigDating\bin\Debug\FigDating.exe
@@ -20,6 +21,8 @@ C:\Users\yuizhou\documents\visual studio 2013\Projects\FigDating\FigDating\obj\D
 C:\Users\yuizhou\documents\visual studio 2013\Projects\FigDating\FigDating\obj\Debug\Login.g.cs
 C:\Users\yuizhou\documents\visual studio 2013\Projects\FigDating\FigDating\obj\Debug\PivotPage.g.i.cs
 C:\Users\yuizhou\documents\visual studio 2013\Projects\FigDating\FigDating\obj\Debug\PivotPage.g.cs
+C:\Users\yuizhou\documents\visual studio 2013\Projects\FigDating\FigDating\obj\Debug\Profile.g.i.cs
+C:\Users\yuizhou\documents\visual studio 2013\Projects\FigDating\FigDating\obj\Debug\Profile.g.cs
 C:\Users\yuizhou\documents\visual studio 2013\Projects\FigDating\FigDating\obj\Debug\Themes\Generic.g.i.cs
 C:\Users\yuizhou\documents\visual studio 2013\Projects\FigDating\FigDating\obj\Debug\Themes\Generic.g.cs
 C:\Users\yuizhou\documents\visual studio 2013\Projects\FigDating\FigDating\obj\Debug\XamlTypeInfo.g.cs
@@ -27,15 +30,17 @@ C:\Users\yuizhou\documents\visual studio 2013\Projects\FigDating\FigDating\obj\D
 C:\Users\yuizhou\documents\visual studio 2013\Projects\FigDating\FigDating\obj\Debug\AddNew.xaml
 C:\Users\yuizhou\documents\visual studio 2013\Projects\FigDating\FigDating\obj\Debug\ItemPage.xaml
 C:\Users\yuizhou\documents\visual studio 2013\Projects\FigDating\FigDating\obj\Debug\Login.xaml
+C:\Users\yuizhou\documents\visual studio 2013\Projects\FigDating\FigDating\obj\Debug\PivotPage.xaml
+C:\Users\yuizhou\documents\visual studio 2013\Projects\FigDating\FigDating\obj\Debug\Profile.xaml
 C:\Users\yuizhou\documents\visual studio 2013\Projects\FigDating\FigDating\obj\Debug\Themes\Generic.xaml
 C:\Users\yuizhou\documents\visual studio 2013\Projects\FigDating\FigDating\obj\Debug\App.xbf
 C:\Users\yuizhou\documents\visual studio 2013\Projects\FigDating\FigDating\obj\Debug\AddNew.xbf
 C:\Users\yuizhou\documents\visual studio 2013\Projects\FigDating\FigDating\obj\Debug\ItemPage.xbf
 C:\Users\yuizhou\documents\visual studio 2013\Projects\FigDating\FigDating\obj\Debug\Login.xbf
+C:\Users\yuizhou\documents\visual studio 2013\Projects\FigDating\FigDating\obj\Debug\PivotPage.xbf
+C:\Users\yuizhou\documents\visual studio 2013\Projects\FigDating\FigDating\obj\Debug\Profile.xbf
 C:\Users\yuizhou\documents\visual studio 2013\Projects\FigDating\FigDating\obj\Debug\Themes\Generic.xbf
 C:\Users\yuizhou\documents\visual studio 2013\Projects\FigDating\FigDating\obj\Debug\XamlSaveStateFile.xml
-C:\Users\yuizhou\documents\visual studio 2013\Projects\FigDating\FigDating\obj\Debug\PivotPage.xaml
-C:\Users\yuizhou\documents\visual studio 2013\Projects\FigDating\FigDating\obj\Debug\PivotPage.xbf
 C:\Users\yuizhou\documents\visual studio 2013\Projects\FigDating\FigDating\obj\Debug\FigDating.exe
 C:\Users\yuizhou\documents\visual studio 2013\Projects\FigDating\FigDating\obj\Debug\FigDating.pdb
 C:\Users\yuizhou\documents\visual studio 2013\Projects\FigDating\FigDating\obj\Debug\priconfig.xml

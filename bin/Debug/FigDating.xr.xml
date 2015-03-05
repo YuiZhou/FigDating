@@ -6,13 +6,13 @@
     <RootPropertyPathName Name="Title" />
     <RootPropertyPathName Name="SecondGroup" />
     <RootPropertyPathName Name="Items" />
-    <RootPropertyPathName Name="Subtitle" />
+    <RootPropertyPathName Name="Date" />
+    <RootPropertyPathName Name="Group" />
     <RootPropertyPathName Name="ImagePath" />
-    <RootPropertyPathName Name="FirstGroup" />
     <RootPropertyPathName Name="status" />
     <RootPropertyPathName Name="hasLoved" />
     <RootPropertyPathName Name="hasSee" />
-    <RootPropertyPathName Name="date" />
+    <RootPropertyPathName Name="FirstGroup" />
     <RootPropertyPathName Name="SelectedIndex" />
   </Roots.PropertyPathNames>
   <Roots.RootTypes>
@@ -54,6 +54,8 @@
       <RootProperty Name="Height" />
       <RootProperty Name="VerticalAlignment" />
       <RootProperty Name="Width" />
+      <RootProperty Name="Visibility" />
+      <RootEvent Name="Tapped" />
       <RootMethod Name="GetRow" />
       <RootMethod Name="SetRow" />
       <RootMethod Name="GetColumn" />
@@ -127,6 +129,7 @@
       <RootProperty Name="RenderTransformOrigin" />
       <RootProperty Name="HorizontalContentAlignment" />
       <RootProperty Name="VerticalContentAlignment" />
+      <RootEvent Name="Tapped" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.ToolTipService">
       <RootMethod Name="GetToolTip" />
@@ -264,6 +267,7 @@
       <RootProperty Name="VerticalAlignment" />
       <RootProperty Name="Width" />
       <RootProperty Name="Source" />
+      <RootProperty Name="Visibility" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.ListBox">
       <RootProperty Name="ItemContainerStyle" />
@@ -315,6 +319,7 @@
       <RootProperty Name="Content" />
     </RootType>
     <RootType FullName="FigDating.PivotPage" />
+    <RootType FullName="FigDating.Profile" />
     <RootType FullName="Windows.UI.Xaml.ResourceDictionary" />
     <RootType FullName="Windows.UI.Xaml.Shapes.Path">
       <RootProperty Name="Data" />

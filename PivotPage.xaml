@@ -131,6 +131,7 @@
                 CommonNavigationTransitionInfo.IsStaggerElement="True">
                     <!--带有文字环绕的双行列表-->
                     <ListView
+                     x:Name="indexList"
                     ItemsSource="{Binding Items}"
                     IsItemClickEnabled="True"
                     ItemClick="ItemView_ItemClick"
@@ -144,19 +145,25 @@
                                         <TextBox Text="{Binding Group}" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="180,8,0,0" Background="{x:Null}" BorderBrush="{x:Null}" IsReadOnly="True" IsTabStop="False" FontSize="18" HorizontalContentAlignment="Left" Padding="0,0.800000011920929,8,0"/>
                                         <TextBox Text="发布了一个约会" Margin="90,35,14,0" Height="29" FontSize="16" Background="{x:Null}" BorderBrush="{x:Null}" IsReadOnly="True" IsTabStop="False"/>
                                         <TextBox Text="{Binding Date}" Margin="90,57,89,0" Height="29" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF666666" IsReadOnly="True" IsTabStop="False" FontSize="16" VerticalContentAlignment="Top" Padding="7,0,8,0"/>
-                                        <Grid Margin="0,90,0,0" Width="65" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                        
+                                        <Grid Margin="0,90,0,0" Width="65" HorizontalAlignment="Left" VerticalAlignment="Bottom">
                                             <Image HorizontalAlignment="Left" Height="24" VerticalAlignment="Center" Width="28" Margin="4,0,0,0" Source="Assets/has_see.png"/>
                                             <TextBox Margin="30,9,0,0" Width="20" Height="20" HorizontalAlignment="Left" VerticalAlignment="Center" Background="{x:Null}" BorderBrush="{x:Null}" x:Name="hasSee" Text="{Binding hasSee}" FontSize="12" Padding="0,0.800000011920929,8,0"/>
                                         </Grid>
-                                        <Grid Margin="90,90,0,0" Width="65" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                        <Grid Margin="90,90,0,0" Width="65" HorizontalAlignment="Left" VerticalAlignment="Bottom">
                                             <Image HorizontalAlignment="Left" Height="20" VerticalAlignment="Center" Width="24" Margin="4,0,0,0" Source="Assets/favorite.png"/>
                                             <TextBox Margin="30,9,0,0" Width="20" Height="20" HorizontalAlignment="Left" VerticalAlignment="Center" Background="{x:Null}" BorderBrush="{x:Null}" x:Name="hasLike" Text="{Binding hasLoved}" FontSize="12" Padding="0,0.800000011920929,8,0"/>
                                         </Grid>
-                                        <Grid Margin="180,90,0,0" Width="65" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                        <Grid x:Name="commentView" Margin="180,90,0,0" Visibility="Collapsed" Width="65" HorizontalAlignment="Left" VerticalAlignment="Bottom">
+                                            <Image HorizontalAlignment="Left" Height="20" VerticalAlignment="Center" Width="24" Margin="4,0,0,0" Source="Assets/comment.png"/>
+                                            <TextBox Margin="30,9,0,0" Width="20" Height="20" HorizontalAlignment="Left" VerticalAlignment="Center" Background="{x:Null}" BorderBrush="{x:Null}" x:Name="commentNumber" Text="{Binding hasLoved}" FontSize="12" Padding="0,0.800000011920929,8,0"/>
+                                        </Grid>
+                                        <Grid Tapped="unlockView_Tapped" Height="35"  x:Name="unlockView" Margin="180,90,0,0" Width="65" HorizontalAlignment="Left" VerticalAlignment="Bottom">
                                             <Image HorizontalAlignment="Left" Height="20" VerticalAlignment="Center" Width="24" Margin="24,0,0,0" Source="Assets/unlock.png"/>
                                         </Grid>
-                                        <Grid Margin="270,90,0,0" Width="65" HorizontalAlignment="Left" VerticalAlignment="Top">
-                                            <TextBox Margin="4,9,0,0" Width="44" Height="20" HorizontalAlignment="Left" VerticalAlignment="Center" Background="{x:Null}" BorderBrush="{x:Null}" x:Name="states" Text="{Binding status}" FontSize="12" Padding="0,0.800000011920929,8,0"/>
+                                        <Grid Margin="270,90,0,0" Width="65" HorizontalAlignment="Left" VerticalAlignment="Bottom">
+                                            <Image Visibility="Collapsed" x:Name="datingView" HorizontalAlignment="Left" Height="20" VerticalAlignment="Center" Width="24" Margin="24,0,0,0" Source="Assets/dating.png"/>
+                                            <TextBox Margin="4,9,0,0" Width="65" Height="20" HorizontalAlignment="Left" VerticalAlignment="Center" Background="{x:Null}" BorderBrush="{x:Null}" x:Name="states" Text="{Binding status}" FontSize="12" Padding="0,0.800000011920929,8,0"/>
                                         </Grid>
                                     </Grid>
                                 </Border>
@@ -171,7 +178,7 @@
                 Margin="19,14.5,0,0"
                
                 DataContext="{Binding SecondGroup}"
-                d:DataContext="{Binding Groups[1], Source={d:DesignData Source=/DataModel/SampleData.json, Type=data:SampleDataSource}}">
+                d:DataContext="{Binding Groups[0], Source={d:DesignData Source=/DataModel/SampleData.json, Type=data:SampleDataSource}}">
                     <!--不带文字环绕的双行列表-->
                     <ListView
                     ItemsSource="{Binding Items}"
@@ -212,7 +219,7 @@
                      x:Uid="PivotItem3"
                      Margin="0,15,0, 0"
                      DataContext="{Binding SecondGroup}"
-                d:DataContext="{Binding Groups[1], Source={d:DesignData Source=/DataModel/SampleData.json, Type=data:SampleDataSource}}">
+                d:DataContext="{Binding Groups[0], Source={d:DesignData Source=/DataModel/SampleData.json, Type=data:SampleDataSource}}">
                     <ListView
                     ItemsSource="{Binding Items}"
                     IsItemClickEnabled="True"

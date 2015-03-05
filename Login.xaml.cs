@@ -73,7 +73,7 @@ namespace FigDating
                         MessageDialog messageDialog = new MessageDialog("请输入有效的用户名（学号）");
                         await messageDialog.ShowAsync();
                     }
-                    else if (sign.signup(username, password))
+                    else if (await (sign.signup(username, password)))
                     {
                         // 注册成功，直接登录
                         login(username, password);

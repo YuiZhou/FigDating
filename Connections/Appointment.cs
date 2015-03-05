@@ -1,4 +1,9 @@
-﻿namespace FigDating
+﻿using System.Threading.Tasks;
+using System.Net.Http;
+using System.Diagnostics;
+using System;
+
+namespace FigDating
 {
     public class Appointment
     {
@@ -18,4 +23,6 @@
             return true;
         }
     }
+
+    
 }

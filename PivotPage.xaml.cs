@@ -19,6 +19,8 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Windows.Phone.UI.Input;
+using System.Diagnostics;
+using Windows.UI.Popups;
 
 // “透视应用程序”模板在 http://go.microsoft.com/fwlink/?LinkID=391641 上有介绍
 
@@ -96,7 +98,14 @@ namespace FigDating
         {
             // TODO: 创建适用于问题域的合适数据模型以替换示例数据
             var sampleDataGroup = await SampleDataSource.GetGroupAsync("Group-1");
-            this.DefaultViewModel[FirstGroupName] = sampleDataGroup;
+            if (sampleDataGroup != null)
+                this.DefaultViewModel[FirstGroupName] = sampleDataGroup;
+            else { 
+                // 没有网络连接
+                MessageDialog messageDialog = new MessageDialog("没有网络连接");
+                await messageDialog.ShowAsync();
+
+            }
         }
 
         /// <summary>
@@ -119,11 +128,11 @@ namespace FigDating
         {
             // 导航至相应的目标页，并
             // 通过将所需信息作为导航参数传入来配置新页
-            var itemId = ((SampleDataItem)e.ClickedItem).UniqueId;
-            if (!Frame.Navigate(typeof(ItemPage), itemId))
-            {
-                throw new Exception(this.resourceLoader.GetString("NavigationFailedExceptionMessage"));
-            }
+            //var itemId = ((SampleDataItem)e.ClickedItem).UniqueId;
+            //if (!Frame.Navigate(typeof(ItemPage), itemId))
+            //{
+            //    throw new Exception(this.resourceLoader.GetString("NavigationFailedExceptionMessage"));
+            //}
         }
 
         /// <summary>
@@ -132,7 +141,12 @@ namespace FigDating
         private async void SecondPivot_Loaded(object sender, RoutedEventArgs e)
         {
             var sampleDataGroup = await SampleDataSource.GetGroupAsync("Group-2");
-            this.DefaultViewModel[SecondGroupName] = sampleDataGroup;
+            if (sampleDataGroup != null)
+                this.DefaultViewModel[SecondGroupName] = sampleDataGroup;
+            else {
+                MessageDialog messageDialog = new MessageDialog("没有网络连接");
+                await messageDialog.ShowAsync();
+            }
         }
 
         #region NavigationHelper 注册
@@ -198,6 +212,72 @@ namespace FigDating
             this.Frame.Navigate(typeof(Profile));
 
         }
+
+        private void unlockView_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            // 判断剩余机会
+            expandListView(sender, e);
+        }
+
+        private void expandListView(object sender, TappedRoutedEventArgs e)
+        {
+            var itemContext = (sender as FrameworkElement).DataContext;
+            int index = this.indexList.Items.IndexOf(itemContext);
+
+            //Debug.WriteLine("###\n\n\n\n"+index+"\n\n\n##");
+
+            //ItemsControl
+
+
+            var parentContainer = this.indexList.ContainerFromIndex(index);//.ContainerFromItem(this.indexList.SelectedItem);
+            var unlockView = FindImage(parentContainer, "datingView");
+            var commentView = FindControl<TextBox>(parentContainer, "states");
+
+
+            //suppose you want to change the visibility
+            unlockView.Visibility = Visibility.Visible;
+            commentView.Visibility = Visibility.Collapsed;
+
+        }
+
+        public List<Control> AllChildren(DependencyObject parent)
+        {
+            var _List = new List<Control>();
+            for (int i = 0; i < VisualTreeHelper.GetChildrenCount(parent); i++)
+            {
+                var _Child = VisualTreeHelper.GetChild(parent, i);
+                if (_Child is Control)
+                    _List.Add(_Child as Control);
+                _List.AddRange(AllChildren(_Child));
+            }
+            return _List;
+        }
+        private T FindControl<T>(DependencyObject parentContainer, string controlName)
+        {
+            var childControls = AllChildren(parentContainer);
+            var control = childControls.OfType<Control>().Where(x => controlName.Equals(x.Name)).Cast<T>().First();
+            return control;
+        }
+        public List<Image> AllImageChildren(DependencyObject parent)
+        {
+            var _List = new List<Image>();
+            for (int i = 0; i < VisualTreeHelper.GetChildrenCount(parent); i++)
+            {
+                var _Child = VisualTreeHelper.GetChild(parent, i);
+                if (_Child is Image)
+                    _List.Add(_Child as Image);
+                _List.AddRange(AllImageChildren(_Child));
+            }
+            return _List;
+        }
+        private Image FindImage(DependencyObject parentContainer, string controlName)
+        {
+            var childControls = AllImageChildren(parentContainer);
+            var control = childControls.OfType<Image>().Where(x => controlName.Equals(x.Name)).Cast<Image>().First();
+            return control;
+        }
         #endregion
+
+
     }
 }

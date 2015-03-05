@@ -26,6 +26,7 @@ namespace FigDating
         public Profile()
         {
             this.InitializeComponent();
+            LoadData();
             this.logout.AddHandler(TappedEvent, new TappedEventHandler(Logout), true);
         }
 
@@ -49,6 +50,22 @@ namespace FigDating
 
         private void Change_Name(object sender, TappedRoutedEventArgs e)
         {
+        }
+
+        private void LoadData() {
+            Windows.Storage.ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
+            //Windows.Storage.StorageFolder localFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
+
+            Windows.Storage.ApplicationDataCompositeValue profile =
+   (Windows.Storage.ApplicationDataCompositeValue)localSettings.Values["profile"];
+
+            this.name.Text = (string)profile["name"];
+            this.gender.Text = (string)profile["gender"];
+            this.age.Text = (string)profile["birth_year"];
+            this.group.Text = (string)profile["college"];
+            this.grade.Text = (string)profile["grade"];
+            this.id.Text = (string)profile["id"];
+
         }
     }
 }
