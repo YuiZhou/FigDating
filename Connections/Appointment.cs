@@ -18,11 +18,28 @@ namespace FigDating
             return appointment;
         }
 
-        public bool addNew(string id, string start, string end, string content, string hint) {
-            
+        public bool addNew(string id, string start, string end, string content, string hint)
+        {
+
             return true;
+        }
+
+        public async Task<string> getNews()
+        {
+            HttpClient client = new HttpClient();
+            try
+            {
+                HttpResponseMessage responseHttp = await client.GetAsync(Domain.getDomain() + "appointments/latest/");
+                client.Dispose();
+                Task<string> message = responseHttp.Content.ReadAsStringAsync();
+                return await message;
+            }
+            catch (Exception)
+            {
+                return "";
+            }
         }
     }
 
-    
+
 }
