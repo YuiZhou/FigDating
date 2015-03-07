@@ -136,10 +136,10 @@ namespace FigDating
             //Windows.Storage.StorageFolder localFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
 
             Windows.Storage.ApplicationDataCompositeValue UsrPwd =
-   (Windows.Storage.ApplicationDataCompositeValue)localSettings.Values["loginUsrPwd"];
-            string id = (string)UsrPwd["username"];
+   (Windows.Storage.ApplicationDataCompositeValue)localSettings.Values["profile"];
+            var id = UsrPwd["username"];
             Appointment appointment = Appointment.getAppointment();
-            if (appointment.addNew(id, start.ToString(), end.ToString(), contentStr, this.hint.Text.Trim()))
+            if (await (appointment.addNew(id.ToString(), start.ToString("u"), end.ToString("u"), contentStr, this.hint.Text.Trim())))
             {
                 this.Frame.GoBack();
             }

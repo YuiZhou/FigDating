@@ -138,8 +138,8 @@ namespace FigDating
 
             Windows.Storage.ApplicationDataCompositeValue UsrPwd =
    (Windows.Storage.ApplicationDataCompositeValue)localSettings.Values["loginUsrPwd"];
-            Sign sign = Sign.getSign();
-            if (UsrPwd == null || !sign.signin((string)UsrPwd["username"], (string)UsrPwd["password"]))
+            //Sign sign = Sign.getSign();
+            if (UsrPwd == null)
             {
                 return false;
             }

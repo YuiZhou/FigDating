@@ -74,8 +74,8 @@
         <Grid.Background>
             <SolidColorBrush Color="{ThemeResource PhoneBaseWhiteColor}"/>
         </Grid.Background>
-        <Rectangle HorizontalAlignment="Left" Height="100" Stroke="#FF666666" VerticalAlignment="Top" Width="400"/>
-        <Rectangle Fill="#FFDC3023" HorizontalAlignment="Left" Height="87" VerticalAlignment="Top" Width="400" IsDoubleTapEnabled="False" IsHoldingEnabled="False" IsRightTapEnabled="False" IsTapEnabled="False" Margin="0,-27,0,0"/>
+        <Rectangle Height="100" Stroke="#FF666666" VerticalAlignment="Top" Margin="0,0,0,0"/>
+        <Rectangle Fill="#FFDC3023" Height="87" VerticalAlignment="Top" Margin="0,-27,0,0" IsDoubleTapEnabled="False" IsHoldingEnabled="False" IsRightTapEnabled="False" IsTapEnabled="False" />
 
         <TextBox x:Name="title" HorizontalAlignment="Left" Margin="21,3,0,0" TextWrapping="Wrap" Text="新的约会" VerticalAlignment="Top" Width="214" Background="{x:Null}" Foreground="White" FontSize="36" BorderBrush="{x:Null}" IsHitTestVisible="False" IsTabStop="False" IsTextPredictionEnabled="False" SelectionHighlightColor="{x:Null}" IsRightTapEnabled="False" IsDoubleTapEnabled="False" IsHoldingEnabled="False" IsTapEnabled="False" IsReadOnly="True" Height="49" Padding="7,0,8,0"/>
         <Image HorizontalAlignment="Left" Height="23" Margin="246,20,0,0" VerticalAlignment="Top" Width="29" Source="Assets/chance.png"/>
@@ -124,8 +124,7 @@
                 <!--枢轴项一-->
                 <PivotItem
                 x:Uid="new_feeds"
-                Margin="19,14.5,0,0"
-                
+                Margin="20,14.5,20,0"
                 DataContext="{Binding FirstGroup}"
                 d:DataContext="{Binding Groups[0], Source={d:DesignData Source=/DataModel/SampleData.json, Type=data:SampleDataSource}}"
                 CommonNavigationTransitionInfo.IsStaggerElement="True">
@@ -135,33 +134,33 @@
                     ItemsSource="{Binding Items}"
                     IsItemClickEnabled="True"
                     ItemClick="ItemView_ItemClick"
-                    ContinuumNavigationTransitionInfo.ExitElementContainer="True" SelectionChanged="ListView_SelectionChanged" Margin="0,0,-0.667,0" HorizontalAlignment="Right" Width="369">
+                    ContinuumNavigationTransitionInfo.ExitElementContainer="True" SelectionChanged="ListView_SelectionChanged" Margin="0,0,0,0">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <Border BorderThickness="0,0,0,1" BorderBrush="DarkGray" x:Name="bordername">
-                                    <Grid Margin="0,5,0,0" Height="120" Width="352">
-                                        <Image Source="{Binding ImagePath}" HorizontalAlignment="Left" Height="78" Margin="5,5,0,0" VerticalAlignment="Top" Width="78"/>
-                                        <TextBox Text="{Binding Title}" Width="90" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="90,0,0,0" Background="{x:Null}" BorderBrush="{x:Null}" IsReadOnly="True" IsTabStop="False" FontSize="24" Padding="7,0,0,0" />
-                                        <TextBox Text="{Binding Group}" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="180,8,0,0" Background="{x:Null}" BorderBrush="{x:Null}" IsReadOnly="True" IsTabStop="False" FontSize="18" HorizontalContentAlignment="Left" Padding="0,0.800000011920929,8,0"/>
-                                        <TextBox Text="发布了一个约会" Margin="90,35,14,0" Height="29" FontSize="16" Background="{x:Null}" BorderBrush="{x:Null}" IsReadOnly="True" IsTabStop="False"/>
-                                        <TextBox Text="{Binding Date}" Margin="90,57,89,0" Height="29" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF666666" IsReadOnly="True" IsTabStop="False" FontSize="16" VerticalContentAlignment="Top" Padding="7,0,8,0"/>
-                                        
-                                        <Grid Margin="0,90,0,0" Width="65" HorizontalAlignment="Left" VerticalAlignment="Bottom">
+                                    <Grid x:Name="containerView" Margin="0,5,0,0" Height="120">
+                                        <Image Source="{Binding ImgePath}" Height="80" Margin="10,5,0,0" VerticalAlignment="Top" Width="80"/>
+                                        <TextBox Text="{Binding Title}"  Margin="120,0,0,0" Background="{x:Null}" BorderBrush="{x:Null}" IsReadOnly="True" IsTabStop="False" FontSize="24" Padding="7,0,0,0" />
+                                        <TextBox Text="{Binding Group}" Margin="200,8,0,0" Background="{x:Null}" BorderBrush="{x:Null}" IsReadOnly="True" IsTabStop="False" FontSize="18" HorizontalContentAlignment="Left" Padding="0,0.800000011920929,8,0"/>
+                                        <TextBox Text="发布了一个约会" Margin="120,35,14,0" Height="29" FontSize="16" Background="{x:Null}" BorderBrush="{x:Null}" IsReadOnly="True" IsTabStop="False"/>
+                                        <TextBox Text="{Binding Date}" Margin="120,57,89,0" Height="29" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF666666" IsReadOnly="True" IsTabStop="False" FontSize="16" VerticalContentAlignment="Top" Padding="7,0,8,0"/>
+                                        <TextBlock x:Name="contentView" Visibility="Collapsed" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20, 90, 0, 0" Text="{Binding Content}" Foreground="Black" FontSize="18"></TextBlock>
+                                        <Grid Margin="40,90,0,0" Width="65" HorizontalAlignment="Left" VerticalAlignment="Bottom">
                                             <Image HorizontalAlignment="Left" Height="24" VerticalAlignment="Center" Width="28" Margin="4,0,0,0" Source="Assets/has_see.png"/>
                                             <TextBox Margin="30,9,0,0" Width="20" Height="20" HorizontalAlignment="Left" VerticalAlignment="Center" Background="{x:Null}" BorderBrush="{x:Null}" x:Name="hasSee" Text="{Binding hasSee}" FontSize="12" Padding="0,0.800000011920929,8,0"/>
                                         </Grid>
-                                        <Grid Margin="90,90,0,0" Width="65" HorizontalAlignment="Left" VerticalAlignment="Bottom">
+                                        <Grid Margin="150,90,0,0" Width="65" HorizontalAlignment="Left" VerticalAlignment="Bottom">
                                             <Image HorizontalAlignment="Left" Height="20" VerticalAlignment="Center" Width="24" Margin="4,0,0,0" Source="Assets/favorite.png"/>
                                             <TextBox Margin="30,9,0,0" Width="20" Height="20" HorizontalAlignment="Left" VerticalAlignment="Center" Background="{x:Null}" BorderBrush="{x:Null}" x:Name="hasLike" Text="{Binding hasLoved}" FontSize="12" Padding="0,0.800000011920929,8,0"/>
                                         </Grid>
-                                        <Grid x:Name="commentView" Margin="180,90,0,0" Visibility="Collapsed" Width="65" HorizontalAlignment="Left" VerticalAlignment="Bottom">
+                                        <Grid x:Name="commentView" Margin="260,90,0,0" Visibility="Collapsed" Width="65" HorizontalAlignment="Left" VerticalAlignment="Bottom">
                                             <Image HorizontalAlignment="Left" Height="20" VerticalAlignment="Center" Width="24" Margin="4,0,0,0" Source="Assets/comment.png"/>
-                                            <TextBox Margin="30,9,0,0" Width="20" Height="20" HorizontalAlignment="Left" VerticalAlignment="Center" Background="{x:Null}" BorderBrush="{x:Null}" x:Name="commentNumber" Text="{Binding hasLoved}" FontSize="12" Padding="0,0.800000011920929,8,0"/>
+                                            <TextBox Margin="30,9,0,0" Width="20" Height="20" HorizontalAlignment="Left" VerticalAlignment="Center" Background="{x:Null}" BorderBrush="{x:Null}" x:Name="commentNumber" Text="{Binding hasComment}" FontSize="12" Padding="0,0.800000011920929,8,0"/>
                                         </Grid>
-                                        <Grid Tapped="unlockView_Tapped" Height="35"  x:Name="unlockView" Margin="180,90,0,0" Width="65" HorizontalAlignment="Left" VerticalAlignment="Bottom">
+                                        <Grid Tapped="unlockView_Tapped" Height="35"  x:Name="unlockView" Margin="260,90,0,0" Width="65" HorizontalAlignment="Left" VerticalAlignment="Bottom">
                                             <Image HorizontalAlignment="Left" Height="20" VerticalAlignment="Center" Width="24" Margin="24,0,0,0" Source="Assets/unlock.png"/>
                                         </Grid>
-                                        <Grid Margin="270,90,0,0" Width="65" HorizontalAlignment="Left" VerticalAlignment="Bottom">
+                                        <Grid Margin="370,90,0,0" Width="65" HorizontalAlignment="Left" VerticalAlignment="Bottom">
                                             <Image Visibility="Collapsed" x:Name="datingView" HorizontalAlignment="Left" Height="20" VerticalAlignment="Center" Width="24" Margin="24,0,0,0" Source="Assets/dating.png"/>
                                             <TextBox Margin="4,9,0,0" Width="65" Height="20" HorizontalAlignment="Left" VerticalAlignment="Center" Background="{x:Null}" BorderBrush="{x:Null}" x:Name="states" Text="{Binding status}" FontSize="12" Padding="0,0.800000011920929,8,0"/>
                                         </Grid>
@@ -245,9 +244,9 @@
                      x:Uid="PivotItem4"
                      Margin="0,15,-0.167,-0.333">
                     <Grid HorizontalAlignment="Left" Height="537" Margin="10,0,0,-0.333" VerticalAlignment="Top" Width="356">
-                        <Image Source="{Binding}" HorizontalAlignment="Left" Height="130" Margin="24,23,0,0" VerticalAlignment="Top" Width="130"/>
-                        <TextBox HorizontalAlignment="Right" Margin="0,19,28,0" TextWrapping="Wrap" Text="姓名" VerticalAlignment="Top" FontSize="28" Background="{x:Null}" BorderBrush="{x:Null}" IsReadOnly="True" Width="162" Height="50" IsTabStop="False"/>
-                        <TextBox HorizontalAlignment="Left" Margin="166,63,0,0" TextWrapping="Wrap" Text="什么学院 大几" VerticalAlignment="Top" FontSize="18" Background="{x:Null}" BorderBrush="{x:Null}" IsReadOnly="True" IsTabStop="False" RenderTransformOrigin="0.269,0.524"/>
+                        <Image x:Name="imagePath" Source="{Binding}" HorizontalAlignment="Left" Height="130" Margin="24,23,0,0" VerticalAlignment="Top" Width="130"/>
+                        <TextBox x:Name="username" HorizontalAlignment="Right" Margin="0,19,28,0" TextWrapping="Wrap" Text="{Binding}" VerticalAlignment="Top" FontSize="28" Background="{x:Null}" BorderBrush="{x:Null}" IsReadOnly="True" Width="162" Height="50" IsTabStop="False"/>
+                        <TextBox x:Name="usergroup" HorizontalAlignment="Left" Margin="166,63,0,0" TextWrapping="Wrap" Text="{Binding}" VerticalAlignment="Top" FontSize="18" Background="{x:Null}" BorderBrush="{x:Null}" IsReadOnly="True" IsTabStop="False" RenderTransformOrigin="0.269,0.524"/>
                         <Button Content="编辑资料" HorizontalAlignment="Left" Margin="175,91,0,0" VerticalAlignment="Top" FontSize="22" Foreground="Black" BorderBrush="{x:Null}" Background="#FFBBBBBB" Height="71" Width="142" Click="change_profile" FontWeight="Normal"/>
                         <TextBox HorizontalAlignment="Left" Margin="24,199,0,0" TextWrapping="Wrap" Text="兴趣爱好" VerticalAlignment="Top" IsReadOnly="True" IsTabStop="False" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="24"/>
                         <TextBox HorizontalAlignment="Left" Margin="24,254,0,0" TextWrapping="Wrap" Text="我的收藏" VerticalAlignment="Top" IsReadOnly="True" IsTabStop="False" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="24"/>

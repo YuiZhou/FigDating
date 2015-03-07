@@ -21,6 +21,7 @@ using Windows.UI.Xaml.Navigation;
 using Windows.Phone.UI.Input;
 using System.Diagnostics;
 using Windows.UI.Popups;
+using Windows.UI.Xaml.Media.Imaging;
 
 // “透视应用程序”模板在 http://go.microsoft.com/fwlink/?LinkID=391641 上有介绍
 
@@ -51,6 +52,7 @@ namespace FigDating
             this.navigationHelper.LoadState += this.NavigationHelper_LoadState;
             this.navigationHelper.SaveState += this.NavigationHelper_SaveState;
             this.ContentPivot.SelectionChanged += pivot_SelectionChanged;
+            Profile_Loaded();
         }
 
         /// <summary>
@@ -128,11 +130,11 @@ namespace FigDating
         {
             // 导航至相应的目标页，并
             // 通过将所需信息作为导航参数传入来配置新页
-            //var itemId = ((SampleDataItem)e.ClickedItem).UniqueId;
-            //if (!Frame.Navigate(typeof(ItemPage), itemId))
-            //{
-            //    throw new Exception(this.resourceLoader.GetString("NavigationFailedExceptionMessage"));
-            //}
+            var itemId = ((SampleDataItem)e.ClickedItem).UniqueId;
+            if (!Frame.Navigate(typeof(ItemPage), itemId))
+            {
+                throw new Exception(this.resourceLoader.GetString("NavigationFailedExceptionMessage"));
+            }
         }
 
         /// <summary>
@@ -230,16 +232,38 @@ namespace FigDating
 
 
             var parentContainer = this.indexList.ContainerFromIndex(index);//.ContainerFromItem(this.indexList.SelectedItem);
-            var unlockView = FindImage(parentContainer, "datingView");
-            var commentView = FindControl<TextBox>(parentContainer, "states");
+            //var unlockView = FindImage(parentContainer, "datingView");
+            //var commentView = FindControl<TextBox>(parentContainer, "states");
+            var containerView = FindGrid(parentContainer, "containerView");
+            containerView.Height = 200;
+            var contentView = FindTextBlock(parentContainer, "contentView");
+            contentView.Visibility = Visibility.Visible;
+            var unlock = FindGrid(parentContainer, "unlockView");
+            unlock.Visibility = Visibility.Collapsed;
+            var comment = FindGrid(parentContainer, "commentView");
+            comment.Visibility = Visibility.Visible;
 
 
             //suppose you want to change the visibility
-            unlockView.Visibility = Visibility.Visible;
-            commentView.Visibility = Visibility.Collapsed;
+            //unlockView.Visibility = Visibility.Visible;
+            //commentView.Visibility = Visibility.Collapsed;
 
         }
 
+        private void Profile_Loaded()
+        {
+            Windows.Storage.ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
+            //Windows.Storage.StorageFolder localFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
+
+            Windows.Storage.ApplicationDataCompositeValue profile =
+   (Windows.Storage.ApplicationDataCompositeValue)localSettings.Values["profile"];
+
+            this.username.Text = (string)profile["name"];
+            this.usergroup.Text = (string)profile["college"] + (string)profile["grade"];
+
+        }
+
+        #region findControl 系列函数
         public List<Control> AllChildren(DependencyObject parent)
         {
             var _List = new List<Control>();
@@ -276,6 +300,46 @@ namespace FigDating
             var control = childControls.OfType<Image>().Where(x => controlName.Equals(x.Name)).Cast<Image>().First();
             return control;
         }
+
+        public List<Grid> AllGridChildren(DependencyObject parent)
+        {
+            var _List = new List<Grid>();
+            for (int i = 0; i < VisualTreeHelper.GetChildrenCount(parent); i++)
+            {
+                var _Child = VisualTreeHelper.GetChild(parent, i);
+                if (_Child is Grid)
+                    _List.Add(_Child as Grid);
+                _List.AddRange(AllGridChildren(_Child));
+            }
+            return _List;
+        }
+        private Grid FindGrid(DependencyObject parentContainer, string controlName)
+        {
+            var childControls = AllGridChildren(parentContainer);
+            var control = childControls.OfType<Grid>().Where(x => controlName.Equals(x.Name)).Cast<Grid>().First();
+            return control;
+        }
+        public List<TextBlock> AllTextBlockChildren(DependencyObject parent)
+        {
+            var _List = new List<TextBlock>();
+            for (int i = 0; i < VisualTreeHelper.GetChildrenCount(parent); i++)
+            {
+                var _Child = VisualTreeHelper.GetChild(parent, i);
+                if (_Child is TextBlock)
+                    _List.Add(_Child as TextBlock);
+                _List.AddRange(AllTextBlockChildren(_Child));
+            }
+            return _List;
+        }
+        private TextBlock FindTextBlock(DependencyObject parentContainer, string controlName)
+        {
+            var childControls = AllTextBlockChildren(parentContainer);
+            var control = childControls.OfType<TextBlock>().Where(x => controlName.Equals(x.Name)).Cast<TextBlock>().First();
+            return control;
+        }
+        #endregion
+
+        
         #endregion
 
 

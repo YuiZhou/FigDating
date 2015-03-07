@@ -23,32 +23,47 @@ namespace FigDating {
         public async Task<bool> signup(string username, string password)
         {
             Dictionary<string,string> data = new Dictionary<string,string>();
+            data.Add("stu_id", username);
+            data.Add("password",password);
             var httpClient = new HttpClient();
             try {
                 var queryString = new FormUrlEncodedContent(data);
-                HttpResponseMessage response = await httpClient.PostAsync(Domain.getDomain() + "registration/", queryString); 
+                HttpResponseMessage response = await httpClient.PostAsync(Domain.getDomain() + "registration/", queryString);
+                httpClient.Dispose();
                 response.EnsureSuccessStatusCode();
                 string responseBody = await response.Content.ReadAsStringAsync();
             }catch{}
             return true;
         }
 
-        public bool signin(string username, string password)
+        public async Task<bool> signin(string username, string password)
         {
+            Dictionary<string, string> data = new Dictionary<string, string>();
+            data.Add("stu_id", username);
+            data.Add("password", password);
+            var httpClient = new HttpClient();
+            try
+            {
+                var queryString = new FormUrlEncodedContent(data);
+                HttpResponseMessage response = await httpClient.PostAsync(Domain.getDomain() + "login/", queryString);
+                httpClient.Dispose();
+                response.EnsureSuccessStatusCode();
+                string responseBody = await response.Content.ReadAsStringAsync();
+                Debug.WriteLine("$$$\n"+responseBody+"\n$$$");
+                if (responseBody.Equals("1")) {
+                    return false;
+                }
+                ////////////////////////////////
+                loadProfile(responseBody);
+            }
+            catch { }
             // 需要重新刷新个人信息
-            loadProfile(username);
+            
             return true;
         }
 
-        private async void loadProfile(string username) {
-            username = "1";
-
-            HttpClient client = new HttpClient();
-            HttpResponseMessage responseHttp = await client.GetAsync(Domain.getDomain() +"user/"+ username +"/profile/");
-            client.Dispose();
-
-            Task<string> message = responseHttp.Content.ReadAsStringAsync();
-            string json = await message;
+        private void loadProfile(string json) {
+           // username = "1";
             JsonValue response = JsonValue.Parse(json);
             JsonObject item = response.GetObject();
 
@@ -57,7 +72,7 @@ namespace FigDating {
 
             Windows.Storage.ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
             Windows.Storage.ApplicationDataCompositeValue composite = new Windows.Storage.ApplicationDataCompositeValue();
-            composite["username"] = username;
+            composite["username"] = item["user_id"].GetNumber();
             composite["name"] = item["username"].GetString();
             composite["grade"] = item["grade"].GetString();
             composite["gender"] = item["gender"].GetString();
@@ -65,6 +80,7 @@ namespace FigDating {
             composite["college"] = item["college"].GetString();
             composite["birth_year"] = item["birth_year"].GetString();
             composite["id"] = item["stu_id"].GetString() ;
+            composite["image"] = item["path"].GetString();
  
             localSettings.Values["profile"] = composite;
         }

@@ -13,7 +13,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Windows.UI.Popups;
-
+using System.Threading.Tasks;
 // “空白页”项模板在 http://go.microsoft.com/fwlink/?LinkID=390556 上有介绍
 
 namespace FigDating
@@ -26,6 +26,7 @@ namespace FigDating
         public Login()
         {
             this.InitializeComponent();
+            this.NavigationCacheMode = Windows.UI.Xaml.Navigation.NavigationCacheMode.Disabled;
         }
 
         /// <summary>
@@ -51,7 +52,7 @@ namespace FigDating
                         MessageDialog messageDialog = new MessageDialog("请输入有效的用户名");
                         await messageDialog.ShowAsync();
                     }
-                    else if (!login(username, password))
+                    else if (!await login(username, password))
                     {
                         MessageDialog messageDialog = new MessageDialog("密码错误");
                         await messageDialog.ShowAsync();
@@ -76,7 +77,7 @@ namespace FigDating
                     else if (await (sign.signup(username, password)))
                     {
                         // 注册成功，直接登录
-                        login(username, password);
+                        await login(username, password);
                     }
                     else
                     {
@@ -96,9 +97,10 @@ namespace FigDating
         /// <param name="username"></param>
         /// <param name="password"></param>
         /// <returns></returns>
-        private bool login(string username, string password) {
+        private async Task<bool> login(string username, string password) {
             Sign sign = Sign.getSign();
-            if (!sign.signin(username, password)) {
+            if (!(await (sign.signin(username, password))))
+            {
                 return false;
             }
             // 记录用户名密码信息

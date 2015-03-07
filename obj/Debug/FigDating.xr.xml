@@ -3,15 +3,18 @@
   <Roots.PropertyPathNames>
     <RootPropertyPathName Name="DefaultViewModel" />
     <RootPropertyPathName Name="Item" />
-    <RootPropertyPathName Name="Title" />
-    <RootPropertyPathName Name="SecondGroup" />
-    <RootPropertyPathName Name="Items" />
-    <RootPropertyPathName Name="Date" />
-    <RootPropertyPathName Name="Group" />
-    <RootPropertyPathName Name="ImagePath" />
     <RootPropertyPathName Name="status" />
+    <RootPropertyPathName Name="hasComment" />
     <RootPropertyPathName Name="hasLoved" />
     <RootPropertyPathName Name="hasSee" />
+    <RootPropertyPathName Name="Content" />
+    <RootPropertyPathName Name="Date" />
+    <RootPropertyPathName Name="Group" />
+    <RootPropertyPathName Name="Title" />
+    <RootPropertyPathName Name="ImgePath" />
+    <RootPropertyPathName Name="SecondGroup" />
+    <RootPropertyPathName Name="Items" />
+    <RootPropertyPathName Name="ImagePath" />
     <RootPropertyPathName Name="FirstGroup" />
     <RootPropertyPathName Name="SelectedIndex" />
   </Roots.PropertyPathNames>
@@ -48,12 +51,12 @@
       <RootProperty Name="Children" />
       <RootProperty Name="Margin" />
       <RootProperty Name="ColumnDefinitions" />
+      <RootProperty Name="VerticalAlignment" />
+      <RootProperty Name="Height" />
+      <RootProperty Name="Width" />
+      <RootProperty Name="HorizontalAlignment" />
       <RootProperty Name="Opacity" />
       <RootProperty Name="Background" />
-      <RootProperty Name="HorizontalAlignment" />
-      <RootProperty Name="Height" />
-      <RootProperty Name="VerticalAlignment" />
-      <RootProperty Name="Width" />
       <RootProperty Name="Visibility" />
       <RootEvent Name="Tapped" />
       <RootMethod Name="GetRow" />
@@ -74,6 +77,9 @@
       <RootProperty Name="CharacterSpacing" />
       <RootProperty Name="FontSize" />
       <RootProperty Name="Foreground" />
+      <RootProperty Name="HorizontalAlignment" />
+      <RootProperty Name="VerticalAlignment" />
+      <RootProperty Name="Visibility" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.ColumnDefinition">
       <RootProperty Name="Width" />
@@ -111,24 +117,24 @@
       <RootProperty Name="BorderBrush" />
       <RootProperty Name="BorderThickness" />
       <RootProperty Name="Background" />
-      <RootProperty Name="InputScope" />
-      <RootProperty Name="MaxLength" />
       <RootProperty Name="FontSize" />
       <RootProperty Name="Text" />
-      <RootProperty Name="Foreground" />
-      <RootProperty Name="IsHitTestVisible" />
+      <RootProperty Name="IsReadOnly" />
       <RootProperty Name="IsTabStop" />
+      <RootProperty Name="Padding" />
+      <RootProperty Name="HorizontalContentAlignment" />
+      <RootProperty Name="Foreground" />
+      <RootProperty Name="VerticalContentAlignment" />
+      <RootProperty Name="InputScope" />
+      <RootProperty Name="MaxLength" />
+      <RootProperty Name="IsHitTestVisible" />
       <RootProperty Name="IsTextPredictionEnabled" />
       <RootProperty Name="SelectionHighlightColor" />
       <RootProperty Name="IsRightTapEnabled" />
       <RootProperty Name="IsDoubleTapEnabled" />
       <RootProperty Name="IsHoldingEnabled" />
       <RootProperty Name="IsTapEnabled" />
-      <RootProperty Name="IsReadOnly" />
-      <RootProperty Name="Padding" />
       <RootProperty Name="RenderTransformOrigin" />
-      <RootProperty Name="HorizontalContentAlignment" />
-      <RootProperty Name="VerticalContentAlignment" />
       <RootEvent Name="Tapped" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.ToolTipService">
@@ -150,9 +156,23 @@
       <RootMethod Name="GetExitElementContainer" />
       <RootMethod Name="SetExitElementContainer" />
     </RootType>
-    <RootType FullName="Windows.UI.Xaml.Controls.StackPanel">
+    <RootType FullName="Windows.UI.Xaml.Controls.ListView">
+      <RootProperty Name="ItemsSource" />
+      <RootProperty Name="IsItemClickEnabled" />
       <RootProperty Name="Margin" />
-      <RootProperty Name="Children" />
+      <RootProperty Name="ItemTemplate" />
+      <RootEvent Name="ItemClick" />
+      <RootEvent Name="Loaded" />
+      <RootEvent Name="SelectionChanged" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.Image">
+      <RootProperty Name="Source" />
+      <RootProperty Name="Height" />
+      <RootProperty Name="Margin" />
+      <RootProperty Name="VerticalAlignment" />
+      <RootProperty Name="Width" />
+      <RootProperty Name="Visibility" />
+      <RootProperty Name="HorizontalAlignment" />
     </RootType>
     <RootType FullName="FigDating.ItemPage" />
     <RootType FullName="Windows.UI.Xaml.Controls.Pivot">
@@ -248,26 +268,15 @@
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.MenuFlyout" />
     <RootType FullName="Windows.UI.Xaml.Shapes.Rectangle">
-      <RootProperty Name="HorizontalAlignment" />
       <RootProperty Name="Height" />
       <RootProperty Name="Stroke" />
       <RootProperty Name="VerticalAlignment" />
-      <RootProperty Name="Width" />
+      <RootProperty Name="Margin" />
       <RootProperty Name="Fill" />
       <RootProperty Name="IsDoubleTapEnabled" />
       <RootProperty Name="IsHoldingEnabled" />
       <RootProperty Name="IsRightTapEnabled" />
       <RootProperty Name="IsTapEnabled" />
-      <RootProperty Name="Margin" />
-    </RootType>
-    <RootType FullName="Windows.UI.Xaml.Controls.Image">
-      <RootProperty Name="HorizontalAlignment" />
-      <RootProperty Name="Height" />
-      <RootProperty Name="Margin" />
-      <RootProperty Name="VerticalAlignment" />
-      <RootProperty Name="Width" />
-      <RootProperty Name="Source" />
-      <RootProperty Name="Visibility" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.ListBox">
       <RootProperty Name="ItemContainerStyle" />
@@ -298,17 +307,6 @@
       <RootProperty Name="Width" />
       <RootProperty Name="FontWeight" />
       <RootEvent Name="Click" />
-    </RootType>
-    <RootType FullName="Windows.UI.Xaml.Controls.ListView">
-      <RootProperty Name="ItemsSource" />
-      <RootProperty Name="IsItemClickEnabled" />
-      <RootProperty Name="Margin" />
-      <RootProperty Name="ItemTemplate" />
-      <RootProperty Name="HorizontalAlignment" />
-      <RootProperty Name="Width" />
-      <RootEvent Name="ItemClick" />
-      <RootEvent Name="Loaded" />
-      <RootEvent Name="SelectionChanged" />
     </RootType>
     <RootType FullName="Microsoft.Xaml.Tools.DirectUI.ProxyTypes.StaticResourceExtension" />
     <RootType FullName="Windows.UI.Xaml.Controls.ItemsPanelTemplate">

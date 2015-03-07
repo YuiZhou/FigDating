@@ -18,14 +18,14 @@
         <Pivot x:Name="Pivot">
             <PivotItem Header="登录复约">
                 <Grid>
-                    <TextBox x:Name="inUsr" Header="学号" InputScope="Number" MaxLength="11" HorizontalAlignment="Left" Margin="10,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="342" Height="70" Background="{x:Null}" BorderBrush="Black" BorderThickness="1.5" FontSize="22"/>
+                    <TextBox x:Name="inUsr" Header="学号" InputScope="Number" MaxLength="11" Margin="10,0,10,0" TextWrapping="Wrap" Height="70" Background="{x:Null}" BorderBrush="Black" BorderThickness="1.5" FontSize="22"/>
                     <PasswordBox x:Name="inPwd" Header="密码" Margin="10,85,10,0" Height="70" BorderThickness="1.5" Background="{x:Null}" BorderBrush="Black" FontSize="22"/>
                 </Grid>
 
             </PivotItem>
             <PivotItem Header="加入复约">
                 <Grid>
-                    <TextBox x:Name="upUsr" Header="学号" InputScope="Number" MaxLength="11" HorizontalAlignment="Left" Margin="10,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="342" Height="70" Background="{x:Null}" BorderBrush="Black" BorderThickness="1.5" FontSize="22"/>
+                    <TextBox x:Name="upUsr" Header="学号" InputScope="Number" MaxLength="11" Margin="10,0,0,0" TextWrapping="Wrap" Height="70" Background="{x:Null}" BorderBrush="Black" BorderThickness="1.5" FontSize="22"/>
                     <PasswordBox x:Name="upPwd" Header="密码" Margin="10,85,10,0" Height="70" BorderThickness="1.5" Background="{x:Null}" BorderBrush="Black" FontSize="22"/>
                     <PasswordBox x:Name="upCfm" Header="确认密码" Margin="10,170,10,0" Height="70" BorderThickness="1.5" Background="{x:Null}" BorderBrush="Black" FontSize="22"/>
                 </Grid>

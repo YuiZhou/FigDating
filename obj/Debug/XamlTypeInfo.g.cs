@@ -313,6 +313,8 @@ namespace FigDating.FigDating_XamlTypeInfo
             case 15:   //  FigDating.Profile
                 userType = new global::FigDating.FigDating_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
                 userType.Activator = Activate_15_Profile;
+                userType.AddMemberName("NavigationHelper");
+                userType.AddMemberName("DefaultViewModel");
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
@@ -349,6 +351,16 @@ namespace FigDating.FigDating_XamlTypeInfo
         private object get_5_PivotPage_DefaultViewModel(object instance)
         {
             var that = (global::FigDating.PivotPage)instance;
+            return that.DefaultViewModel;
+        }
+        private object get_6_Profile_NavigationHelper(object instance)
+        {
+            var that = (global::FigDating.Profile)instance;
+            return that.NavigationHelper;
+        }
+        private object get_7_Profile_DefaultViewModel(object instance)
+        {
+            var that = (global::FigDating.Profile)instance;
             return that.DefaultViewModel;
         }
 
@@ -393,6 +405,18 @@ namespace FigDating.FigDating_XamlTypeInfo
                 userType = (global::FigDating.FigDating_XamlTypeInfo.XamlUserType)GetXamlTypeByName("FigDating.PivotPage");
                 xamlMember = new global::FigDating.FigDating_XamlTypeInfo.XamlMember(this, "DefaultViewModel", "FigDating.Common.ObservableDictionary");
                 xamlMember.Getter = get_5_PivotPage_DefaultViewModel;
+                xamlMember.SetIsReadOnly();
+                break;
+            case "FigDating.Profile.NavigationHelper":
+                userType = (global::FigDating.FigDating_XamlTypeInfo.XamlUserType)GetXamlTypeByName("FigDating.Profile");
+                xamlMember = new global::FigDating.FigDating_XamlTypeInfo.XamlMember(this, "NavigationHelper", "FigDating.Common.NavigationHelper");
+                xamlMember.Getter = get_6_Profile_NavigationHelper;
+                xamlMember.SetIsReadOnly();
+                break;
+            case "FigDating.Profile.DefaultViewModel":
+                userType = (global::FigDating.FigDating_XamlTypeInfo.XamlUserType)GetXamlTypeByName("FigDating.Profile");
+                xamlMember = new global::FigDating.FigDating_XamlTypeInfo.XamlMember(this, "DefaultViewModel", "FigDating.Common.ObservableDictionary");
+                xamlMember.Getter = get_7_Profile_DefaultViewModel;
                 xamlMember.SetIsReadOnly();
                 break;
             }
@@ -720,5 +744,9 @@ namespace FigDating.FigDating_XamlTypeInfo
         }
     }
 }
+
+
+
+
 
 
