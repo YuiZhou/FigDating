@@ -55,9 +55,9 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <ListView 
+            <ListView x:ConnectionId='2' 
                 Grid.Row="1"
-            Loaded="ListView_Loaded"
+                                    
                 Margin="0,0,0,0"
                 ItemsSource="{Binding Items}">
                 <ListView.ItemTemplate>
@@ -75,6 +75,7 @@
                 </ListView.ItemTemplate>
             </ListView>
         </Grid>
-        <TextBox x:Name="addComment" KeyUp="addComment_KeyDown" Margin="10,0,10,10" VerticalAlignment="Bottom" TextWrapping="Wrap" Height="40" Background="{x:Null}" BorderBrush="Black" BorderThickness="1.5" FontSize="22" Grid.Row="1"/>
+        <TextBox x:ConnectionId='1' x:Name="addComment"                            Margin="10,0,10,10" VerticalAlignment="Bottom" TextWrapping="Wrap" Height="40" Background="{x:Null}" BorderBrush="Black" BorderThickness="1.5" FontSize="22" Grid.Row="1"/>
     </Grid>
 </Page>
+

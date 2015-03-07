@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Machine>YUIZHOU-PC</Machine>
+    <WindowsUser>yuizhou</WindowsUser>
+    <TargetPlatformIdentifier>WindowsPhoneApp</TargetPlatformIdentifier>
+    <SolutionConfiguration>Release|AnyCPU</SolutionConfiguration>
+    <PackageArchitecture>neutral</PackageArchitecture>
+    <PackageIdentityName>e2fc3707-d4ed-4eee-acc6-f8d6c840026a</PackageIdentityName>
+    <IntermediateOutputPath>C:\Users\yuizhou\documents\visual studio 2013\Projects\FigDating\FigDating\obj\Release\</IntermediateOutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <AppXManifest Include="C:\Users\yuizhou\documents\visual studio 2013\Projects\FigDating\FigDating\bin\Release\AppxManifest.xml">
+      <PackagePath>AppxManifest.xml</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppXManifest>
+  </ItemGroup>
+  <ItemGroup>
+    <AppxPackagedFile Include="C:\Users\yuizhou\documents\visual studio 2013\Projects\FigDating\FigDating\bin\Release\FigDating.exe">
+      <PackagePath>FigDating.exe</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\yuizhou\documents\visual studio 2013\Projects\FigDating\FigDating\Assets\chance.png">
+      <PackagePath>Assets\chance.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\yuizhou\documents\visual studio 2013\Projects\FigDating\FigDating\Assets\comment.png">
+      <PackagePath>Assets\comment.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\yuizhou\documents\visual studio 2013\Projects\FigDating\FigDating\Assets\comment_tag.png">
+      <PackagePath>Assets\comment_tag.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\yuizhou\documents\visual studio 2013\Projects\FigDating\FigDating\Assets\comment_tag_chose.png">
+      <PackagePath>Assets\comment_tag_chose.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\yuizhou\documents\visual studio 2013\Projects\FigDating\FigDating\Assets\dating.png">
+      <PackagePath>Assets\dating.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\yuizhou\documents\visual studio 2013\Projects\FigDating\FigDating\Assets\favorite.png">
+      <PackagePath>Assets\favorite.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\yuizhou\documents\visual studio 2013\Projects\FigDating\FigDating\Assets\has_see.png">
+      <PackagePath>Assets\has_see.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\yuizhou\documents\visual studio 2013\Projects\FigDating\FigDating\Assets\Logo.scale-240.png">
+      <PackagePath>Assets\Logo.scale-240.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\yuizhou\documents\visual studio 2013\Projects\FigDating\FigDating\Assets\message.png">
+      <PackagePath>Assets\message.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\yuizhou\documents\visual studio 2013\Projects\FigDating\FigDating\Assets\more_tag.png">
+      <PackagePath>Assets\more_tag.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\yuizhou\documents\visual studio 2013\Projects\FigDating\FigDating\Assets\newFeeds_tag_chose.png">
+      <PackagePath>Assets\newFeeds_tag_chose.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\yuizhou\documents\visual studio 2013\Projects\FigDating\FigDating\Assets\recommend_tag.png">
+      <PackagePath>Assets\recommend_tag.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\yuizhou\documents\visual studio 2013\Projects\FigDating\FigDating\Assets\recommend_tag_chose.png">
+      <PackagePath>Assets\recommend_tag_chose.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\yuizhou\documents\visual studio 2013\Projects\FigDating\FigDating\Assets\SmallLogo.scale-240.png">
+      <PackagePath>Assets\SmallLogo.scale-240.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\yuizhou\documents\visual studio 2013\Projects\FigDating\FigDating\Assets\SplashScreen.scale-240.png">
+      <PackagePath>Assets\SplashScreen.scale-240.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\yuizhou\documents\visual studio 2013\Projects\FigDating\FigDating\Assets\Square71x71Logo.scale-240.png">
+      <PackagePath>Assets\Square71x71Logo.scale-240.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\yuizhou\documents\visual studio 2013\Projects\FigDating\FigDating\Assets\StoreLogo.scale-240.png">
+      <PackagePath>Assets\StoreLogo.scale-240.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\yuizhou\documents\visual studio 2013\Projects\FigDating\FigDating\Assets\unlock.png">
+      <PackagePath>Assets\unlock.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\yuizhou\documents\visual studio 2013\Projects\FigDating\FigDating\Assets\WideLogo.scale-240.png">
+      <PackagePath>Assets\WideLogo.scale-240.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\yuizhou\documents\visual studio 2013\Projects\FigDating\FigDating\Common\ReadMe.txt">
+      <PackagePath>Common\ReadMe.txt</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\yuizhou\documents\visual studio 2013\Projects\FigDating\FigDating\DataModel\SampleData.json">
+      <PackagePath>DataModel\SampleData.json</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\yuizhou\documents\visual studio 2013\Projects\FigDating\FigDating\bin\Release\App.xbf">
+      <PackagePath>App.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\yuizhou\documents\visual studio 2013\Projects\FigDating\FigDating\bin\Release\AddNew.xbf">
+      <PackagePath>AddNew.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\yuizhou\documents\visual studio 2013\Projects\FigDating\FigDating\bin\Release\ItemPage.xbf">
+      <PackagePath>ItemPage.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\yuizhou\documents\visual studio 2013\Projects\FigDating\FigDating\bin\Release\Login.xbf">
+      <PackagePath>Login.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\yuizhou\documents\visual studio 2013\Projects\FigDating\FigDating\bin\Release\PivotPage.xbf">
+      <PackagePath>PivotPage.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\yuizhou\documents\visual studio 2013\Projects\FigDating\FigDating\bin\Release\Profile.xbf">
+      <PackagePath>Profile.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\yuizhou\documents\visual studio 2013\Projects\FigDating\FigDating\bin\Release\Themes\Generic.xbf">
+      <PackagePath>Themes\Generic.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\yuizhou\documents\visual studio 2013\Projects\FigDating\FigDating\bin\Release\FigDating.xr.xml">
+      <PackagePath>FigDating.xr.xml</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\yuizhou\documents\visual studio 2013\Projects\FigDating\FigDating\bin\Release\resources.pri">
+      <PackagePath>resources.pri</PackagePath>
+    </AppxPackagedFile>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+</Project>
