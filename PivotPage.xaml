@@ -147,22 +147,22 @@
                                         <TextBlock x:Name="contentView" Visibility="Collapsed" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20, 90, 0, 0" Text="{Binding Content}" Foreground="Black" FontSize="18"></TextBlock>
                                         <Grid Margin="40,90,0,0" Width="65" HorizontalAlignment="Left" VerticalAlignment="Bottom">
                                             <Image HorizontalAlignment="Left" Height="24" VerticalAlignment="Center" Width="28" Margin="4,0,0,0" Source="Assets/has_see.png"/>
-                                            <TextBox Margin="30,9,0,0" Width="20" Height="20" HorizontalAlignment="Left" VerticalAlignment="Center" Background="{x:Null}" BorderBrush="{x:Null}" x:Name="hasSee" Text="{Binding hasSee}" FontSize="12" Padding="0,0.800000011920929,8,0"/>
+                                            <TextBox IsReadOnly="True" IsTabStop="False" Margin="30,9,0,0" Width="20" Height="20" HorizontalAlignment="Left" VerticalAlignment="Center" Background="{x:Null}" BorderBrush="{x:Null}" x:Name="hasSee" Text="{Binding hasSee}" FontSize="12" Padding="0,0.800000011920929,8,0"/>
                                         </Grid>
                                         <Grid Margin="150,90,0,0" Width="65" HorizontalAlignment="Left" VerticalAlignment="Bottom">
                                             <Image HorizontalAlignment="Left" Height="20" VerticalAlignment="Center" Width="24" Margin="4,0,0,0" Source="Assets/favorite.png"/>
-                                            <TextBox Margin="30,9,0,0" Width="20" Height="20" HorizontalAlignment="Left" VerticalAlignment="Center" Background="{x:Null}" BorderBrush="{x:Null}" x:Name="hasLike" Text="{Binding hasLoved}" FontSize="12" Padding="0,0.800000011920929,8,0"/>
+                                            <TextBox IsReadOnly="True" IsTabStop="False" Margin="30,9,0,0" Width="20" Height="20" HorizontalAlignment="Left" VerticalAlignment="Center" Background="{x:Null}" BorderBrush="{x:Null}" x:Name="hasLike" Text="{Binding hasLoved}" FontSize="12" Padding="0,0.800000011920929,8,0"/>
                                         </Grid>
                                         <Grid x:Name="commentView" Margin="260,90,0,0" Visibility="Collapsed" Width="65" HorizontalAlignment="Left" VerticalAlignment="Bottom">
                                             <Image HorizontalAlignment="Left" Height="20" VerticalAlignment="Center" Width="24" Margin="4,0,0,0" Source="Assets/comment.png"/>
-                                            <TextBox Margin="30,9,0,0" Width="20" Height="20" HorizontalAlignment="Left" VerticalAlignment="Center" Background="{x:Null}" BorderBrush="{x:Null}" x:Name="commentNumber" Text="{Binding hasComment}" FontSize="12" Padding="0,0.800000011920929,8,0"/>
+                                            <TextBox IsReadOnly="True" IsTabStop="False" Margin="30,9,0,0" Width="20" Height="20" HorizontalAlignment="Left" VerticalAlignment="Center" Background="{x:Null}" BorderBrush="{x:Null}" x:Name="commentNumber" Text="{Binding hasComment}" FontSize="12" Padding="0,0.800000011920929,8,0"/>
                                         </Grid>
                                         <Grid Tapped="unlockView_Tapped" Height="35"  x:Name="unlockView" Margin="260,90,0,0" Width="65" HorizontalAlignment="Left" VerticalAlignment="Bottom">
                                             <Image HorizontalAlignment="Left" Height="20" VerticalAlignment="Center" Width="24" Margin="24,0,0,0" Source="Assets/unlock.png"/>
                                         </Grid>
                                         <Grid Margin="370,90,0,0" Width="65" HorizontalAlignment="Left" VerticalAlignment="Bottom">
                                             <Image Visibility="Collapsed" x:Name="datingView" HorizontalAlignment="Left" Height="20" VerticalAlignment="Center" Width="24" Margin="24,0,0,0" Source="Assets/dating.png"/>
-                                            <TextBox Margin="4,9,0,0" Width="65" Height="20" HorizontalAlignment="Left" VerticalAlignment="Center" Background="{x:Null}" BorderBrush="{x:Null}" x:Name="states" Text="{Binding status}" FontSize="12" Padding="0,0.800000011920929,8,0"/>
+                                            <TextBox IsReadOnly="True" IsTabStop="False" Margin="4,9,0,0" Width="65" Height="20" HorizontalAlignment="Left" VerticalAlignment="Center" Background="{x:Null}" BorderBrush="{x:Null}" x:Name="states" Text="{Binding status}" FontSize="12" Padding="0,0.800000011920929,8,0"/>
                                         </Grid>
                                     </Grid>
                                 </Border>

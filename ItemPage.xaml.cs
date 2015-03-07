@@ -28,6 +28,7 @@ namespace FigDating
     {
         private readonly NavigationHelper navigationHelper;
         private readonly ObservableDictionary defaultViewModel = new ObservableDictionary();
+        private string appointmentId;
 
         public ItemPage()
         {
@@ -70,6 +71,7 @@ namespace FigDating
         {
             // TODO: 创建适用于问题域的合适数据模型以替换示例数据。
             var item = await SampleDataSource.GetItemAsync((string)e.NavigationParameter);
+            this.appointmentId = (string)e.NavigationParameter;
             this.DefaultViewModel["Item"] = item;
         }
 
@@ -112,5 +114,26 @@ namespace FigDating
         }
 
         #endregion
+
+        private async void ListView_Loaded(object sender, RoutedEventArgs e)
+        {
+            var commentDataGroup = await CommentSrc.GetGroupAsync(appointmentId);
+            this.DefaultViewModel["List"] = commentDataGroup;
+        }
+
+        private async void addComment_KeyDown(object sender, KeyRoutedEventArgs e)
+        {
+            if (e.Key == Windows.System.VirtualKey.Enter)
+            {
+                string comment = this.addComment.Text;
+                Appointment app = Appointment.getAppointment();
+                this.addComment.Text = "";
+                this.Focus(FocusState.Programmatic);
+                if (await app.addComment(comment, appointmentId)) {
+                    ListView_Loaded(null, null);
+                }
+            }
+
+        }
     }
 }

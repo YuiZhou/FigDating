@@ -132,14 +132,8 @@ namespace FigDating
 
 
             // 连接服务器
-            Windows.Storage.ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
-            //Windows.Storage.StorageFolder localFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
-
-            Windows.Storage.ApplicationDataCompositeValue UsrPwd =
-   (Windows.Storage.ApplicationDataCompositeValue)localSettings.Values["profile"];
-            var id = UsrPwd["username"];
             Appointment appointment = Appointment.getAppointment();
-            if (await (appointment.addNew(id.ToString(), start.ToString("u"), end.ToString("u"), contentStr, this.hint.Text.Trim())))
+            if (await (appointment.addNew(start.ToString("u"), end.ToString("u"), contentStr, this.hint.Text.Trim())))
             {
                 this.Frame.GoBack();
             }

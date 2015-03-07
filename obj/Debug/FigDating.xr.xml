@@ -2,18 +2,21 @@
 <Roots >
   <Roots.PropertyPathNames>
     <RootPropertyPathName Name="DefaultViewModel" />
+    <RootPropertyPathName Name="List" />
+    <RootPropertyPathName Name="Items" />
+    <RootPropertyPathName Name="Date" />
+    <RootPropertyPathName Name="Comment" />
+    <RootPropertyPathName Name="Group" />
+    <RootPropertyPathName Name="User" />
+    <RootPropertyPathName Name="ImgePath" />
     <RootPropertyPathName Name="Item" />
     <RootPropertyPathName Name="status" />
     <RootPropertyPathName Name="hasComment" />
     <RootPropertyPathName Name="hasLoved" />
     <RootPropertyPathName Name="hasSee" />
     <RootPropertyPathName Name="Content" />
-    <RootPropertyPathName Name="Date" />
-    <RootPropertyPathName Name="Group" />
     <RootPropertyPathName Name="Title" />
-    <RootPropertyPathName Name="ImgePath" />
     <RootPropertyPathName Name="SecondGroup" />
-    <RootPropertyPathName Name="Items" />
     <RootPropertyPathName Name="ImagePath" />
     <RootPropertyPathName Name="FirstGroup" />
     <RootPropertyPathName Name="SelectedIndex" />
@@ -51,6 +54,7 @@
       <RootProperty Name="Children" />
       <RootProperty Name="Margin" />
       <RootProperty Name="ColumnDefinitions" />
+      <RootProperty Name="DataContext" />
       <RootProperty Name="VerticalAlignment" />
       <RootProperty Name="Height" />
       <RootProperty Name="Width" />
@@ -135,6 +139,7 @@
       <RootProperty Name="IsHoldingEnabled" />
       <RootProperty Name="IsTapEnabled" />
       <RootProperty Name="RenderTransformOrigin" />
+      <RootEvent Name="KeyUp" />
       <RootEvent Name="Tapped" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.ToolTipService">
@@ -158,12 +163,23 @@
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.ListView">
       <RootProperty Name="ItemsSource" />
+      <RootProperty Name="ItemTemplate" />
       <RootProperty Name="IsItemClickEnabled" />
       <RootProperty Name="Margin" />
-      <RootProperty Name="ItemTemplate" />
-      <RootEvent Name="ItemClick" />
       <RootEvent Name="Loaded" />
+      <RootEvent Name="ItemClick" />
       <RootEvent Name="SelectionChanged" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.DataTemplate">
+      <RootProperty Name="Template" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.Border">
+      <RootProperty Name="BorderThickness" />
+      <RootProperty Name="BorderBrush" />
+      <RootProperty Name="Child" />
+      <RootProperty Name="Background" />
+      <RootProperty Name="HorizontalAlignment" />
+      <RootProperty Name="VerticalAlignment" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.Image">
       <RootProperty Name="Source" />
@@ -222,14 +238,6 @@
     <RootType FullName="Windows.UI.Xaml.Controls.ControlTemplate">
       <RootProperty Name="TargetType" />
       <RootProperty Name="Template" />
-    </RootType>
-    <RootType FullName="Windows.UI.Xaml.Controls.Border">
-      <RootProperty Name="BorderBrush" />
-      <RootProperty Name="BorderThickness" />
-      <RootProperty Name="Background" />
-      <RootProperty Name="HorizontalAlignment" />
-      <RootProperty Name="VerticalAlignment" />
-      <RootProperty Name="Child" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.VisualStateManager">
       <RootMethod Name="GetVisualStateGroups" />
@@ -290,9 +298,6 @@
     <RootType FullName="Windows.UI.Xaml.Controls.ScrollViewer">
       <RootMethod Name="GetVerticalScrollBarVisibility" />
       <RootMethod Name="SetVerticalScrollBarVisibility" />
-    </RootType>
-    <RootType FullName="Windows.UI.Xaml.DataTemplate">
-      <RootProperty Name="Template" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.Button">
       <RootProperty Name="Content" />

@@ -8,8 +8,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     RequestedTheme="Light"
-    DataContext="{Binding DefaultViewModel.Item, RelativeSource={RelativeSource Self}}"
-    d:DataContext="{Binding Groups[0].Items[0], Source={d:DesignData Source=/DataModel/SampleData.json, Type=data:SampleDataSource}}"
+    DataContext="{Binding DefaultViewModel, RelativeSource={RelativeSource Self}}"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
     <Page.Transitions>
         <TransitionCollection>
@@ -32,7 +31,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <Grid x:Name="containerView" VerticalAlignment="Top" Margin="0,5,0,0" Height="240">
+        <Grid DataContext="{Binding Item}" x:Name="containerView" VerticalAlignment="Top" Margin="0,5,0,0" Height="240">
             <Image Source="{Binding ImgePath}" Height="80" Margin="10,5,0,0" VerticalAlignment="Top" Width="80"/>
             <TextBox Text="{Binding Title}"  Margin="120,0,0,0" Background="{x:Null}" BorderBrush="{x:Null}" IsReadOnly="True" IsTabStop="False" FontSize="24" Padding="7,0,0,0" />
             <TextBox Text="{Binding Group}" Margin="200,8,0,0" Background="{x:Null}" BorderBrush="{x:Null}" IsReadOnly="True" IsTabStop="False" FontSize="18" HorizontalContentAlignment="Left" Padding="0,0.800000011920929,8,0"/>
@@ -41,22 +40,44 @@
             <TextBlock x:Name="contentView" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20, 90, 0, 0" Text="{Binding Content}" Foreground="Black" FontSize="18"></TextBlock>
             <Grid Margin="40,90,0,0" Width="65" HorizontalAlignment="Left" VerticalAlignment="Bottom">
                 <Image HorizontalAlignment="Left" Height="24" VerticalAlignment="Center" Width="28" Margin="4,0,0,0" Source="Assets/has_see.png"/>
-                <TextBox Margin="30,9,0,0" Width="20" Height="20" HorizontalAlignment="Left" VerticalAlignment="Center" Background="{x:Null}" BorderBrush="{x:Null}" x:Name="hasSee" Text="{Binding hasSee}" FontSize="12" Padding="0,0.800000011920929,8,0"/>
+                <TextBox IsReadOnly="True" IsTabStop="False" Margin="30,9,0,0" Width="20" Height="20" HorizontalAlignment="Left" VerticalAlignment="Center" Background="{x:Null}" BorderBrush="{x:Null}" x:Name="hasSee" Text="{Binding hasSee}" FontSize="12" Padding="0,0.800000011920929,8,0"/>
             </Grid>
             <Grid Margin="150,90,0,0" Width="65" HorizontalAlignment="Left" VerticalAlignment="Bottom">
                 <Image HorizontalAlignment="Left" Height="20" VerticalAlignment="Center" Width="24" Margin="4,0,0,0" Source="Assets/favorite.png"/>
-                <TextBox Margin="30,9,0,0" Width="20" Height="20" HorizontalAlignment="Left" VerticalAlignment="Center" Background="{x:Null}" BorderBrush="{x:Null}" x:Name="hasLike" Text="{Binding hasLoved}" FontSize="12" Padding="0,0.800000011920929,8,0"/>
+                <TextBox IsReadOnly="True" IsTabStop="False" Margin="30,9,0,0" Width="20" Height="20" HorizontalAlignment="Left" VerticalAlignment="Center" Background="{x:Null}" BorderBrush="{x:Null}" x:Name="hasLike" Text="{Binding hasLoved}" FontSize="12" Padding="0,0.800000011920929,8,0"/>
             </Grid>
             <Grid x:Name="commentView" Margin="260,90,0,0" Width="65" HorizontalAlignment="Left" VerticalAlignment="Bottom">
                 <Image HorizontalAlignment="Left" Height="20" VerticalAlignment="Center" Width="24" Margin="4,0,0,0" Source="Assets/comment.png"/>
-                <TextBox Margin="30,9,0,0" Width="20" Height="20" HorizontalAlignment="Left" VerticalAlignment="Center" Background="{x:Null}" BorderBrush="{x:Null}" x:Name="commentNumber" Text="{Binding hasComment}" FontSize="12" Padding="0,0.800000011920929,8,0"/>
+                <TextBox IsReadOnly="True" IsTabStop="False" Margin="30,9,0,0" Width="20" Height="20" HorizontalAlignment="Left" VerticalAlignment="Center" Background="{x:Null}" BorderBrush="{x:Null}" x:Name="commentNumber" Text="{Binding hasComment}" FontSize="12" Padding="0,0.800000011920929,8,0"/>
             </Grid>
             <Grid Margin="370,90,0,0" Width="65" HorizontalAlignment="Left" VerticalAlignment="Bottom">
                 <Image Visibility="Collapsed" x:Name="datingView" HorizontalAlignment="Left" Height="20" VerticalAlignment="Center" Width="24" Margin="24,0,0,0" Source="Assets/dating.png"/>
-                <TextBox Margin="4,9,0,0" Width="65" Height="20" HorizontalAlignment="Left" VerticalAlignment="Center" Background="{x:Null}" BorderBrush="{x:Null}" x:Name="states" Text="{Binding status}" FontSize="12" Padding="0,0.800000011920929,8,0"/>
+                <TextBox IsReadOnly="True" IsTabStop="False" Margin="4,9,0,0" Width="65" Height="20" HorizontalAlignment="Left" VerticalAlignment="Center" Background="{x:Null}" BorderBrush="{x:Null}" x:Name="states" Text="{Binding status}" FontSize="12" Padding="0,0.800000011920929,8,0"/>
             </Grid>
         </Grid>
-        <ListView></ListView>
-        <TextBox x:Name="addComment" Margin="10,0,10,10" VerticalAlignment="Bottom" TextWrapping="Wrap" Height="40" Background="{x:Null}" BorderBrush="Black" BorderThickness="1.5" FontSize="22" Grid.Row="1"/>
+        <Grid
+            DataContext="{Binding List}"
+            d:DataContext="{Binding Groups[0]}"
+            VerticalAlignment="Top" 
+            Margin="15,240,15,50" >
+            <ListView 
+            Loaded="ListView_Loaded"
+                ItemsSource="{Binding Items}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Border BorderThickness="0,0,0,1" BorderBrush="DarkGray" x:Name="bordername">
+                            <Grid>
+                                <Image Source="{Binding ImgePath}" Height="80" Margin="10,5,0,0" VerticalAlignment="Top" Width="80"/>
+                                <TextBox Text="{Binding User}"  Margin="120,0,0,0" Background="{x:Null}" BorderBrush="{x:Null}" IsReadOnly="True" IsTabStop="False" FontSize="24" Padding="7,0,0,0" />
+                                <TextBox Text="{Binding Group}" Margin="200,8,0,0" Background="{x:Null}" BorderBrush="{x:Null}" IsReadOnly="True" IsTabStop="False" FontSize="18" HorizontalContentAlignment="Left" Padding="0,0.800000011920929,8,0"/>
+                                <TextBox Text="{Binding Comment}" Margin="120,35,14,0" Height="29" FontSize="16" Background="{x:Null}" BorderBrush="{x:Null}" IsReadOnly="True" IsTabStop="False"/>
+                                <TextBox Text="{Binding Date}" Margin="120,57,89,0" Height="29" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF666666" IsReadOnly="True" IsTabStop="False" FontSize="16" VerticalContentAlignment="Top" Padding="7,0,8,0"/>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
+        <TextBox x:Name="addComment" KeyUp="addComment_KeyDown" Margin="10,0,10,10" VerticalAlignment="Bottom" TextWrapping="Wrap" Height="40" Background="{x:Null}" BorderBrush="Black" BorderThickness="1.5" FontSize="22" Grid.Row="1"/>
     </Grid>
 </Page>
