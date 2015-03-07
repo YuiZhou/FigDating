@@ -20,20 +20,12 @@ namespace FigDating
             }
             return appointment;
         }
-        private static string getId() {
-            Windows.Storage.ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
-            //Windows.Storage.StorageFolder localFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
-
-            Windows.Storage.ApplicationDataCompositeValue UsrPwd =
-   (Windows.Storage.ApplicationDataCompositeValue)localSettings.Values["profile"];
-            var id = UsrPwd["username"];
-            return id.ToString();
-        }
+        
         public async Task<bool> addNew(string start, string end, string content, string hint)
         {
             Dictionary<string, string> data = new Dictionary<string, string>();
 
-            data.Add("user_id", getId());
+            data.Add("user_id", Domain.getId());
             data.Add("begin", start.Substring(0, start.Length - 1));
             data.Add("end", end.Substring(0, end.Length - 1));
             data.Add("content", content);
@@ -97,7 +89,7 @@ namespace FigDating
          {
              Dictionary<string, string> data = new Dictionary<string, string>();
 
-             data.Add("user_id", getId());
+             data.Add("user_id", Domain.getId());
              data.Add("app_id", appointid);
              data.Add("comment", content);
 

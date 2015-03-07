@@ -16,7 +16,10 @@ using Windows.UI.Popups;
 using FigDating.Common;
 using Windows.Graphics.Display;
 using Windows.UI.ViewManagement;
-
+using Windows.Storage;
+using Windows.Storage.Pickers;
+using Windows.ApplicationModel.Core;
+using Windows.ApplicationModel.Activation;
 // “空白页”项模板在 http://go.microsoft.com/fwlink/?LinkID=390556 上有介绍
 
 namespace FigDating
@@ -28,6 +31,8 @@ namespace FigDating
     {
         private NavigationHelper navigationHelper;
         private ObservableDictionary defaultViewModel = new ObservableDictionary();
+        CoreApplicationView view = CoreApplication.GetCurrentView();
+
         public Profile()
         {
             this.InitializeComponent();
@@ -123,7 +128,8 @@ namespace FigDating
         {
         }
 
-        private void LoadData() {
+        private void LoadData()
+        {
             Windows.Storage.ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
             //Windows.Storage.StorageFolder localFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
 
@@ -137,6 +143,51 @@ namespace FigDating
             this.grade.Text = (string)profile["grade"];
             this.id.Text = (string)profile["id"];
 
+        }
+
+        private void uploadThumb(object sender, RoutedEventArgs e)
+        {
+            FileOpenPicker opener = new FileOpenPicker();
+            opener.ViewMode = PickerViewMode.Thumbnail;
+            opener.SuggestedStartLocation = PickerLocationId.PicturesLibrary;
+            opener.FileTypeFilter.Add(".jpg");
+            opener.FileTypeFilter.Add(".jpeg");
+            opener.FileTypeFilter.Add(".png");
+            opener.PickSingleFileAndContinue();
+            view.Activated += viewActivated;
+            //StorageFile file = await opener.PickSingleFileAsync();
+            //if (file != null)
+            //{
+            //    // We've now got the file. Do something with it.
+            //    //var stream = await file.OpenAsync(Windows.Storage.FileAccessMode.Read);
+            //    //var bitmapImage = new Windows.UI.Xaml.Media.Imaging.BitmapImage();
+            //    //await bitmapImage.SetSourceAsync(stream);
+            //    //bustin.Source = bitmapImage;
+            //    //var decoder = await Windows.Graphics.Imaging.BitmapDecoder.CreateAsync(stream);
+            //}
+            //else
+            //{
+            //    //OutputTextBlock.Text = "The operation may have been cancelled.";
+            //}
+        }
+
+        private void viewActivated(CoreApplicationView sender, IActivatedEventArgs args1)
+        {
+            FileOpenPickerContinuationEventArgs args = args1 as FileOpenPickerContinuationEventArgs;
+
+            if (args != null)
+            {
+                if (args.Files.Count == 0) return;
+
+                view.Activated -= viewActivated;
+                StorageFile SelectedImageFile = args.Files[0];
+
+                if (SelectedImageFile != null) {
+                    User user = User.getUser();
+                    user.uploadPhoto(SelectedImageFile);
+                }
+
+            }
         }
     }
 }

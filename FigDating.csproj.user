@@ -7,6 +7,6 @@
     <ProjectView>ProjectFiles</ProjectView>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
-    <DeviceId>30F105C9-681E-420b-A277-7C086EAD8A4E</DeviceId>
+    <DeviceId>20DCA81D-A315-40BC-9B83-B6A01D31DBC6</DeviceId>
   </PropertyGroup>
 </Project>

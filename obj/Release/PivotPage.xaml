@@ -139,7 +139,7 @@
                             <DataTemplate>
                                 <Border BorderThickness="0,0,0,1" BorderBrush="DarkGray" x:Name="bordername">
                                     <Grid x:Name="containerView" Margin="0,5,0,0" Height="120">
-                                        <Image Source="{Binding ImgePath}" Height="80" Margin="10,5,0,0" VerticalAlignment="Top" Width="80"/>
+                                        <Image Source="{Binding ImgePath}" HorizontalAlignment="Left" Height="78" Margin="20,5,0,0" VerticalAlignment="Top" Width="78"/>
                                         <TextBox Text="{Binding Title}"  Margin="120,0,0,0" Background="{x:Null}" BorderBrush="{x:Null}" IsReadOnly="True" IsTabStop="False" FontSize="24" Padding="7,0,0,0" />
                                         <TextBox Text="{Binding Group}" Margin="200,8,0,0" Background="{x:Null}" BorderBrush="{x:Null}" IsReadOnly="True" IsTabStop="False" FontSize="18" HorizontalContentAlignment="Left" Padding="0,0.800000011920929,8,0"/>
                                         <TextBox Text="发布了一个约会" Margin="120,35,14,0" Height="29" FontSize="16" Background="{x:Null}" BorderBrush="{x:Null}" IsReadOnly="True" IsTabStop="False"/>

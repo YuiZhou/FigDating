@@ -50,14 +50,14 @@
             d:DataContext="{Binding Groups[0]}"
             VerticalAlignment="Stretch"
             Margin="15,240,15,50" >
-            
+
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <ListView 
                 Grid.Row="1"
-            Loaded="ListView_Loaded"
+                Loaded="ListView_Loaded"
                 Margin="0,0,0,0"
                 ItemsSource="{Binding Items}">
                 <ListView.ItemTemplate>

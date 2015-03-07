@@ -12,7 +12,7 @@
     <Grid>
         <TextBox HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="个人信息" VerticalAlignment="Top" Height="59" Width="178" Background="{x:Null}" BorderBrush="{x:Null}" IsReadOnly="True" IsTabStop="False" FontSize="36" SelectionHighlightColor="{x:Null}"/>
         <Image HorizontalAlignment="Left" Height="126" Margin="34,74,0,0" VerticalAlignment="Top" Width="126"/>
-        <Button Content="编辑头像" HorizontalAlignment="Left" Margin="208,138,0,0" VerticalAlignment="Top" Background="#FFDC3023" BorderBrush="{x:Null}" Foreground="White" Height="71" Width="136"/>
+        <Button Content="编辑头像" HorizontalAlignment="Left" Margin="208,138,0,0" VerticalAlignment="Top" Background="#FFDC3023" BorderBrush="{x:Null}" Foreground="White" Height="71" Width="136" Click="uploadThumb"/>
         <Grid Tapped="Change_Name" HorizontalAlignment="Left" VerticalAlignment="Top"  Margin="20,200,0,0">
             <TextBox FontSize="24" HorizontalAlignment="Left" VerticalAlignment="Top" Background="{x:Null}" Text="姓  名"  BorderBrush="{x:Null}" IsReadOnly="True" IsTabStop="False" Padding="0,0,8,0"/>
             <TextBox x:Name="name" Text="dsasf" Margin="0,35,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Background="{x:Null}" BorderBrush="{x:Null}" IsReadOnly="True" IsTabStop="False" Padding="0,0,8,0" Height="25" Foreground="#FF666666" FontSize="18" />

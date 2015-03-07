@@ -8,7 +8,18 @@ namespace FigDating {
     public class Domain{
         public static string getDomain(){
             return "http://198.52.103.223/";
-        }    
+        }
+
+        public static string getId()
+        {
+            Windows.Storage.ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
+            //Windows.Storage.StorageFolder localFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
+
+            Windows.Storage.ApplicationDataCompositeValue UsrPwd =
+   (Windows.Storage.ApplicationDataCompositeValue)localSettings.Values["profile"];
+            var id = UsrPwd["username"];
+            return id.ToString();
+        }
     }
     public class Sign {
         private static Sign sign = null;
