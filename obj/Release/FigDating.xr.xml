@@ -8,7 +8,7 @@
     <RootPropertyPathName Name="Comment" />
     <RootPropertyPathName Name="Group" />
     <RootPropertyPathName Name="User" />
-    <RootPropertyPathName Name="ImgePath" />
+    <RootPropertyPathName Name="ImagePath" />
     <RootPropertyPathName Name="Item" />
     <RootPropertyPathName Name="status" />
     <RootPropertyPathName Name="hasComment" />
@@ -16,8 +16,9 @@
     <RootPropertyPathName Name="hasSee" />
     <RootPropertyPathName Name="Content" />
     <RootPropertyPathName Name="Title" />
+    <RootPropertyPathName Name="UserId" />
+    <RootPropertyPathName Name="Notification" />
     <RootPropertyPathName Name="SecondGroup" />
-    <RootPropertyPathName Name="ImagePath" />
     <RootPropertyPathName Name="FirstGroup" />
     <RootPropertyPathName Name="SelectedIndex" />
   </Roots.PropertyPathNames>
@@ -54,6 +55,7 @@
       <RootProperty Name="Children" />
       <RootProperty Name="Margin" />
       <RootProperty Name="ColumnDefinitions" />
+      <RootProperty Name="Visibility" />
       <RootProperty Name="DataContext" />
       <RootProperty Name="VerticalAlignment" />
       <RootProperty Name="Height" />
@@ -61,7 +63,7 @@
       <RootProperty Name="HorizontalAlignment" />
       <RootProperty Name="Opacity" />
       <RootProperty Name="Background" />
-      <RootProperty Name="Visibility" />
+      <RootProperty Name="IsTapEnabled" />
       <RootEvent Name="Tapped" />
       <RootMethod Name="GetRow" />
       <RootMethod Name="SetRow" />
@@ -84,8 +86,12 @@
       <RootProperty Name="FontSize" />
       <RootProperty Name="Foreground" />
       <RootProperty Name="HorizontalAlignment" />
+      <RootProperty Name="Width" />
+      <RootProperty Name="TextWrapping" />
+      <RootProperty Name="Height" />
       <RootProperty Name="VerticalAlignment" />
       <RootProperty Name="Visibility" />
+      <RootProperty Name="Padding" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.ColumnDefinition">
       <RootProperty Name="Width" />
@@ -100,6 +106,9 @@
       <RootProperty Name="BorderBrush" />
       <RootProperty Name="Foreground" />
       <RootProperty Name="BorderThickness" />
+      <RootProperty Name="Visibility" />
+      <RootProperty Name="Background" />
+      <RootProperty Name="FontSize" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.TimePicker">
       <RootProperty Name="Header" />
@@ -150,6 +159,20 @@
     </RootType>
     <RootType FullName="Microsoft.Xaml.Tools.DirectUI.ProxyTypes.ThemeResourceExtension" />
     <RootType FullName="FigDating.AddNew" />
+    <RootType FullName="Windows.UI.Xaml.Controls.StackPanel">
+      <RootProperty Name="Margin" />
+      <RootProperty Name="Children" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.PasswordBox">
+      <RootProperty Name="Header" />
+      <RootProperty Name="Margin" />
+      <RootProperty Name="Height" />
+      <RootProperty Name="Background" />
+      <RootProperty Name="BorderBrush" />
+      <RootProperty Name="BorderThickness" />
+      <RootProperty Name="FontSize" />
+    </RootType>
+    <RootType FullName="FigDating.ChangeProperty" />
     <RootType FullName="Windows.UI.Xaml.Data.Binding">
       <RootProperty Name="RelativeSource" />
       <RootProperty Name="ElementName" />
@@ -185,12 +208,14 @@
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.Image">
       <RootProperty Name="Source" />
+      <RootProperty Name="HorizontalAlignment" />
       <RootProperty Name="Height" />
       <RootProperty Name="Margin" />
       <RootProperty Name="VerticalAlignment" />
       <RootProperty Name="Width" />
+      <RootProperty Name="IsTapEnabled" />
       <RootProperty Name="Visibility" />
-      <RootProperty Name="HorizontalAlignment" />
+      <RootEvent Name="Tapped" />
     </RootType>
     <RootType FullName="FigDating.ItemPage" />
     <RootType FullName="Windows.UI.Xaml.Controls.Pivot">
@@ -205,15 +230,6 @@
       <RootProperty Name="Content" />
       <RootProperty Name="Margin" />
       <RootProperty Name="DataContext" />
-    </RootType>
-    <RootType FullName="Windows.UI.Xaml.Controls.PasswordBox">
-      <RootProperty Name="Header" />
-      <RootProperty Name="Margin" />
-      <RootProperty Name="Height" />
-      <RootProperty Name="BorderThickness" />
-      <RootProperty Name="Background" />
-      <RootProperty Name="BorderBrush" />
-      <RootProperty Name="FontSize" />
     </RootType>
     <RootType FullName="FigDating.Login" />
     <RootType FullName="Windows.UI.Xaml.Media.Animation.CommonNavigationTransitionInfo">

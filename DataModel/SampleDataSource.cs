@@ -24,10 +24,11 @@ namespace FigDating.Data
     /// </summary>
     public class SampleDataItem
     {
-        public SampleDataItem(String uniqueId, String title, String group, String imagePath, String date,
+        public SampleDataItem(String uniqueId, String userId, String title, String group, String imagePath, String date,
             String hasSee, String hasLoved, String status, String content, String comment)
         {
             this.UniqueId = uniqueId;
+            this.UserId = userId;
             this.Title = title;
             this.Group = group;
             this.hasSee = hasSee;
@@ -40,6 +41,7 @@ namespace FigDating.Data
         }
 
         public string UniqueId { get; private set; }
+        public string UserId { get; private set; }
         public string Title { get; private set; }
         public string Group { get; private set; }
         public string hasSee { get; private set; }
@@ -167,16 +169,17 @@ namespace FigDating.Data
                 //JsonValue userValue = JsonValue.Parse(itemObject["user_id"].GetString());
                 JsonObject userObject = itemObject["user_id"].GetObject();
                 group.Items.Add(new SampleDataItem(itemObject["appointment_id"].GetNumber().ToString(), // id
+                                                    userObject["user_id"].GetNumber().ToString(),
                                                     userObject["username"].GetString(),        // 姓名
                                                     userObject["college"].GetString() + userObject["grade"].GetString(),        // 学院和年级
                                                     userObject["path"].GetString(),    // 图片地址
                                                     itemObject["begin"].GetString(), /////////        // 发布时间
                                                     itemObject["view_count"].GetNumber().ToString(),       // 已经看了的人数
                                                     itemObject["like_count"].GetNumber().ToString(),     // 点赞人数
-                                                    itemObject["status"].GetString(),     // 状态
+                                                    itemObject["status"].GetString().Equals("waiting")?"等待约会":"约会成功",     // 状态
                                                     "从" + itemObject["begin"].GetString() + "\n到" + itemObject
                                                     ["end"].GetString() + "\n" + itemObject["content"].GetString(),
-                                                    itemObject["favourite_count"].GetNumber().ToString()
+                                                    itemObject["comment_count"].GetNumber().ToString()
                                                     ));
             }
             this.Groups.Add(group);

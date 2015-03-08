@@ -139,11 +139,12 @@
                             <DataTemplate>
                                 <Border BorderThickness="0,0,0,1" BorderBrush="DarkGray" x:Name="bordername">
                                     <Grid x:Name="containerView" Margin="0,5,0,0" Height="120">
-                                        <Image Source="{Binding ImgePath}" Height="80" Margin="10,5,0,0" VerticalAlignment="Top" Width="80"/>
-                                        <TextBox Text="{Binding Title}"  Margin="120,0,0,0" Background="{x:Null}" BorderBrush="{x:Null}" IsReadOnly="True" IsTabStop="False" FontSize="24" Padding="7,0,0,0" />
-                                        <TextBox Text="{Binding Group}" Margin="200,8,0,0" Background="{x:Null}" BorderBrush="{x:Null}" IsReadOnly="True" IsTabStop="False" FontSize="18" HorizontalContentAlignment="Left" Padding="0,0.800000011920929,8,0"/>
-                                        <TextBox Text="发布了一个约会" Margin="120,35,14,0" Height="29" FontSize="16" Background="{x:Null}" BorderBrush="{x:Null}" IsReadOnly="True" IsTabStop="False"/>
-                                        <TextBox Text="{Binding Date}" Margin="120,57,89,0" Height="29" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF666666" IsReadOnly="True" IsTabStop="False" FontSize="16" VerticalContentAlignment="Top" Padding="7,0,8,0"/>
+                                        <TextBlock Visibility="Collapsed" Text="{Binding UserId}" x:Name="userid"></TextBlock>
+                                        <Image Source="{Binding ImgePath}" HorizontalAlignment="Left" Height="78" Margin="20,5,0,0" VerticalAlignment="Top" Width="78"/>
+                                        <TextBlock Text="{Binding Title}"  Margin="120,0,0,0" Foreground="Black" TextWrapping="Wrap" FontSize="24" Padding="7,0,0,0" />
+                                        <TextBlock Text="{Binding Group}" Margin="200,8,0,0" Foreground="Black" TextWrapping="Wrap" FontSize="18" Padding="0,0,8,0"/>
+                                        <TextBlock Text="发布了一个约会" Margin="120,38,14,0" VerticalAlignment="Top" Height="29" FontSize="16" Padding="7,0,0,0"/>
+                                        <TextBlock Text="{Binding Date}" Margin="120,63,89,0" Height="29" Foreground="#FF666666" VerticalAlignment="Top" FontSize="16" Padding="7,0,8,0"/>
                                         <TextBlock x:Name="contentView" Visibility="Collapsed" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20, 90, 0, 0" Text="{Binding Content}" Foreground="Black" FontSize="18"></TextBlock>
                                         <Grid Margin="40,90,0,0" Width="65" HorizontalAlignment="Left" VerticalAlignment="Bottom">
                                             <Image HorizontalAlignment="Left" Height="24" VerticalAlignment="Center" Width="28" Margin="4,0,0,0" Source="Assets/has_see.png"/>

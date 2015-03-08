@@ -1,14 +1,13 @@
 ﻿using FigDating.Common;
-using FigDating.Data;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
-using System.Windows.Input;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Graphics.Display;
+using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -16,30 +15,29 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-using System.Threading.Tasks;
 using Windows.UI.Popups;
 
-// “透视应用程序”模板在 http://go.microsoft.com/fwlink/?LinkID=391641 上有介绍
+// “基本页”项模板在 http://go.microsoft.com/fwlink/?LinkID=390556 上有介绍
 
 namespace FigDating
 {
     /// <summary>
-    /// 显示组内某一项的详细信息的页面。
+    /// 可独立使用或用于导航至 Frame 内部的空白页。
     /// </summary>
-    public sealed partial class ItemPage : Page
+    public sealed partial class ChangeProperty : Page
     {
-        private readonly NavigationHelper navigationHelper;
-        private readonly ObservableDictionary defaultViewModel = new ObservableDictionary();
-        private string appointmentId;
+        private NavigationHelper navigationHelper;
+        private ObservableDictionary defaultViewModel = new ObservableDictionary();
+        private string property;
 
-        public ItemPage()
+        public ChangeProperty()
         {
             this.InitializeComponent();
 
             this.navigationHelper = new NavigationHelper(this);
             this.navigationHelper.LoadState += this.NavigationHelper_LoadState;
             this.navigationHelper.SaveState += this.NavigationHelper_SaveState;
-        } 
+        }
 
         /// <summary>
         /// 获取与此 <see cref="Page"/> 关联的 <see cref="NavigationHelper"/>。
@@ -59,23 +57,36 @@ namespace FigDating
         }
 
         /// <summary>
-        /// 使用在导航过程中传递的内容填充页。在从以前的会话
+        /// 使用在导航过程中传递的内容填充页。  在从以前的会话
         /// 重新创建页时，也会提供任何已保存状态。
         /// </summary>
         /// <param name="sender">
-        /// 事件的来源；通常为 <see cref="NavigationHelper"/>。
+        /// 事件的来源; 通常为 <see cref="NavigationHelper"/>
         /// </param>
         /// <param name="e">事件数据，其中既提供在最初请求此页时传递给
         /// <see cref="Frame.Navigate(Type, Object)"/> 的导航参数，又提供
         /// 此页在以前会话期间保留的状态的
-        /// 字典。首次访问页面时，该状态将为 null。</param>
-        private async void NavigationHelper_LoadState(object sender, LoadStateEventArgs e)
+        /// 字典。 首次访问页面时，该状态将为 null。</param>
+        private void NavigationHelper_LoadState(object sender, LoadStateEventArgs e)
         {
-            // TODO: 创建适用于问题域的合适数据模型以替换示例数据。
-            
-            var item = await SampleDataSource.GetItemAsync((string)e.NavigationParameter);
-            this.appointmentId = (string)e.NavigationParameter;
-            this.DefaultViewModel["Item"] = item;
+            object[] obj = (object[])e.NavigationParameter;
+            string title= obj[1].ToString();
+            this.title.Text = "修改"+title;
+            string name = obj[0].ToString();
+            if (name.Equals("password")) {
+                this.input.Visibility = Visibility.Collapsed;
+                this.password.Visibility = Visibility.Visible;
+            }
+            else if (name.Equals("birth_year"))
+            {
+                this.input.Visibility = Visibility.Collapsed;
+                this.date.Visibility = Visibility.Visible;
+            }
+            else {
+                this.input.Header = title;
+            }
+
+            this.property = name;
         }
 
         /// <summary>
@@ -83,12 +94,11 @@ namespace FigDating
         /// 从导航缓存中放弃此页。值必须符合
         /// <see cref="SuspensionManager.SessionState"/> 的序列化要求。
         /// </summary>
-        /// <param name="sender">事件的来源；通常为 <see cref="NavigationHelper"/>。</param>
+        /// <param name="sender">事件的来源；通常为 <see cref="NavigationHelper"/></param>
         ///<param name="e">提供要使用可序列化状态填充的空字典
         ///的事件数据。</param>
         private void NavigationHelper_SaveState(object sender, SaveStateEventArgs e)
         {
-            // TODO: 在此处保存页面的唯一状态。
         }
 
         #region NavigationHelper 注册
@@ -97,10 +107,10 @@ namespace FigDating
         /// 此部分中提供的方法只是用于使
         /// NavigationHelper 可响应页面的导航方法。
         /// <para>
-        /// 应将页面特有的逻辑放入用于  
+        /// 应将页面特有的逻辑放入用于
         /// <see cref="NavigationHelper.LoadState"/>
         /// 和 <see cref="NavigationHelper.SaveState"/> 的事件处理程序中。
-        /// 除了在会话期间保留的页面状态之外 
+        /// 除了在会话期间保留的页面状态之外
         /// LoadState 方法中还提供导航参数。
         /// </para>
         /// </summary>
@@ -118,48 +128,42 @@ namespace FigDating
 
         #endregion
 
-        private async void ListView_Loaded(object sender, RoutedEventArgs e)
+        private async void AppBarButton_Click(object sender, RoutedEventArgs e)
         {
-            if (!this.userid.Text.Equals(User.getId().ToString()) && this.states.Text.Equals("等待约会"))
+            string value = "";
+            if (this.property.Equals("password"))
             {
-                this.states.Visibility = Visibility.Collapsed;
-                this.datingView.Visibility = Visibility.Visible;
-            }
-            var commentDataGroup = await CommentSrc.GetGroupAsync(appointmentId);
-            this.DefaultViewModel["List"] = commentDataGroup;
-
-            
-        }
-
-        private async void addComment_KeyDown(object sender, KeyRoutedEventArgs e)
-        {
-            if (e.Key == Windows.System.VirtualKey.Enter)
-            {
-                string comment = this.addComment.Text;
-                Appointment app = Appointment.getAppointment();
-                this.addComment.Text = "";
-                this.Focus(FocusState.Programmatic);
-                if (await app.addComment(comment, appointmentId)) {
-                    ListView_Loaded(null, null);
+                string newPs = this.Pwd.Password;
+                string cfm = this.Cfm.Password;
+                string old = this.Old.Password;
+                Sign sign = Sign.getSign();
+                if (newPs.Equals("")) { return; }
+                if (!newPs.Equals(cfm))
+                {
+                    MessageDialog messageDialog = new MessageDialog("两次输入的密码不一致");
+                    await messageDialog.ShowAsync();
+                    return;
+                }
+                if (!(await (sign.signin(User.getUsername(), old))))
+                {
+                    MessageDialog messageDialog = new MessageDialog("旧密码错误");
+                    await messageDialog.ShowAsync();
+                    return;
                 }
             }
-
-        }
-
-        private async void datingView_Tapped(object sender, TappedRoutedEventArgs e)
-        {
-            Appointment appointment = Appointment.getAppointment();
-            if (await appointment.participate(this.appointmentId))
-            {   // 约会成功
-                this.datingView.Visibility = Visibility.Collapsed;
-                this.states.Visibility = Visibility.Visible;
-                this.states.Text = "约会成功";
+            else if (this.property.Equals("birth_year"))
+            {
+                DateTimeOffset date = this.date.Date;
+                value = date.ToString("u");
+                value = value.Substring(0, 10);
             }
-            else {  // 约会失败
-                MessageDialog messageDialog = new MessageDialog("手慢啦！别人已经有人约了！");
-                await messageDialog.ShowAsync();
+            else {
+                value = this.input.Text;
+                if (value.Equals("")) { return; }
             }
-
+            User user = User.getUser();
+            user.changeProfile(this.property, value.Trim());
+            Frame.GoBack();
         }
     }
 }

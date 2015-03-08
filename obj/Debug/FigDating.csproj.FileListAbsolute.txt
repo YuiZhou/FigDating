@@ -55,3 +55,8 @@ C:\Users\yuizhou\documents\visual studio 2013\Projects\FigDating\FigDating\obj\D
 C:\Users\yuizhou\documents\visual studio 2013\Projects\FigDating\FigDating\obj\Debug\qualifiers.txt.intermediate
 C:\Users\yuizhou\documents\visual studio 2013\Projects\FigDating\FigDating\obj\Debug\MultipleQualifiersPerDimensionFound.txt
 C:\Users\yuizhou\documents\visual studio 2013\Projects\FigDating\FigDating\obj\Debug\ProjectArchitectures.txt
+C:\Users\yuizhou\documents\visual studio 2013\Projects\FigDating\FigDating\bin\Debug\ChangeProperty.xbf
+C:\Users\yuizhou\documents\visual studio 2013\Projects\FigDating\FigDating\obj\Debug\ChangeProperty.g.i.cs
+C:\Users\yuizhou\documents\visual studio 2013\Projects\FigDating\FigDating\obj\Debug\ChangeProperty.g.cs
+C:\Users\yuizhou\documents\visual studio 2013\Projects\FigDating\FigDating\obj\Debug\ChangeProperty.xaml
+C:\Users\yuizhou\documents\visual studio 2013\Projects\FigDating\FigDating\obj\Debug\ChangeProperty.xbf

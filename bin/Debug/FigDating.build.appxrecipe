@@ -94,6 +94,9 @@
     <AppxPackagedFile Include="C:\Users\yuizhou\documents\visual studio 2013\Projects\FigDating\FigDating\bin\Debug\AddNew.xbf">
       <PackagePath>AddNew.xbf</PackagePath>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\yuizhou\documents\visual studio 2013\Projects\FigDating\FigDating\bin\Debug\ChangeProperty.xbf">
+      <PackagePath>ChangeProperty.xbf</PackagePath>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\yuizhou\documents\visual studio 2013\Projects\FigDating\FigDating\bin\Debug\ItemPage.xbf">
       <PackagePath>ItemPage.xbf</PackagePath>
     </AppxPackagedFile>

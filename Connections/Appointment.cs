@@ -25,7 +25,7 @@ namespace FigDating
         {
             Dictionary<string, string> data = new Dictionary<string, string>();
 
-            data.Add("user_id", Domain.getId());
+            data.Add("user_id", User.getId());
             data.Add("begin", start.Substring(0, start.Length - 1));
             data.Add("end", end.Substring(0, end.Length - 1));
             data.Add("content", content);
@@ -89,7 +89,7 @@ namespace FigDating
          {
              Dictionary<string, string> data = new Dictionary<string, string>();
 
-             data.Add("user_id", Domain.getId());
+             data.Add("user_id", User.getId());
              data.Add("app_id", appointid);
              data.Add("comment", content);
 
@@ -113,6 +113,25 @@ namespace FigDating
              }
 
              return true;
+         }
+
+         public async Task<bool> participate(string appId) {
+             HttpClient client = new HttpClient();
+             try
+             {
+                 HttpResponseMessage responseHttp = await client.GetAsync(Domain.getDomain() + "appointments/" + appId + "/match/?user_id=" + User.getId());
+                 client.Dispose();
+                 Task<string> message = responseHttp.Content.ReadAsStringAsync();
+                 if ((await message).Equals("OK")) {
+                     return true;                 
+                 }
+             }
+             catch (Exception)
+             {
+                 return false;
+             }
+
+             return false;         
          }
     }
 

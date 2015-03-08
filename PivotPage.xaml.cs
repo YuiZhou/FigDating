@@ -48,6 +48,7 @@ namespace FigDating
             this.InitializeComponent();
             this.NavigationCacheMode = NavigationCacheMode.Required;
 
+            login();
             this.navigationHelper = new NavigationHelper(this);
             this.navigationHelper.LoadState += this.NavigationHelper_LoadState;
             this.navigationHelper.SaveState += this.NavigationHelper_SaveState;
@@ -70,19 +71,6 @@ namespace FigDating
         public ObservableDictionary DefaultViewModel
         {
             get { return this.defaultViewModel; }
-        }
-
-        protected void quitApp(object sender, BackPressedEventArgs e)
-        {
-            Application.Current.Exit();
-        }
-
-        protected void new_app(object sender, RoutedEventArgs e)
-        {
-            if (!Frame.Navigate(typeof(AddNew)))
-            {
-                throw new Exception(this.resourceLoader.GetString("NavigationFailedExceptionMessage"));
-            }
         }
 
         /// <summary>
@@ -130,8 +118,13 @@ namespace FigDating
         {
             // 导航至相应的目标页，并
             // 通过将所需信息作为导航参数传入来配置新页
+            // 判断是否已经expand这个apppointment
+            var parentContainer = this.indexList.ContainerFromItem(e.ClickedItem);
+            var unlock = FindGrid(parentContainer, "unlockView");
+            if (unlock.Visibility != Visibility.Collapsed) { return; }
+
             var itemId = ((SampleDataItem)e.ClickedItem).UniqueId;
-            if (!Frame.Navigate(typeof(ItemPage), itemId))
+            if (!Frame.Navigate(typeof(ItemPage),itemId))
             {
                 throw new Exception(this.resourceLoader.GetString("NavigationFailedExceptionMessage"));
             }
@@ -149,6 +142,13 @@ namespace FigDating
                 MessageDialog messageDialog = new MessageDialog("没有网络连接");
                 await messageDialog.ShowAsync();
             }
+        }
+
+        private async void Notification_Loaded(object sender, RoutedEventArgs e)
+        {
+            var commentDataGroup = await CommentSrc.GetNoteAsync();
+            this.DefaultViewModel["Notification"] = commentDataGroup;
+
         }
 
         #region NavigationHelper 注册
@@ -215,10 +215,22 @@ namespace FigDating
 
         }
 
-        private void unlockView_Tapped(object sender, TappedRoutedEventArgs e)
+        private async void unlockView_Tapped(object sender, TappedRoutedEventArgs e)
         {
             // 判断剩余机会
+            User user = User.getUser();
+            int chance = user.useChance();
+            if (chance < 0)
+            {
+                MessageDialog messageDialog = new MessageDialog("没有足够的机会查看别人的权限哦");
+                await messageDialog.ShowAsync();
+                return;
+            }
+            this.chance.Text = chance.ToString();
+
             expandListView(sender, e);
+            
+           // Frame.GoBack();
         }
 
         private void expandListView(object sender, TappedRoutedEventArgs e)
@@ -261,8 +273,47 @@ namespace FigDating
             this.username.Text = (string)profile["name"];
             this.usergroup.Text = (string)profile["college"] + (string)profile["grade"];
 
+            BitmapImage bm = new BitmapImage(new Uri(@profile["image"].ToString(), UriKind.RelativeOrAbsolute));
+            this.imagePath.Source = bm;
+
+            this.chance.Text = profile["chance"].ToString();
+
         }
 
+        private  async void login() {
+            Windows.Storage.ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
+            //Windows.Storage.StorageFolder localFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
+
+            Windows.Storage.ApplicationDataCompositeValue UsrPwd =
+   (Windows.Storage.ApplicationDataCompositeValue)localSettings.Values["loginUsrPwd"];
+            Sign sign = Sign.getSign();
+            if (!(await(sign.signin(UsrPwd["username"].ToString(), UsrPwd["password"].ToString()))))
+            {
+                Login.Logout();
+                Frame.Navigate(typeof(Login));
+            }
+        }
+        protected void quitApp(object sender, BackPressedEventArgs e)
+        {
+            Application.Current.Exit();
+        }
+
+        protected async void new_app(object sender, RoutedEventArgs e)
+        {
+            User user = User.getUser();
+            int chance = user.useChance();
+            if (chance < 0)
+            {
+                MessageDialog messageDialog = new MessageDialog("没有足够的机会发布状态哦");
+                await messageDialog.ShowAsync();
+                return;
+            }
+            this.chance.Text = chance.ToString();
+            if (!Frame.Navigate(typeof(AddNew)))
+            {
+                throw new Exception(this.resourceLoader.GetString("NavigationFailedExceptionMessage"));
+            }
+        }
         #region findControl 系列函数
         public List<Control> AllChildren(DependencyObject parent)
         {
@@ -338,6 +389,8 @@ namespace FigDating
             return control;
         }
         #endregion
+
+        
 
         
         #endregion

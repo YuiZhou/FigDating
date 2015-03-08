@@ -20,6 +20,9 @@ using Windows.Storage;
 using Windows.Storage.Pickers;
 using Windows.ApplicationModel.Core;
 using Windows.ApplicationModel.Activation;
+using Windows.UI.Xaml.Media.Imaging;
+
+
 // “空白页”项模板在 http://go.microsoft.com/fwlink/?LinkID=390556 上有介绍
 
 namespace FigDating
@@ -37,7 +40,23 @@ namespace FigDating
         {
             this.InitializeComponent();
             LoadData();
+            /*
+            case "nameView": break;
+            case "stuIdView":break;
+            case "genderView":break;
+            case "ageView":break;
+            case "collegeView": break;
+            case "gradeView": break;
+             * changePassword
+             */
             this.logout.AddHandler(TappedEvent, new TappedEventHandler(Logout), true);
+            this.nameView.AddHandler(TappedEvent, new TappedEventHandler(Change_Property), true);
+            this.genderView.AddHandler(TappedEvent, new TappedEventHandler(Change_Property), true);
+            this.ageView.AddHandler(TappedEvent, new TappedEventHandler(Change_Property), true);
+            this.collegeView.AddHandler(TappedEvent, new TappedEventHandler(Change_Property), true);
+            this.gradeView.AddHandler(TappedEvent, new TappedEventHandler(Change_Property), true);
+            this.changePassword.AddHandler(TappedEvent, new TappedEventHandler(Change_Property), true);
+
             this.navigationHelper = new NavigationHelper(this);
             this.navigationHelper.LoadState += this.NavigationHelper_LoadState;
             this.navigationHelper.SaveState += this.NavigationHelper_SaveState;
@@ -116,16 +135,61 @@ namespace FigDating
 
         private void Logout(object sender, TappedRoutedEventArgs e)
         {
-            Windows.Storage.ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
-            //Windows.Storage.StorageFolder localFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
-
-            localSettings.Values.Remove("loginUsrPwd");
-            localSettings.Values.Remove("profile");
+            Login.Logout();
             Application.Current.Exit();
         }
 
-        private void Change_Name(object sender, TappedRoutedEventArgs e)
+        private void Change_Property(object sender, TappedRoutedEventArgs e)
         {
+            Object[] obj = new Object[2];
+            if (sender is Grid) {
+                string name = (sender as Grid).Name;
+                switch(name){
+                    /*
+                     * "username": "leon", "college": "", "user_id": 1, "name": "", "grade": "gg", "gender": "\u5973", 
+                     * "group": "gg", "chance": -1, "stu_id": "11300240039", "interest": "", "path": "", 
+                     * "password": "123456", "birth_year": "2015-03-06"
+                     */
+                    case "nameView":
+                        obj[0] = "username";
+                        obj[1] = "姓名";
+                        break;
+                    case "genderView":
+                        obj[0] = "gender";
+                        obj[1] = "性别";
+                        break;
+                    case "ageView":
+                        obj[0] = "birth_year";
+                        obj[1] = "生日";
+                        break;
+                    case "collegeView":
+                        obj[0] = "college";
+                        obj[1] = "学院";
+                        break;
+                    case "gradeView":
+                        obj[0] = "grade";
+                        obj[1] = "年级";
+                        break;
+                    
+                    default: return;
+                }
+
+            }
+            else if (sender is TextBox && (sender as TextBox).Name.Equals("changePassword"))
+            {
+                obj[0] = "password";
+                obj[1] = "密码";
+                /*
+                case "changePassword":
+                
+                break;
+                 */
+            }
+            else {
+                return;
+            }
+            Frame.Navigate(typeof(ChangeProperty), obj);
+
         }
 
         private void LoadData()
@@ -142,6 +206,9 @@ namespace FigDating
             this.group.Text = (string)profile["college"];
             this.grade.Text = (string)profile["grade"];
             this.id.Text = (string)profile["id"];
+
+            BitmapImage bm = new BitmapImage(new Uri(@profile["image"].ToString(), UriKind.RelativeOrAbsolute));
+            this.image.Source = bm;
 
         }
 

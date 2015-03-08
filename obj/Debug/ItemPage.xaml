@@ -22,6 +22,7 @@
 
     <Grid x:Name="LayoutRoot">
         <Grid DataContext="{Binding Item}" x:Name="containerView" VerticalAlignment="Top" Margin="15,0,15,0" Height="240" Grid.RowSpan="2">
+            <TextBlock Visibility="Collapsed" Text="{Binding UserId}" x:Name="userid"></TextBlock>
             <Image Source="{Binding ImgePath}" Height="80" Margin="10,5,0,0" VerticalAlignment="Top" Width="80"/>
             <TextBox Text="{Binding Title}"  Margin="120,0,0,0" Background="{x:Null}" BorderBrush="{x:Null}" IsReadOnly="True" IsTabStop="False" FontSize="24" Padding="7,0,0,0" />
             <TextBox Text="{Binding Group}" Margin="200,8,0,0" Background="{x:Null}" BorderBrush="{x:Null}" IsReadOnly="True" IsTabStop="False" FontSize="18" HorizontalContentAlignment="Left" Padding="0,0.800000011920929,8,0"/>
@@ -41,7 +42,7 @@
                 <TextBox IsReadOnly="True" IsTabStop="False" Margin="30,9,0,0" Width="20" Height="20" HorizontalAlignment="Left" VerticalAlignment="Center" Background="{x:Null}" BorderBrush="{x:Null}" x:Name="commentNumber" Text="{Binding hasComment}" FontSize="12" Padding="0,0.800000011920929,8,0"/>
             </Grid>
             <Grid Margin="370,90,0,0" Width="65" HorizontalAlignment="Left" VerticalAlignment="Bottom">
-                <Image Visibility="Collapsed" x:Name="datingView" HorizontalAlignment="Left" Height="20" VerticalAlignment="Center" Width="24" Margin="24,0,0,0" Source="Assets/dating.png"/>
+                <Image x:ConnectionId='3' IsTapEnabled="True"                            Visibility="Collapsed" x:Name="datingView" HorizontalAlignment="Left" Height="20" VerticalAlignment="Center" Width="24" Margin="24,0,0,4" Source="Assets/dating.png"/>
                 <TextBox IsReadOnly="True" IsTabStop="False" Margin="4,9,0,0" Width="65" Height="20" HorizontalAlignment="Left" VerticalAlignment="Center" Background="{x:Null}" BorderBrush="{x:Null}" x:Name="states" Text="{Binding status}" FontSize="12" Padding="0,0.800000011920929,8,0"/>
             </Grid>
         </Grid>

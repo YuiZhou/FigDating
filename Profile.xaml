@@ -11,33 +11,33 @@
 
     <Grid>
         <TextBox HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="个人信息" VerticalAlignment="Top" Height="59" Width="178" Background="{x:Null}" BorderBrush="{x:Null}" IsReadOnly="True" IsTabStop="False" FontSize="36" SelectionHighlightColor="{x:Null}"/>
-        <Image HorizontalAlignment="Left" Height="126" Margin="34,74,0,0" VerticalAlignment="Top" Width="126"/>
+        <Image x:Name="image" HorizontalAlignment="Left" Height="126" Margin="34,74,0,0" VerticalAlignment="Top" Width="126"/>
         <Button Content="编辑头像" HorizontalAlignment="Left" Margin="208,138,0,0" VerticalAlignment="Top" Background="#FFDC3023" BorderBrush="{x:Null}" Foreground="White" Height="71" Width="136" Click="uploadThumb"/>
-        <Grid Tapped="Change_Name" HorizontalAlignment="Left" VerticalAlignment="Top"  Margin="20,200,0,0">
+        <Grid x:Name="nameView" IsTapEnabled="True" Tapped="Change_Property" HorizontalAlignment="Left" VerticalAlignment="Top"  Margin="20,200,0,0">
             <TextBox FontSize="24" HorizontalAlignment="Left" VerticalAlignment="Top" Background="{x:Null}" Text="姓  名"  BorderBrush="{x:Null}" IsReadOnly="True" IsTabStop="False" Padding="0,0,8,0"/>
             <TextBox x:Name="name" Text="dsasf" Margin="0,35,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Background="{x:Null}" BorderBrush="{x:Null}" IsReadOnly="True" IsTabStop="False" Padding="0,0,8,0" Height="25" Foreground="#FF666666" FontSize="18" />
         </Grid>
-        <Grid HorizontalAlignment="Left" VerticalAlignment="Top"  Margin="20,255,0,0">
+        <Grid x:Name="stuIdView" Tapped="Change_Property" HorizontalAlignment="Left" VerticalAlignment="Top"  Margin="20,255,0,0">
             <TextBox FontSize="24" HorizontalAlignment="Left" VerticalAlignment="Top" Text="学  号" Background="{x:Null}" BorderBrush="{x:Null}" IsReadOnly="True" IsTabStop="False" Padding="0,0,8,0"/>
             <TextBox x:Name="id" Text="dsasf" Margin="0,35,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Background="{x:Null}" BorderBrush="{x:Null}" IsReadOnly="True" IsTabStop="False" Padding="0,0,8,0" Height="25" Foreground="#FF666666" FontSize="18" />
         </Grid>
-        <Grid HorizontalAlignment="Left" VerticalAlignment="Top"  Margin="20,310,0,0">
+        <Grid x:Name="genderView" Tapped="Change_Property"  HorizontalAlignment="Left" VerticalAlignment="Top"  Margin="20,310,0,0">
             <TextBox FontSize="24" HorizontalAlignment="Left" VerticalAlignment="Top" Text="性  别" Background="{x:Null}" BorderBrush="{x:Null}" IsReadOnly="True" IsTabStop="False" Padding="0,0,8,0"/>
             <TextBox x:Name="gender" Text="dsasf" Margin="0,35,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Background="{x:Null}" BorderBrush="{x:Null}" IsReadOnly="True" IsTabStop="False" Padding="0,0,8,0" Height="25" Foreground="#FF666666" FontSize="18" />
         </Grid>
-        <Grid HorizontalAlignment="Left" VerticalAlignment="Top"  Margin="20,365,0,0">
-            <TextBox FontSize="24" HorizontalAlignment="Left" VerticalAlignment="Top" Text="年  龄" Background="{x:Null}" BorderBrush="{x:Null}" IsReadOnly="True" IsTabStop="False" Padding="0,0,8,0"/>
+        <Grid x:Name="ageView" Tapped="Change_Property" HorizontalAlignment="Left" VerticalAlignment="Top"  Margin="20,365,0,0">
+            <TextBox FontSize="24" HorizontalAlignment="Left" VerticalAlignment="Top" Text="生  日" Background="{x:Null}" BorderBrush="{x:Null}" IsReadOnly="True" IsTabStop="False" Padding="0,0,8,0"/>
             <TextBox x:Name="age" Text="dsasf" Margin="0,35,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Background="{x:Null}" BorderBrush="{x:Null}" IsReadOnly="True" IsTabStop="False" Padding="0,0,8,0" Height="25" Foreground="#FF666666" FontSize="18" />
         </Grid>
-        <Grid HorizontalAlignment="Left" VerticalAlignment="Top"  Margin="20,420,0,0">
+        <Grid x:Name="collegeView" Tapped="Change_Property" HorizontalAlignment="Left" VerticalAlignment="Top"  Margin="20,420,0,0">
             <TextBox FontSize="24" HorizontalAlignment="Left" VerticalAlignment="Top" Text="学  院" Background="{x:Null}" BorderBrush="{x:Null}" IsReadOnly="True" IsTabStop="False" Padding="0,0,8,0"/>
             <TextBox x:Name="group" Text="dsasf" Margin="0,35,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Background="{x:Null}" BorderBrush="{x:Null}" IsReadOnly="True" IsTabStop="False" Padding="0,0,8,0" Height="25" Foreground="#FF666666" FontSize="18" />
         </Grid>
-        <Grid HorizontalAlignment="Left" VerticalAlignment="Top"  Margin="20,475,0,0">
+        <Grid x:Name="gradeView" Tapped="Change_Property" HorizontalAlignment="Left" VerticalAlignment="Top"  Margin="20,475,0,0">
             <TextBox FontSize="24" HorizontalAlignment="Left" VerticalAlignment="Top" Text="年  级" Background="{x:Null}" BorderBrush="{x:Null}" IsReadOnly="True" IsTabStop="False" Padding="0,0,8,0"/>
             <TextBox x:Name="grade" Text="dsasf" Margin="0,35,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Background="{x:Null}" BorderBrush="{x:Null}" IsReadOnly="True" IsTabStop="False" Padding="0,0,8,0" Height="25" Foreground="#FF666666" FontSize="18" />
         </Grid>
-        <TextBox FontSize="24" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,545,0,0" Text="修改密码" Background="{x:Null}" BorderBrush="{x:Null}" IsReadOnly="True" IsTabStop="False" Padding="0,0,8,0"/>
+        <TextBox x:Name="changePassword" FontSize="24" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,545,0,0" Text="修改密码" Background="{x:Null}" BorderBrush="{x:Null}" IsReadOnly="True" IsTabStop="False" Padding="0,0,8,0"/>
         <TextBox x:Name="logout" FontSize="24" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,585,0,0" Text="退出登录" Background="{x:Null}" BorderBrush="{x:Null}" IsReadOnly="True" IsTabStop="False" Padding="0,0,8,0" IsTapEnabled="True" Tapped="Logout"/>
     </Grid>
 </Page>

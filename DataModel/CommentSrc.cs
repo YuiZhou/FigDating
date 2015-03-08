@@ -91,10 +91,23 @@ namespace FigDating.Data
 
         //    return _CommentDataSource.Groups;
         //}
-
+        public static async Task<CommentDataGroup> GetNoteAsync() {
+            await _CommentDataSource.GetNotificationDataAsync();
+            //await _CommentDataSource.GetCommentDataAsync(uniqueId);
+            // 对于小型数据集可接受简单线性搜索
+            try
+            {
+                return _CommentDataSource.Groups[0];
+            }
+            catch
+            {
+                return null;
+            }
+        }
         public static async Task<CommentDataGroup> GetGroupAsync(string uniqueId)
         {
             await _CommentDataSource.GetCommentDataAsync(uniqueId);
+            //await _CommentDataSource.GetCommentDataAsync(uniqueId);
             // 对于小型数据集可接受简单线性搜索
             try
             {
@@ -111,13 +124,45 @@ namespace FigDating.Data
 
         public static async Task<CommmentDataItem> GetItemAsync(string appointmentId)
         {
-            await _CommentDataSource.GetCommentDataAsync(appointmentId);
+            
             // 对于小型数据集可接受简单线性搜索
             var matches = _CommentDataSource.Groups.SelectMany(group => group.Items).Where((item) => item.User.Equals(appointmentId));
             if (matches.Count() == 1) return matches.First();
             return null;
         }
+        private async Task GetNotificationDataAsync() {
+            if (this._groups.Count != 0)
+                this._groups.Clear();
 
+            //Uri dataUri = new Uri("ms-appx:///DataModel/CommentData.json");
+
+            //StorageFile file = await StorageFile.GetFileFromApplicationUriAsync(dataUri);
+            //string jsonText = await FileIO.ReadTextAsync(file);
+            User user = User.getUser();
+            string jsonText = await user.getNotification();
+            JsonObject jsonObject = JsonObject.Parse(jsonText);
+            //JsonArray jsonArray = jsonObject["appointments"].GetArray();
+
+            ////foreach (JsonValue groupValue in jsonArray)
+            ////{
+            //JsonObject groupObject = jsonArray[0].GetObject();
+            CommentDataGroup group = new CommentDataGroup();
+
+            foreach (JsonValue itemValue in jsonObject["notifications"].GetArray())
+            {
+                //Debug.WriteLine(itemValue.GetString());
+
+                JsonObject itemObject = itemValue.GetObject();
+                ////////JsonObject userObject = itemObject["user_id"].GetObject();
+                group.Items.Add(new CommmentDataItem("",//userObject["username"].GetString(),        // 姓名
+                                                    "",//userObject["college"].GetString() + userObject["grade"].GetString(),        // 学院和年级
+                                                    itemObject["message"].GetString(),      // 评论
+                                                    "",//userObject["path"].GetString(),    // 图片地址
+                                                    itemObject["time"].GetString()      // 发布时间
+                                                    ));
+            }
+            this.Groups.Add(group);
+        }
         private async Task GetCommentDataAsync(String appointmentId)
         {
             if (this._groups.Count != 0)

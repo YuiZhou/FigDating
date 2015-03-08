@@ -115,6 +115,14 @@ namespace FigDating
             return true;
         }
 
+        public static void Logout() {
+            Windows.Storage.ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
+            //Windows.Storage.StorageFolder localFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
+
+            localSettings.Values.Remove("loginUsrPwd");
+            localSettings.Values.Remove("profile");
+        }
+
         
         #endregion
     }
