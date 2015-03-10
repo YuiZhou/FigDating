@@ -163,6 +163,7 @@ namespace FigDating
             }
             User user = User.getUser();
             user.changeProfile(this.property, value.Trim());
+            user.loadProfile();
             Frame.GoBack();
         }
     }

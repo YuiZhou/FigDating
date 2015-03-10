@@ -229,13 +229,14 @@
                     <ListView
                     ItemsSource="{Binding Items}"
                     IsItemClickEnabled="True"
-                    ItemClick="ItemView_ItemClick"
+                    ItemClick="Notification_ItemClick"
                     Loaded="Notification_Loaded"
                     ContinuumNavigationTransitionInfo.ExitElementContainer="True" Margin="17,0,0.5,0.667">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <Border BorderThickness="0,0,0,1" BorderBrush="DarkGray" x:Name="bordername">
                                     <Grid Margin="0,5,0,0" Height="90">
+                                        <TextBlock Text="{Binding Id}" Visibility="Collapsed"/>
                                         <Image Source="{Binding ImagePath}" HorizontalAlignment="Left" Height="78" Margin="20,5,0,0" VerticalAlignment="Top" Width="78"/>
                                         <TextBlock Text="{Binding User}"  Margin="120,0,0,0" Foreground="Black" TextWrapping="Wrap" FontSize="24" Padding="7,0,0,0" />
                                         <TextBlock Text="{Binding Group}" Margin="200,8,0,0" Foreground="Black" TextWrapping="Wrap" FontSize="18" Padding="0,0,8,0"/>
@@ -267,6 +268,7 @@
     <Page.BottomAppBar>
         <CommandBar x:Name="applicationBar" Background="#C8FFFFFF" Foreground="#FFDC3023" BorderBrush="{x:Null}">
             <AppBarButton Icon="Add" Label="新建约会" Foreground="#FFDC3023" Click="new_app"/>
+            
         </CommandBar>
     </Page.BottomAppBar>
 </Page>

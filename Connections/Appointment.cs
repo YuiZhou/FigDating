@@ -57,7 +57,7 @@ namespace FigDating
             HttpClient client = new HttpClient();
             try
             {
-                HttpResponseMessage responseHttp = await client.GetAsync(Domain.getDomain() + "appointments/latest/");
+                HttpResponseMessage responseHttp = await client.GetAsync(Domain.getDomain() + "appointments/latest/?" + (i++));
                 client.Dispose();
                 Task<string> message = responseHttp.Content.ReadAsStringAsync();
                 return await message;
@@ -131,8 +131,10 @@ namespace FigDating
                  return false;
              }
 
-             return false;         
+             return true;         
          }
+
+         public void report(string appointmentID) { }
     }
 
 

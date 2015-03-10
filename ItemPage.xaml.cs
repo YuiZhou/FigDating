@@ -39,6 +39,8 @@ namespace FigDating
             this.navigationHelper = new NavigationHelper(this);
             this.navigationHelper.LoadState += this.NavigationHelper_LoadState;
             this.navigationHelper.SaveState += this.NavigationHelper_SaveState;
+
+            this.commentList.Loaded += this.ListView_Loaded;
         } 
 
         /// <summary>
@@ -72,10 +74,14 @@ namespace FigDating
         private async void NavigationHelper_LoadState(object sender, LoadStateEventArgs e)
         {
             // TODO: 创建适用于问题域的合适数据模型以替换示例数据。
-            
-            var item = await SampleDataSource.GetItemAsync((string)e.NavigationParameter);
             this.appointmentId = (string)e.NavigationParameter;
+            var item = await SampleDataSource.GetItemAsync((string)e.NavigationParameter);
             this.DefaultViewModel["Item"] = item;
+            if (!this.userid.Text.Equals(User.getId().ToString()) && this.states.Text.Equals("等待约会"))
+            {
+                this.states.Visibility = Visibility.Collapsed;
+                this.datingView.Visibility = Visibility.Visible;
+            }
         }
 
         /// <summary>
@@ -120,11 +126,6 @@ namespace FigDating
 
         private async void ListView_Loaded(object sender, RoutedEventArgs e)
         {
-            if (!this.userid.Text.Equals(User.getId().ToString()) && this.states.Text.Equals("等待约会"))
-            {
-                this.states.Visibility = Visibility.Collapsed;
-                this.datingView.Visibility = Visibility.Visible;
-            }
             var commentDataGroup = await CommentSrc.GetGroupAsync(appointmentId);
             this.DefaultViewModel["List"] = commentDataGroup;
 
@@ -160,6 +161,21 @@ namespace FigDating
                 await messageDialog.ShowAsync();
             }
 
+        }
+
+        private void Collection_Click(object sender, RoutedEventArgs e)
+        {
+            
+
+        }
+
+        private async void Report_Click(object sender, RoutedEventArgs e)
+        {
+            Appointment appointment = Appointment.getAppointment();
+            appointment.report(appointmentId);
+
+            MessageDialog messageDialog = new MessageDialog("举报成功");
+            await messageDialog.ShowAsync();
         }
     }
 }

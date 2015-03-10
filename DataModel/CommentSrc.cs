@@ -24,13 +24,14 @@ namespace FigDating.Data
     /// </summary>
     public class CommmentDataItem
     {
-        public CommmentDataItem(String user, String group, String comment, String imagePath, String date)
+        public CommmentDataItem(String id, String user, String group, String comment, String imagePath, String date)
         {
             this.User = user;
             this.Group = group;
             this.ImagePath = imagePath;
             this.Date = date;
             this.Comment = comment;
+            this.Id = id;
         }
 
         public string User { get; private set; }
@@ -38,6 +39,7 @@ namespace FigDating.Data
         public string ImagePath { get; private set; }
         public string Date { get; private set; }
         public string Comment { get; private set; }
+        public string Id { get; private set; }
 
 
         public override string ToString()
@@ -153,11 +155,12 @@ namespace FigDating.Data
                 //Debug.WriteLine(itemValue.GetString());
 
                 JsonObject itemObject = itemValue.GetObject();
-                ////////JsonObject userObject = itemObject["user_id"].GetObject();
-                group.Items.Add(new CommmentDataItem("",//userObject["username"].GetString(),        // 姓名
-                                                    "",//userObject["college"].GetString() + userObject["grade"].GetString(),        // 学院和年级
+                JsonObject userObject = itemObject["from_user"].GetObject();
+                group.Items.Add(new CommmentDataItem(itemObject["appointment_id"].GetNumber().ToString(), 
+                                                    userObject["username"].GetString(),        // 姓名
+                                                    userObject["college"].GetString() + userObject["grade"].GetString(),        // 学院和年级
                                                     itemObject["message"].GetString(),      // 评论
-                                                    "",//userObject["path"].GetString(),    // 图片地址
+                                                    userObject["path"].GetString(),    // 图片地址
                                                     itemObject["time"].GetString()      // 发布时间
                                                     ));
             }
@@ -190,7 +193,8 @@ namespace FigDating.Data
                 //Debug.WriteLine("############\n\n%s\n\n#########", itemObject["user_id"].GetString());
                 //JsonValue userValue = JsonValue.Parse(itemObject["user_id"].GetString());
                 JsonObject userObject = itemObject["user_id"].GetObject();
-                group.Items.Add(new CommmentDataItem(userObject["username"].GetString(),        // 姓名
+                group.Items.Add(new CommmentDataItem("",
+                                                     userObject["username"].GetString(),        // 姓名
                                                     userObject["college"].GetString() + userObject["grade"].GetString(),        // 学院和年级
                                                     itemObject["comment"].GetString(),      // 评论
                                                     userObject["path"].GetString(),    // 图片地址

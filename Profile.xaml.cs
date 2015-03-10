@@ -92,6 +92,7 @@ namespace FigDating
         /// 字典。 首次访问页面时，该状态将为 null。</param>
         private void NavigationHelper_LoadState(object sender, LoadStateEventArgs e)
         {
+            LoadData();
         }
 
         /// <summary>
@@ -207,7 +208,9 @@ namespace FigDating
             this.grade.Text = (string)profile["grade"];
             this.id.Text = (string)profile["id"];
 
-            BitmapImage bm = new BitmapImage(new Uri(@profile["image"].ToString(), UriKind.RelativeOrAbsolute));
+            string img = profile["image"].ToString();
+            if (img.Equals("")) { return; }
+            BitmapImage bm = new BitmapImage(new Uri(@img, UriKind.RelativeOrAbsolute));
             this.image.Source = bm;
 
         }

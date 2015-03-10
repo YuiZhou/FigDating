@@ -135,6 +135,9 @@ namespace FigDating
             Appointment appointment = Appointment.getAppointment();
             if (await (appointment.addNew(start.ToString("u"), end.ToString("u"), contentStr, this.hint.Text.Trim())))
             {
+                PivotPage.setsrcLoaded();
+                User user = User.getUser();
+                user.useChance();
                 this.Frame.GoBack();
             }
             else {

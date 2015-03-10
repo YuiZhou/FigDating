@@ -57,8 +57,8 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <ListView 
+                x:Name="commentList"
                 Grid.Row="1"
-                Loaded="ListView_Loaded"
                 Margin="15,0,15,0"
                 ItemsSource="{Binding Items}">
                 <ListView.ItemTemplate>
@@ -78,4 +78,13 @@
         </Grid>
         <TextBox x:Name="addComment" KeyUp="addComment_KeyDown" Margin="10,0,10,10" VerticalAlignment="Bottom" TextWrapping="Wrap" Height="40" Background="{x:Null}" BorderBrush="Black" BorderThickness="1.5" FontSize="22" Grid.Row="1"/>
     </Grid>
+
+    <Page.BottomAppBar>
+        <CommandBar x:Name="applicationBar" Background="#C8FFFFFF" Foreground="#FFDC3023" BorderBrush="{x:Null}" ClosedDisplayMode="Minimal">
+            <CommandBar.SecondaryCommands>
+                <AppBarButton Label="收藏" Click="Collection_Click"/>
+                <AppBarButton Label="举报" Click="Report_Click"/>
+            </CommandBar.SecondaryCommands>
+        </CommandBar>
+    </Page.BottomAppBar>
 </Page>

@@ -55,7 +55,7 @@ namespace FigDating {
                     return false;
                 }
                 ////////////////////////////////
-                loadProfile(responseBody);
+                User.setProfile(responseBody);
             }
             catch { }
             // 需要重新刷新个人信息
@@ -63,27 +63,6 @@ namespace FigDating {
             return true;
         }
 
-        private void loadProfile(string json) {
-           // username = "1";
-            JsonValue response = JsonValue.Parse(json);
-            JsonObject item = response.GetObject();
-
-            
-            item = item["user"].GetObject();
-
-            Windows.Storage.ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
-            Windows.Storage.ApplicationDataCompositeValue composite = new Windows.Storage.ApplicationDataCompositeValue();
-            composite["username"] = item["user_id"].GetNumber();
-            composite["name"] = item["username"].GetString();
-            composite["grade"] = item["grade"].GetString();
-            composite["gender"] = item["gender"].GetString();
-            composite["chance"] = item["chance"].GetNumber();
-            composite["college"] = item["college"].GetString();
-            composite["birth_year"] = item["birth_year"].GetString();
-            composite["id"] = item["stu_id"].GetString() ;
-            composite["image"] = item["path"].GetString();
- 
-            localSettings.Values["profile"] = composite;
-        }
+        
     }
 }

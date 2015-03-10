@@ -18,6 +18,7 @@
     <RootPropertyPathName Name="Title" />
     <RootPropertyPathName Name="UserId" />
     <RootPropertyPathName Name="Notification" />
+    <RootPropertyPathName Name="Id" />
     <RootPropertyPathName Name="SecondGroup" />
     <RootPropertyPathName Name="FirstGroup" />
     <RootPropertyPathName Name="SelectedIndex" />
@@ -38,6 +39,8 @@
       <RootProperty Name="Foreground" />
       <RootProperty Name="BorderBrush" />
       <RootProperty Name="PrimaryCommands" />
+      <RootProperty Name="ClosedDisplayMode" />
+      <RootProperty Name="SecondaryCommands" />
     </RootType>
     <RootType FullName="Microsoft.Xaml.Tools.DirectUI.ProxyTypes.NullExtension" />
     <RootType FullName="Windows.UI.Xaml.Controls.AppBarButton">
@@ -191,8 +194,8 @@
       <RootProperty Name="ItemsSource" />
       <RootProperty Name="ItemTemplate" />
       <RootProperty Name="IsItemClickEnabled" />
-      <RootEvent Name="Loaded" />
       <RootEvent Name="ItemClick" />
+      <RootEvent Name="Loaded" />
       <RootEvent Name="SelectionChanged" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.DataTemplate">

@@ -10,6 +10,7 @@ namespace FigDating
 {
     public class User
     {
+        private static int i = 0;
         private static User user = null;
         private User() { }
         public static User getUser()
@@ -29,6 +30,7 @@ namespace FigDating
                 Windows.Web.Http.HttpStreamContent streamContent1 = new Windows.Web.Http.HttpStreamContent(stream1);
                 Windows.Web.Http.HttpMultipartFormDataContent fileContent = new Windows.Web.Http.HttpMultipartFormDataContent();
                 fileContent.Add(streamContent1, "file", "file.jpg");
+                fileContent.Add(new Windows.Web.Http.HttpStringContent(getId().ToString()), "user_id");
                 Windows.Web.Http.HttpResponseMessage response = await httpClient.PostAsync(new Uri(posturi), fileContent);
                 string responString = await response.Content.ReadAsStringAsync();
                 JsonObject jo = JsonObject.Parse(responString);
@@ -60,10 +62,10 @@ namespace FigDating
             HttpClient client = new HttpClient();
             try
             {
-                HttpResponseMessage responseHttp = await client.GetAsync(Domain.getDomain() + "user/" + User.getId() + "/notifications/");
+                HttpResponseMessage responseHttp = await client.GetAsync(Domain.getDomain() + "user/" + User.getId() + "/notifications/?"+(i++));
                 client.Dispose();
                 Task<string> message = responseHttp.Content.ReadAsStringAsync();
-                return "{\"notifications\": [{\"notification_id\": 20, \"status\": \"read\", \"message\": \"[\\u5468\\u4e88\\u7ef4]\\u5bf9\\u4f60\\u8fdb\\u884c\\u4e86\\u8bc4\\u8bba\", \"user_id\": 1, \"time\": \"2015-03-08 12:31:40.269855+00:00\"}]}";//return await message;
+                return await message;
 
             }
             catch (Exception)
@@ -113,6 +115,38 @@ namespace FigDating
    (Windows.Storage.ApplicationDataCompositeValue)localSettings.Values["profile"];
             var id = UsrPwd["name"];
             return id.ToString();
+        }
+
+        public static void setProfile(string json)
+        {
+            // username = "1";
+            JsonValue response = JsonValue.Parse(json);
+            JsonObject item = response.GetObject();
+
+
+            item = item["user"].GetObject();
+
+            Windows.Storage.ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
+            Windows.Storage.ApplicationDataCompositeValue composite = new Windows.Storage.ApplicationDataCompositeValue();
+            composite["username"] = item["user_id"].GetNumber();
+            composite["name"] = item["username"].GetString();
+            composite["grade"] = item["grade"].GetString();
+            composite["gender"] = item["gender"].GetString();
+            composite["chance"] = item["chance"].GetNumber();
+            composite["college"] = item["college"].GetString();
+            composite["birth_year"] = item["birth_year"].GetString();
+            composite["id"] = item["stu_id"].GetString();
+            composite["image"] = item["path"].GetString();
+
+            localSettings.Values["profile"] = composite;
+        }
+
+        public async void loadProfile() {
+            HttpClient client = new HttpClient();
+            HttpResponseMessage responseHttp = await client.GetAsync(Domain.getDomain() + "user/" + User.getId() + "/?" + (i++));
+            client.Dispose();
+            Task<string> message = responseHttp.Content.ReadAsStringAsync();
+            setProfile(await message);
         }
     }
 }

@@ -34,6 +34,7 @@ namespace FigDating
 
     public sealed partial class PivotPage : Page
     {
+        
         private const string FirstGroupName = "FirstGroup";
         private const string SecondGroupName = "SecondGroup";
 
@@ -41,8 +42,9 @@ namespace FigDating
         private readonly ObservableDictionary defaultViewModel = new ObservableDictionary();
         private readonly ResourceLoader resourceLoader = ResourceLoader.GetForCurrentView("Resources");
 
-
-
+        private static  bool srcLoaded = true;
+        public static void setsrcLoaded() { srcLoaded = true; }
+        
         public PivotPage()
         {
             this.InitializeComponent();
@@ -87,6 +89,10 @@ namespace FigDating
         private async void NavigationHelper_LoadState(object sender, LoadStateEventArgs e)
         {
             // TODO: 创建适用于问题域的合适数据模型以替换示例数据
+            if (!srcLoaded) {
+                return;
+            }
+            srcLoaded = false;
             var sampleDataGroup = await SampleDataSource.GetGroupAsync("Group-1");
             if (sampleDataGroup != null)
                 this.DefaultViewModel[FirstGroupName] = sampleDataGroup;
@@ -111,6 +117,10 @@ namespace FigDating
             // TODO: 在此处保存页面的唯一状态。
         }
 
+        private void Notification_ItemClick(object sender, ItemClickEventArgs e) {
+            var itemID = ((CommmentDataItem)e.ClickedItem).Id;
+            Frame.Navigate(typeof(ItemPage), itemID);
+        }
         /// <summary>
         /// 在单击节内的项时调用。
         /// </summary>
@@ -151,6 +161,7 @@ namespace FigDating
 
         }
 
+       
         #region NavigationHelper 注册
 
         /// <summary>
@@ -171,7 +182,7 @@ namespace FigDating
             this.navigationHelper.OnNavigatedTo(e);
 
             // 后退键退出app
-            // Windows.Phone.UI.Input.HardwareButtons.BackPressed += quitApp;
+            Windows.Phone.UI.Input.HardwareButtons.BackPressed += quitApp;
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
@@ -196,6 +207,10 @@ namespace FigDating
                 case 0:
                     this.applicationBar.Visibility = Windows.UI.Xaml.Visibility.Visible;
                     this.title.Text = "新的约会";
+                    if (srcLoaded) {
+                        srcLoaded = false;
+                        NavigationHelper_LoadState(null,null);
+                    }
                     break;
                 case 1:
                     this.title.Text = "猜你喜欢";
@@ -204,6 +219,7 @@ namespace FigDating
                     this.title.Text = "通知";
                     break;
                 case 3:
+                    Profile_Loaded();
                     this.title.Text = "更多";
                     break;
             }
@@ -273,11 +289,17 @@ namespace FigDating
             this.username.Text = (string)profile["name"];
             this.usergroup.Text = (string)profile["college"] + (string)profile["grade"];
 
-            BitmapImage bm = new BitmapImage(new Uri(@profile["image"].ToString(), UriKind.RelativeOrAbsolute));
-            this.imagePath.Source = bm;
+            string img = profile["image"].ToString();
+            setImg(img);
 
             this.chance.Text = profile["chance"].ToString();
 
+        }
+
+        public void setImg(string img) {
+            if (img.Equals("")) { return; }
+            BitmapImage bm = new BitmapImage(new Uri(@img, UriKind.RelativeOrAbsolute));
+            this.imagePath.Source = bm;
         }
 
         private  async void login() {
@@ -295,14 +317,14 @@ namespace FigDating
         }
         protected void quitApp(object sender, BackPressedEventArgs e)
         {
-            Application.Current.Exit();
+            if(!Frame.CanGoBack)
+                Application.Current.Exit();
         }
 
         protected async void new_app(object sender, RoutedEventArgs e)
         {
-            User user = User.getUser();
-            int chance = user.useChance();
-            if (chance < 0)
+            int chance = User.GetChance();
+            if (chance <= 0)
             {
                 MessageDialog messageDialog = new MessageDialog("没有足够的机会发布状态哦");
                 await messageDialog.ShowAsync();
